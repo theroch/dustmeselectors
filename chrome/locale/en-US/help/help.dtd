@@ -1,0 +1,10 @@
+
+<!-- help pages -->
+<!ENTITY dms.help.title "Dust-Me Help">
+<!ENTITY dms.help.preferences.title "Dust-Me Help | Preferences">
+<!ENTITY dms.help.preferences.winnt.title "Dust-Me Help | Options">
+<!ENTITY dms.help.started.title "Dust-Me Help | Getting Started">
+
+<!-- "open in firefox" buttons -->
+<!ENTITY dms.help.openin "Open in Firefox">
+

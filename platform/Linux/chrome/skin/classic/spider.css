@@ -1,0 +1,66 @@
+/*******************************************************************************
+ DMS4.1 :: Dust-Me Selectors v4.1
+ -------------------------------------------------------------------------------
+ Copyright (c) 2007-13 James Edwards (brothercake)        <cake@brothercake.com>
+ MIT License                      http://opensource.org/licenses/mit-license.php
+ Info/Docs                            http://www.brothercake.com/dustmeselectors
+ -------------------------------------------------------------------------------
+ Contributors:
+ -------------------------------------------------------------------------------
+ Andrew Krespanis   [Concept]                           http://leftjustified.net
+ Paul Annesley      [Concept]                            http://paul.annesley.cc
+ Lachlan Donald     [Concept]                                  http://lachlan.me
+ Alex Walker        [Icon design]    http://www.sitepoint.com/author/alex-walker
+ -------------------------------------------------------------------------------
+*******************************************************************************/
+
+
+/* main container */
+#dms-spider-dialog
+{
+	padding:5px;
+}
+#dms-spider-dialog > groupbox
+{
+	padding:7px;
+}
+
+
+
+/* dialog action buttons container */
+#dms-spider-dialog > groupbox + hbox
+{
+	 padding:0 0 5px 0;
+}
+
+
+
+/* sitemap URL textbox */
+#dms-spider-mapurl
+{
+	padding:2px;
+}
+
+
+
+/* spider buttons container */
+#dms-spider-dialog > groupbox > vbox + hbox
+{
+	padding-top:3px;
+}
+
+
+
+/* spider statusbar */
+#dms-spider-statusbar > groupbox
+{
+	padding:5px;
+}
+#dms-spider-statusicon
+{
+	margin-right:2px;
+}
+
+
+
+

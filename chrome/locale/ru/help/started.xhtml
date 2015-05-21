@@ -1,0 +1,151 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://dustmeselectors/content/help/help.css" type="text/css"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd" 
+[
+	<!ENTITY % helplang SYSTEM "chrome://dustmeselectors/locale/help/help.dtd">
+	%helplang;
+	<!ENTITY % preflang SYSTEM "chrome://dustmeselectors/locale/preferences.dtd">
+	%preflang;
+	<!ENTITY % corelang SYSTEM "chrome://dustmeselectors/locale/dustmeselectors.dtd">
+	%corelang;
+]>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru"
+	xmlns:dms="http://www.brothercake.com/dustmeselectors">
+<head>
+	<meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8"/>
+	<title>&dms.help.started.title;</title>
+	<link rel="icon" href="chrome://dustmeselectors/content/help/helpdialog.ico" type="image/x-icon" />
+	<script type="application/javascript" src="chrome://dustmeselectors/content/help/help.js"/>
+</head>
+<body>
+	
+	<h1>&dms.help.started.title;</h1>
+	
+	<div id="functions" dms:openin="&dms.help.openin;">
+		
+		<h2>Начало работы с Dust-Me Selectors</h2>
+		
+		<p>
+			Dust-Me Selectors выполняет <dfn>три основные функции</dfn>:
+		</p>
+		<ol>
+			<li><a class="function" href="#functions-scanning">Сканирование одиночной страницы</a></li>
+			<li><a class="function" href="#functions-spidering">Сканирование сайта пауком</a></li>
+			<li><a class="function" href="#functions-automation">Автоматическое сканирование страниц</a></li>
+		</ol>
+		
+		<h3 id="functions-scanning">Сканирование одиночной страницы</h3>
+		
+		<p id="scanning-button-description">
+			Вы можете просканировать любую HTML-страницу, щелкнув кнопку на панели инструментов: 
+		</p>
+		<p class="figure">
+			<img src="chrome://dustmeselectors/locale/help/scanning-button.winnt.png" 
+				class="linux-lang darwin-lang" 
+				dms:darwin-src="chrome://dustmeselectors/locale/help/scanning-button.darwin.png"
+				dms:linux-src="chrome://dustmeselectors/locale/help/scanning-button.linux.png"
+				alt="" aria-describedby="scanning-button-description"/>
+		</p>
+		<p>
+			Вы можете также сделать это из основного меню расширений 
+			(<q>Инструменты&#x2192;Веб-разработка&#x2192;Dust-Me Selectors</q>), 
+			или через сочетание клавиш: 
+			<dfn class="darwin-lang" dms:darwin="&#x2325;&#x2318;N">Ctrl+Alt+N</dfn>.
+		</p>
+		<p id="scanning-data-description">
+			После сканирования страницы автоматически откроется окно данных, где детально отображаются  все обнаруженные таблицы стилей и селекторы, которые упорядочены во вкладках <q>Неиспользуемые селекторы</q> и <q>Используемые селекторы</q>.
+		</p>
+		<p class="figure">
+			<img src="chrome://dustmeselectors/locale/help/scanning-data.winnt.png" 
+				class="linux-lang darwin-lang" 
+				dms:darwin-src="chrome://dustmeselectors/locale/help/scanning-data.darwin.png"
+				dms:linux-src="chrome://dustmeselectors/locale/help/scanning-data.linux.png"
+				alt="" aria-describedby="scanning-data-description"/>
+		</p>
+		<p>
+			Но сканирование отдельной страницы сайта малоинформативно. Для того, чтобы убедиться, какие селекторы фактически не используются на сайте, вы должны будете просканировать <strong>каждую страницу</strong>, на которой используются эти таблицы стилей.
+		</p>
+		<p>
+			 Здесь вам на помощь приходит «паук»...
+		</p>
+		
+		
+		<h3 id="functions-spidering">Сканирование сайта пауком</h3>
+		
+		<p id="spider-menu-description">
+			Вы можете открыть диалоговое окно «Паука» из меню кнопки Dust-Me на панели инструментов:
+		</p>
+		<p class="figure">
+			<img src="chrome://dustmeselectors/locale/help/spider-menu.winnt.png" 
+				class="linux-lang darwin-lang" 
+				dms:darwin-src="chrome://dustmeselectors/locale/help/spider-menu.darwin.png"
+				dms:linux-src="chrome://dustmeselectors/locale/help/spider-menu.linux.png"
+				alt="" aria-describedby="spider-menu-description"/>
+		</p>
+		<p>
+			Вы можете также сделать это из основного меню расширения или сочетанием клавиш: 
+			<dfn class="darwin-lang" dms:darwin="&#x2325;&#x2318;P">Ctrl+Alt+P</dfn>.
+		</p>
+		<p id="spider-sitemap-description">
+			Затем введите URL карты сайта и щелкните кнопку <dfn>Старт</dfn>.
+		</p>
+		<p class="figure">
+			<img src="chrome://dustmeselectors/locale/help/spider-sitemap.winnt.png" 
+				class="linux-lang darwin-lang" 
+				dms:darwin-src="chrome://dustmeselectors/locale/help/spider-sitemap.darwin.png"
+				dms:linux-src="chrome://dustmeselectors/locale/help/spider-sitemap.linux.png"
+				alt="" aria-describedby="spider-sitemap-description"/>
+		</p>
+		<p>
+			Паук загрузит и просканирует <strong>каждую страницу, связанную с картой сайта</strong>, проверяя каждую таблицу стилей, которую он находит в DOM каждой страницы, которая включает его. 
+		</p>
+		<p>
+			<em>В результате создается картина использования селекторов на всем сайте.</em>
+		</p>
+		<p>
+			Но все же есть вещи, которые паук не может обнаружить. Он не может нажать на кнопки или навести курсор на ссылки и щелкнуть по ним, или сделать любые другие пользовательские действия, которые могли бы инициировать <strong>динамический контент</strong>.
+		</p>
+		<p>
+			Это тот случай, когда может быть полезной автоматизация...
+		</p>
+			
+		
+		<h3 id="functions-automation">Сканирование страниц автоматически</h3>
+		
+		<p id="preferences-menu-description">
+			Откройте диалоговое окно <span class="winnt-lang" dms:winnt="Настройки">Настройки</span> 
+			в меню кнопки Dust-Me на панели инструментов:
+		</p>
+		<p class="figure">
+			<img src="chrome://dustmeselectors/locale/help/preferences-menu.winnt.png" 
+				class="linux-lang darwin-lang" 
+				dms:darwin-src="chrome://dustmeselectors/locale/help/preferences-menu.darwin.png"
+				dms:linux-src="chrome://dustmeselectors/locale/help/preferences-menu.linux.png"
+				alt="" aria-describedby="preferences-menu-description"/>
+		</p>
+		<p>
+			Вы можете также сделать это из основного меню расширения или горячими клавишами: 
+			<dfn class="darwin-lang" dms:darwin="&#x2325;&#x2318;,">Ctrl+Alt+,</dfn> (запятая).
+		</p>
+		<p id="preferences-automation-description">
+			Затем включите автоматизацию во вкладке <q>Автоматизация</q>". Там же можно активировать управление многими мутационными событиями:
+		</p>
+		<p class="figure">
+			<img src="chrome://dustmeselectors/locale/help/preferences-automation.winnt.png" 
+				class="linux-lang darwin-lang" 
+				dms:darwin-src="chrome://dustmeselectors/locale/help/preferences-automation.darwin.png"
+				dms:linux-src="chrome://dustmeselectors/locale/help/preferences-automation.linux.png"
+				alt="" aria-describedby="preferences-automation-description"/>
+		</p>
+		<p>
+			После включения автоматизации Dust-Me Selectors <strong>автоматически просканирует каждую страницу</strong>, которую Вы посещаете в Firefox. При этом дополнительные мутационные события будут инициировать <strong>дополнительные сканирования всякий раз, когда страница динамически изменяется</strong>.
+		</p>
+		<p>
+			<em>Так, постепенно просматривая сайт и взаимодействуя с динамическими страницами, вы в конечном счете получите действительно точный список неиспользуемых селекторов!</em>
+		</p>
+		
+	</div>
+	
+</body>
+</html>

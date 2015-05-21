@@ -1,0 +1,117 @@
+/*******************************************************************************
+ DMS4.1 :: Dust-Me Selectors v4.1
+ -------------------------------------------------------------------------------
+ Copyright (c) 2007-13 James Edwards (brothercake)        <cake@brothercake.com>
+ MIT License                      http://opensource.org/licenses/mit-license.php
+ Info/Docs                            http://www.brothercake.com/dustmeselectors
+ -------------------------------------------------------------------------------
+ Contributors:
+ -------------------------------------------------------------------------------
+ Andrew Krespanis   [Concept]                           http://leftjustified.net
+ Paul Annesley      [Concept]                            http://paul.annesley.cc
+ Lachlan Donald     [Concept]                                  http://lachlan.me
+ Alex Walker        [Icon design]    http://www.sitepoint.com/author/alex-walker
+ -------------------------------------------------------------------------------
+*******************************************************************************/
+
+
+/* dialog window */
+window
+{
+	padding:10px;
+}
+
+
+
+/* hosts index menu */
+#dms-hostsindexmenu
+{
+	padding:2px;
+}
+
+
+
+/* progress meter */
+#dms-viewprogress
+{
+	margin-bottom:-1px;
+}
+
+/* progress elements */
+#dms-viewcleaning-abort2.connecting > image
+{
+	background:url("chrome://dustmeselectors/skin/connecting.png") no-repeat 0 0;
+}
+#dms-viewcleaning-abort2.loading > image
+{
+	background:url("chrome://dustmeselectors/skin/loading.png") no-repeat 0 0;
+}
+#dms-viewcleaning-abort2.processing > image
+{
+	background:url("chrome://dustmeselectors/skin/buttons.png") no-repeat 0 0;
+}
+#dms-viewcleaning-abort2.processing > image:hover,
+#dms-viewcleaning-abort2.processing > image:focus
+{
+	background-position:-16px 0;
+}
+#dms-viewcleaning-abort2.processing > image:active
+{
+	background-position:-32px 0;
+}
+
+
+
+/* tab panels */
+tabpanels
+{
+	padding:0;
+	-moz-appearance:none;
+	border:1px solid ButtonShadow;
+	border-radius:0 0 4px 4px;
+	-moz-border-radius:0 0 4px 4px;
+}
+
+
+
+/* content browsers */
+browser
+{
+	border-radius:0 0 4px 4px;
+	-moz-border-radius:0 0 4px 4px;
+}
+
+
+
+/* view footer */
+#dms-viewfooter
+{
+	margin-left:0;
+	margin-right:0;
+}
+
+/* view summary */
+#dms-viewsummary
+{
+	margin:8px 0 6px 10px;
+}
+
+/* view footer spider buttons */
+#dms-viewsummary ~ hbox
+{
+	margin-top:2px;
+	margin-bottom:-2px;
+}
+
+/* view footer cleaning options */
+#dms-viewcleaning > vbox:first-of-type > label
+{
+	margin-left:10px;
+}
+#dms-viewcleaning > vbox:first-of-type > radiogroup
+{
+	margin:0 0 0 4px;
+}
+
+
+

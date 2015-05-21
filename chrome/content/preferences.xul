@@ -1,0 +1,276 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://dustmeselectors/content/preferences.css" type="text/css"?>
+<?xml-stylesheet href="chrome://dustmeselectors/skin/preferences.css" type="text/css"?>
+<!DOCTYPE dialog SYSTEM "chrome://dustmeselectors/locale/preferences.dtd">
+
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" 
+	xmlns:dms="http://www.brothercake.com/dustmeselectors"
+	id="dms-preferences"
+	buttons="accept,cancel,help" 
+	defaultButton="accept" 
+	buttonlabelaccept=" &dms.preferences.okay; " 
+	buttonlabelcancel=" &dms.preferences.cancel; " 
+	buttonlabelhelp=" &dms.preferences.help; " 
+	buttonaccesskeyaccept="&dms.preferences.accesskey.okay;" 
+	buttonaccesskeycancel="&dms.preferences.accesskey.cancel;" 
+	buttonaccesskeyhelp="&dms.preferences.accesskey.help;" 
+	ondialogaccept="DustMeSelectors_preferences.acceptChanges();"
+	ondialoghelp="DustMeSelectors_preferences.openHelp();"
+	title="&dms.preferences.title;"
+	class="winnt-lang" dms:winnt-title="&dms.preferences.winnt.title;"
+	onload="DustMeSelectors_preferences.preferencesDialogLoaded();"
+	onclose="opener.DustMeSelectors_browser.preferencesDialogClosed();"
+	onunload="
+		opener.DustMeSelectors_tools.saveDialogProps(this, 'preferences');
+		opener.DustMeSelectors_browser.preferencesDialogClosed();
+		">
+
+	<script type="application/javascript" src="chrome://dustmeselectors/content/tools.js"/>
+	<script type="application/javascript" src="chrome://dustmeselectors/content/filesystem.js"/>
+	<script type="application/javascript" src="chrome://dustmeselectors/content/preferences.js"/>
+
+	<tabbox flex="1">
+  		
+  		<stringbundleset>
+			<stringbundle id="dms-bundle" src="chrome://dustmeselectors/locale/preferences.properties"/>		
+		</stringbundleset>
+		
+		<tabs id="dms-preftabs" onselect="document.getElementById('dms-prefpanel-autorunhosts').hidePopup();">
+			<!-- nb. the dms:help attributes must match the pattern of a valid ID -->
+			<tab label="&dms.preferences.group.stylesheets;" 
+				accesskey="&dms.preferences.accesskey.stylesheets;" dms:help="scanning"/>
+			<tab label="&dms.preferences.group.spidering;" 
+				accesskey="&dms.preferences.accesskey.spidering;" dms:help="spidering"/>
+			<tab label="&dms.preferences.group.automation;" 
+				accesskey="&dms.preferences.accesskey.automation;" dms:help="automation"/>
+			<tab label="&dms.preferences.group.view;" 
+				accesskey="&dms.preferences.accesskey.view;" dms:help="reporting"/>
+			<tab label="&dms.preferences.group.saving;" 
+				accesskey="&dms.preferences.accesskey.saving;" dms:help="storage"/>
+			<tab label="&dms.preferences.group.main;" 
+				accesskey="&dms.preferences.accesskey.main;" dms:help="interface"/>
+		</tabs>	
+		
+		<tabpanels flex="1">
+		
+			<tabpanel flex="1">
+				<vbox flex="1">
+					<checkbox id="dms-preference-styleblocks" label="&dms.preferences.styleblocks;"/>
+					<checkbox id="dms-preference-ignoreelements" label="&dms.preferences.ignoreelements;" style="margin-top:9px;"/>
+					<checkbox id="dms-preference-ignorepseudostates" label="&dms.preferences.ignorepseudostates;" style="margin-top:1px;"/>
+					<checkbox id="dms-preference-ignorepseudoelements" label="&dms.preferences.ignorepseudoelements;" style="margin-top:1px;"/>
+					<checkbox id="dms-preference-accountforhacks" label="&dms.preferences.accountforhacks;" style="margin-top:1px;"/>
+				</vbox>
+			</tabpanel>
+
+			<tabpanel flex="1">
+				<vbox flex="1">
+					<checkbox id="dms-preference-noexternal" label="&dms.preferences.noexternal;"/>
+					<vbox>
+						<checkbox id="dms-preference-nofollow" 
+							label="&dms.preferences.nofollow;" style="margin-top:1px;"
+							oncommand="DustMeSelectors_preferences.handleCheckboxChange(this);"/>
+						<hbox style="margin-left:20px;margin-bottom:3px;">
+							<menulist id="dms-preference-text-relattr" editable="true"
+								tooltiptext="&dms.preferences.relname;"
+								sizetopopup="none" style="width:6em;">
+								<menupopup style="min-width:6em;">
+									<menuitem label="class" style="padding-left:5px;"/>
+									<menuitem label="rel" style="padding-left:5px;"/>
+									<menuitem label="target" style="padding-left:5px;"/>
+								</menupopup>
+							</menulist>
+							<menulist id="dms-preference-menu-relcondition" 
+								sizetopopup="none" style="width:12em;">
+								<menupopup style="min-width:12em;">
+									<menuitem value="contains" label="&dms.preferences.contains;"/>
+									<menuitem value="notcontains" label="&dms.preferences.notcontains;"/>
+								</menupopup>
+							</menulist>
+							<textbox id="dms-preference-text-relvalues" size="20" tooltiptext="&dms.preferences.relvalues;"/>
+						</hbox>
+					</vbox>
+					<hbox flex="1">
+						<vbox>
+							<checkbox id="dms-preference-nospiderjs" label="&dms.preferences.nospiderjs;" style="margin-top:6px;"/>
+							<checkbox id="dms-preference-verifyhead" label="&dms.preferences.verifyhead;" style="margin-top:1px;"/>
+						</vbox>
+					</hbox>
+				</vbox>
+			</tabpanel>
+
+			<tabpanel flex="1">
+				<vbox flex="1">
+					<checkbox id="dms-preference-autorun" label="&dms.preferences.autorun; *" 
+						oncommand="DustMeSelectors_preferences.handleCheckboxChange(this);"/>
+					<vbox style="margin-left:20px;margin-bottom:3px;">
+						<checkbox id="dms-preference-mutation" label="&dms.preferences.mutation;"/>
+						<checkbox id="dms-preference-mutationhead" label="&dms.preferences.mutationhead;" style="margin-top:1px;"/>
+						<hbox style="margin-top:-5px;">
+							<checkbox id="dms-preference-mutationattrs" label="&dms.preferences.mutationattrs;" 
+								oncommand="DustMeSelectors_preferences.handleCheckboxChange(this);"/>
+							<textbox id="dms-preference-text-mutationignoreattrs" size="20" tooltiptext="&dms.preferences.mutationignoreattrs;"/>
+						</hbox>
+						<checkbox id="dms-preference-autorunrestrict" label="&dms.preferences.autorunrestrict;" style="margin-top:6px;"
+							oncommand="DustMeSelectors_preferences.handleCheckboxChange(this);"/>
+						<hbox style="margin-left:20px;margin-bottom:3px;">
+							<button id="dms-prefbutton-autorunhosts" label=" &dms.preferences.autorunhosts; " 
+								style="margin-top:1px;font:small-caption;font-weight:normal;"
+								accesskey="&dms.preferences.accesskey.autorunhosts;"
+								oncommand="document.getElementById('dms-prefpanel-autorunhosts').openPopup(this, 'after_start');"/>
+							<panel id="dms-prefpanel-autorunhosts" 
+								onpopuphidden="document.getElementById('dms-prefbutton-autorunhosts').focus();">
+								<groupbox>
+									<hbox>
+										<tree id="dms-preftree-autorunhosts" editable="true"  
+											flex="1" width="200" rows="8" hidecolumnpicker="true">
+											<treecols>
+												<treecol hideheader="true" type="checkbox" editable="true"/>
+												<treecol hideheader="true" flex="1"/>
+											</treecols>
+											<treechildren/>
+										</tree>
+										<vbox>
+											<button id="dms-prefpanel-addbutton" style="font:small-caption;font-weight:normal;"
+												label=" &dms.preferences.addbutton; " 
+												accesskey="&dms.preferences.accesskey.addbutton;"
+												oncommand="DustMeSelectors_preferences.addTreeHost();"
+												onkeypress="if(event.keyCode == KeyEvent.DOM_VK_RETURN) 
+															{ document.getElementById('dms-prefpanel-autorunhosts').hidePopup(); }"/>
+											<button id="dms-prefpanel-deletebutton" style="font:small-caption;font-weight:normal;" 
+												label=" &dms.preferences.deletebutton; " disabled="true" 
+												accesskey="&dms.preferences.accesskey.deletebutton;"
+												oncommand="DustMeSelectors_preferences.deleteSelectedTreeHosts();"
+												onkeypress="if(event.keyCode == KeyEvent.DOM_VK_RETURN) 
+															{ document.getElementById('dms-prefpanel-autorunhosts').hidePopup(); }"/>
+										</vbox>
+									</hbox>
+								</groupbox>
+							</panel>
+						</hbox>
+					</vbox>
+					<spacer flex="1"/>
+					<description value="* &dms.preferences.autonote;" style="margin-left:3px;"
+						class="winnt-lang" dms:winnt-value="* &dms.preferences.winnt.autonote;"/>
+				</vbox>
+			</tabpanel>
+
+			<tabpanel flex="1">
+				<vbox flex="1">
+					<grid flex="1" style="margin-top:2px;">
+						<columns>
+							<column flex="1"/>
+							<column flex="1"/>
+						</columns>
+						<rows>
+							<row>
+								<vbox style="margin-right:12px;">
+									<label style="font-weight:bold;">&dms.preferences.doafterfind;</label>
+									<vbox style="margin-left:2px;margin-bottom:3px;">
+										<checkbox id="dms-preference-openafterfind" label="&dms.preferences.openafter;"/>
+										<checkbox id="dms-preference-notifyafterfind" label="&dms.preferences.notifyafter;" style="margin-top:1px;"/>
+										<checkbox id="dms-preference-notifyboxafterfind" label="&dms.preferences.notifyboxafter;" style="margin-top:1px;"/>
+									</vbox>
+								</vbox>
+								<vbox style="margin-bottom:12px;">
+									<label style="font-weight:bold;">&dms.preferences.doafterautorun;</label>
+									<vbox style="margin-left:2px;margin-bottom:3px;">
+										<checkbox id="dms-preference-openafterautorun" label="&dms.preferences.openafter;"/>
+										<checkbox id="dms-preference-notifyafterautorun" label="&dms.preferences.notifyafter;" style="margin-top:1px;"/>
+										<checkbox id="dms-preference-notifyboxafterautorun" label="&dms.preferences.notifyboxafter;" style="margin-top:1px;"/>
+									</vbox>
+								</vbox>
+							</row>
+							<row>
+								<vbox style="margin-right:12px;">
+									<label style="font-weight:bold;">&dms.preferences.doafterspider;</label>
+									<vbox style="margin-left:2px;margin-bottom:3px;">
+										<checkbox id="dms-preference-openafterspider" label="&dms.preferences.openafter;"/>
+										<checkbox id="dms-preference-notifyafterspider" label="&dms.preferences.notifyafter;" style="margin-top:1px;"/>
+										<checkbox id="dms-preference-notifyboxafterspider" label="&dms.preferences.notifyboxafter;" style="margin-top:1px;"/>
+									</vbox>
+								</vbox>
+								<vbox>
+									<hbox>
+										<vbox>
+											<label>&dms.preferences.boxpriority;</label>
+											<menulist id="dms-preference-menu-boxpriority">
+												<menupopup>
+													<menuitem value="info" label="&dms.preferences.boxpriorityflag.info;"/>
+													<menuitem value="warning" label="&dms.preferences.boxpriorityflag.warning;"/>
+													<menuitem value="critical" label="&dms.preferences.boxpriorityflag.critical;"/>
+												</menupopup>
+											</menulist>
+										</vbox>
+										<spacer flex="1"/>
+									</hbox>
+								</vbox>
+							</row>
+						</rows>
+					</grid>
+				</vbox>
+			</tabpanel>
+			
+			<tabpanel flex="1">
+				<vbox flex="1">
+					<checkbox id="dms-preference-clearconfirm" label="&dms.preferences.clearconfirm;"/>
+					<checkbox id="dms-preference-saveperhost" label="&dms.preferences.saveperhost;" 
+						oncommand="DustMeSelectors_preferences.handleCheckboxChange(this);"/>
+					<vbox style="margin-left:20px;">
+						<checkbox id="dms-preference-ignoreports" label="&dms.preferences.ignoreports;"/>
+						<checkbox id="dms-preference-ignoresubdomains" label="&dms.preferences.ignoresubdomains;" style="margin-top:1px;"/>
+					</vbox>
+					<hbox>
+						<vbox flex="1">
+							<radiogroup>
+								<radio id="dms-preference-radio-usepreffolder" label="&dms.preferences.usepreffolder;" 
+									oncommand="DustMeSelectors_preferences.handleRadioChange(this);"/>
+								<radio id="dms-preference-radio-specifyfolder" label="&dms.preferences.specifyfolder;" 
+									oncommand="DustMeSelectors_preferences.handleRadioChange(this);" style="margin-top:1px;"/>
+							</radiogroup>
+						</vbox>
+						<vbox pack="center">
+							<button id="dms-prefbutton-launch" style="font:small-caption;font-weight:normal;" 
+								label=" &dms.preferences.launchbutton; "
+								accesskey="&dms.preferences.accesskey.launchbutton;"
+								oncommand="try { opener.DustMeSelectors_filesystem.launchDataFolder(); }catch(ex){ this.disabled = true; }"/>
+						</vbox>
+					</hbox>
+					<hbox style="margin-left:20px;">
+						<textbox id="dms-preference-text-datafolder" style="margin-top:1px;"
+							readonly="true" disabled="true" flex="1"/>
+						<button id="dms-prefbutton-browse" style="font:small-caption;font-weight:normal;" 
+							label=" &dms.preferences.browsebutton; " disabled="true" 
+							accesskey="&dms.preferences.accesskey.browsebutton;"
+							oncommand="DustMeSelectors_preferences.chooseDataFolder();"/>
+					</hbox>
+					<hbox>
+						<checkbox id="dms-preference-deleteonquit" label="&dms.preferences.deleteonquit;" 
+							oncommand="DustMeSelectors_preferences.handleCheckboxChange(this);"/>
+						<vbox id="dms-preficon-deletewarning" hidden="true" style="margin-top:3px;margin-left:3px;">
+							<image width="16" height="16" src="chrome://dustmeselectors/content/warning.png"
+								tooltiptext="&dms.preferences.deletewarning;"/>
+						</vbox>
+					</hbox>
+				</vbox>
+			</tabpanel>
+						
+			<tabpanel flex="1">
+				<vbox flex="1">
+					<checkbox id="dms-preference-showincontext" label="&dms.preferences.showincontext;"/>
+					<checkbox id="dms-preference-showinstatus" label="&dms.preferences.showinstatus;" style="margin-top:1px;"/>
+					<checkbox id="dms-preference-showtoolbarlabel" label="&dms.preferences.showtoolbarlabel; *" style="margin-top:1px;"/>
+					<checkbox id="dms-preference-showtoolbarstarted" label="&dms.preferences.showtoolbarstarted; *" style="margin-top:1px;"/>
+					<checkbox id="dms-preference-precollapse" label="&dms.preferences.precollapse;" style="margin-top:9px;"/>
+					<checkbox id="dms-preference-spiderpersist" label="&dms.preferences.spiderpersist;" style="margin-top:1px;"/>
+					<checkbox id="dms-preference-spidertitles" label="&dms.preferences.spidertitles;" style="margin-top:1px;"/>
+					<spacer flex="1"/>
+					<description style="margin-left:3px;">* &dms.preferences.toolbarnote;</description>
+				</vbox>
+			</tabpanel>
+
+		</tabpanels>
+	</tabbox>
+	
+</dialog>

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE dialog SYSTEM "chrome://dustmeselectors/locale/dustmeselectors.dtd">
+
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" 
+	id="dms-cleaningerror"
+	buttons="accept" 
+	defaultButton="accept" 
+	buttonlabelaccept=" &dms.dialog.confirm.okay; "
+	buttonaccesskeyaccept="&dms.dialog.accesskey.okay;" 
+	title="&dms.dialog.error.title;"
+	onload="document.getElementById('dms-cleaning-errortext').appendChild(
+		document.createTextNode(decodeURI(location.search.split('text=')[1])))"
+	onunload="opener.opener.DustMeSelectors_browser.resetStylesheetCleaner()">
+	
+	<hbox style="padding-bottom:7px;">
+		<hbox style="padding-top:2px;padding-right:12px;" align="start">
+			<image width="32" height="32" flex="0" src="chrome://dustmeselectors/content/dialog-error.png"/>
+		</hbox>
+		<vbox>
+			<description id="dms-cleaning-errortext" style="max-width:300px;padding-right:7px;"/>
+		</vbox>
+	</hbox>
+	
+</dialog>

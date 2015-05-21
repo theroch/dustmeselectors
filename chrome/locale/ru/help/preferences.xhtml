@@ -1,0 +1,720 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://dustmeselectors/content/help/help.css" type="text/css"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd" 
+[
+	<!ENTITY % helplang SYSTEM "chrome://dustmeselectors/locale/help/help.dtd">
+	%helplang;
+	<!ENTITY % preflang SYSTEM "chrome://dustmeselectors/locale/preferences.dtd">
+	%preflang;
+	<!ENTITY % corelang SYSTEM "chrome://dustmeselectors/locale/dustmeselectors.dtd">
+	%corelang;
+]>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+	xmlns:dms="http://www.brothercake.com/dustmeselectors">
+<head>
+	<meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8"/>
+	<title class="winnt-lang" dms:winnt="&dms.help.preferences.winnt.title;">&dms.help.preferences.title;</title>
+	<link rel="icon" href="chrome://dustmeselectors/content/help/helpdialog.ico" type="image/x-icon" />
+	<script type="application/javascript" src="chrome://dustmeselectors/content/help/help.js"/>
+</head>
+<body>
+	
+	<h1>&dms.help.preferences.title;</h1>
+	
+	<div id="scanning" dms:openin="&dms.help.openin;">
+		<h2>&dms.preferences.group.stylesheets;</h2>
+		<dl>
+			<dt id="scanning-styleblocks">&dms.preferences.styleblocks;</dt>
+			<dd>
+				<p>
+					Если эта опция будет <dfn class="on">отмечена</dfn>, то операции одиночного сканирования и сканирования пауком будут включать селекторы из правил в элементах <code>&lt;style&gt;</code>, 
+					индексируя <abbr title="Uniform Resource Locator">URL</abbr>, 
+					 страниц где они найдены.
+				</p>
+				<p>
+					Если эта опция <dfn class="off">не будет отмечена</dfn>, то все такие правила будут проигнорированы.
+				</p>
+				<p>
+					<i>
+						Эта опция применяется только к обычным правилам стиля, но не к импорту (<code>@import</code>) таблиц стилей в элементах
+						<code>&lt;style&gt;</code>, которые всегда загружаются, независимо от этой установки.
+					</i>
+				</p>
+				<p>
+					<i>
+						Включение этой опции может создать многократно повторяющиеся данные. Например, если каждая страница вашего сайта для уменьшения числа <abbr title="HyperText Transfer Protocol">HTTP</abbr>-запросов имеет идентичный код 
+						<abbr title="Cascading Style Sheets">CSS</abbr> 
+						в элементе <code>&lt;style&gt;</code>,
+						то все эти селекторы будут перепроверены
+						<strong>отдельно для каждой страницы</strong>, где они присутствуют.
+					</i>
+				</p>
+			</dd>
+
+			<dt id="scanning-ignoreelements">&dms.preferences.ignoreelements;</dt>
+			<dd>
+				<p>
+					Если эта опция <dfn class="on">отмечена</dfn>, то предполагается, что все селекторы простых элементов 
+					(такие как, <code>"div"</code> или <code>"h2"</code>) используются и не будут тестироваться. 
+
+				</p>
+				<p>
+					Если эта опция <dfn class="off">не отмечена</dfn>, то селекторы простых элементов будут протестированы как и другие.
+				</p>
+				<p>
+					<i>
+						Эта опция применяется только к <strong>одиночным</strong> селекторам элементов, а не для потомков селекторов (например, <code>"div h2"</code>) , которые всегда тестируются независимо от этой настройки.  
+					</i>
+				</p>
+			</dd>
+
+			<dt id="scanning-ignorepseudostates">&dms.preferences.ignorepseudostates;</dt>
+			<dd>
+				<p>
+					Если эта опция <dfn class="on">отмечена</dfn>, то динамические псевдоклассы (такие как <code>":hover"</code>) и псевдоклассы интерфейса (такие как
+					<code>":disabled"</code>) будут проанализированы в селекторах прежде, чем будут протестированы. Это позволяет протестировать такие селекторы на основе их состояния по умолчанию, то есть если по умолчанию они совпадают, то и все динамические состояния тоже.
+				</p>
+				<p>
+					Таким образом, селектор, подобный <code>"input:focus"</code> будет протестирован как просто
+					<code>"input"</code>, и при соответствии элементу исходный селектор будет отмечен как используемый. При отрицании обрабатывается тот же самый путь, таким образом, селектор типа 
+					<code>"input:not(:disabled)"</code> будет также протестирован как просто 
+					<code>"input"</code>.
+				</p>
+				<p>
+					Если эта опция будет <dfn class="off">не отмечена</dfn>, то никакого парсинга не будет, и поэтому динамические псевдоклассы и псевдоклассы интерфейса будут считаться не соответствующими элементу.
+				</p>
+				<p>
+					<i>
+						Псевдоклассы, проанализированные этой опцией, будут показаны с подсветкой синтаксиса. Поддерживаются следующие псевдоклассы: 
+						<code class="filter">link</code>, 
+						<code class="filter">visited</code>, 
+						<code class="filter">hover</code>, 
+						<code class="filter">focus</code>, 
+						<code class="filter">active</code>, 
+						<code class="filter">target</code>, 
+						<code class="filter">enabled</code>, 
+						<code class="filter">disabled</code>, 
+						<code class="filter">checked</code>, 
+						<code class="filter">indeterminate</code>, 
+						<code class="filter">-moz-placeholder</code>.
+					</i>
+				</p>
+			</dd>
+
+			<dt id="scanning-ignorepseudoelements">&dms.preferences.ignorepseudoelements;</dt>
+			<dd>
+				<p>
+					Если эта опция <dfn class="on">отмечена</dfn>, то все псевдоэлементы (такие как, <code>"::before"</code>), будут проанализированы в селекторах прежде, чем будут протестированы. Это позволяет протестировать такие селекторы на основе их родительского элемента, то есть если их родитель существует, то существуют и все его псевдоэлементы.
+				</p>
+				<p>
+					Таким образом, селектор подобный <code>"input::before"</code>будет  протестирован как просто 
+					<code>"input"</code>, и при соответствии элементу, исходный селектор будет отмечен как используемый. 
+
+				</p>
+				<p>
+					Если эта опция будет <dfn class="off">не отмечена</dfn>, то никакого парсинга не будет, и поэтому псевдоэлементы никогда не будут считаться соответствующими элементу. 
+				</p>
+				<p>
+					<i>
+						Псевдоэлементы, проанализированные этой опцией, будут показаны с подсветкой синтаксиса. Поддерживаются все псевдоэлементы, которые используют синтаксис двойного двоеточия. Дополнительно поддерживаются элементы из
+						<abbr title="Cascading Style Sheets Level 2">CSS2</abbr>, для которых позволяется использовать синтаксис одинарного двоеточия:
+						<code class="filter">before</code>, 
+						<code class="filter">after</code>, 
+						<code class="filter">first-line</code>, 
+						<code class="filter">first-letter</code>.
+					</i>
+				</p>
+			</dd>
+
+			<dt id="scanning-accountforhacks">&dms.preferences.accountforhacks;</dt>
+			<dd>
+				<p>
+					Если эта опция будет <dfn class="on">отмечена</dfn>, то некоторые хаки CSS для Internet Explorer будут преобразованы в допустимые селекторы прежде, чем они будут протестированы. Это позволяет протестировать такие селекторы на основе того, как они интерпретируются <abbr title="Internet Explorer">IE</abbr>. 
+				</p>
+				<p>
+					Таким образом, селектор подобный <code>"* html input"</code> будет протестирован как просто
+					<code>"html input"</code>. Если он будет соответствовать элементу, то исходный селектор будет отмечен как используемый. 
+
+				</p>
+				<p>
+					Если эта опция будет <dfn class="off">не отмечена</dfn>, то никакого парсинга не будет. Поэтому эти селекторы никогда не будут соответствующими. 
+				</p>
+				<p>
+					<i>
+						Селекторы, проанализированные этой опцией, будут показаны с подсветкой синтаксиса. Поддерживаются следующие хаки селекторов: 
+						<code class="filter">* html</code>, 
+						<code class="filter">* + html</code>, 
+						<code class="filter">*:first-child + html</code>.
+					</i>
+				</p>
+			</dd>
+		</dl>
+	</div>
+	
+	<div id="spidering" dms:openin="&dms.help.openin;">
+		<h2>&dms.preferences.group.spidering;</h2>
+		<dl>
+			<dt id="spidering-noexternal">&dms.preferences.noexternal;</dt>
+			<dd>
+				<p>
+					Если эта опция будет <dfn class="on">отмечена</dfn>, то паук проигнорирует любые ссылки в HTML-картах сайта, которые указывают на внешний домен.
+				</p>
+				<p>
+					Если эта опция будет <dfn class="off">не отмечена</dfn>, то ссылки вне <abbr title="HyperText Markup Language">HTML</abbr>-карты сайта (то есть, внешние ссылки) будут обрабатываться пауком.
+				</p>
+				<p>
+					<i>
+						Оценка ссылок на домены зависит от двух других опций: 
+						<a class="preference later" href="#storage-ignoreports"
+							>&dms.preferences.ignoreports;</a> 
+						и <a class="preference later" href="#storage-ignoresubdomains"
+							>&dms.preferences.ignoresubdomains;</a>. 
+						Например, ссылка на <q>addons.mozilla.org</q>
+						 из карты сайта на <q>mozilla.org</q>, обычно предполагается ссылкой на внешний домен, однако, если включена опция 
+						<a class="preference later" href="#storage-ignoresubdomains"
+							>&dms.preferences.ignoresubdomains;</a>, 
+						то предполагается, что эта ссылка на том же самом домене.
+					</i>
+				</p>
+				<p>
+					<i>
+						Эта опция применяется только к 
+						<strong><abbr title="HyperText Markup Language">HTML</abbr>-картам сайтов </strong>, но не к <abbr title="eXtensible Markup Language">XML</abbr>
+						или <abbr title="Reall Simple Syndication">RSS</abbr>.
+					</i>
+				</p>
+			</dd>
+
+			<dt id="spidering-nofollow">&dms.preferences.nofollow; [...]</dt>
+			<dd>
+				<p>
+					Если эта опция <dfn class="on">отмечена</dfn>, то паук будет использовать фильтр атрибута, чтобы решить каким ссылкам следовать в 
+					<abbr title="HyperText Markup Language">HTML</abbr>-картах сайта.
+				</p>
+				<p>
+					У фильтра атрибута есть <dfn>три</dfn> настройки, которыми вы можете управлять: 
+				</p>
+				<dl id="spidering-nofollow-description">
+					<dt>Имя фильтра</dt>
+					<dd>
+						<p>
+							Задайте имя атрибута фильтра для использования, например, <q>rel</q>.
+						</p>
+					</dd>
+					<dt>Тип фильтра</dt>
+					<dd>
+						<p>
+							Определите, должен ли фильтр применяться когда атрибут 
+							<q>&dms.preferences.contains;</q> или 
+							<q>&dms.preferences.notcontains;</q>  значение фильтра.
+						</p>
+					</dd>
+					<dt>Значение (я) фильтра</dt>
+					<dd>
+						<p>
+							Определите для использования одно или более значений атрибута для фильтра, разделенные запятыми.
+						</p>
+						<p>
+							<i>
+								Эта опция разработана для использования с <strong>ограниченным числом атрибутов</strong>. 
+								Она соответствует <strong>только целым отдельным значениям, но не подстрокам</strong>. 
+								Например, если значение фильтра <q>follow</q>, то фильтр будет применяться, когда значение атрибута будет <code>"follow"</code> или когда это  
+								<code>"index follow"</code>, но не, когда это - <code>"nofollow"</code>.
+							</i>
+						</p>
+					</dd>
+				</dl>
+				<p>
+					Если эта опция <dfn class="off">не отмечена</dfn>, то фильтрации атрибутов не будет. 
+				</p>
+				<p>
+					<i>
+						Эта опция применяется только к 
+						<strong><abbr title="HyperText Markup Language">HTML</abbr>-картам сайтов </strong>, но не к <abbr title="eXtensible Markup Language">XML</abbr> 
+						или <abbr title="Reall Simple Syndication">RSS</abbr>.
+					</i>
+				</p>
+			</dd>
+
+			<dt id="spidering-nospiderjs">&dms.preferences.nospiderjs;</dt>
+			<dd>
+				<p>
+					Если эта опция <dfn class="on">отмечена</dfn>, то паук будет сканировать страницы с отключенным JavaScript. 
+				</p>
+				<p>
+					Если эта опция <dfn class="off">не отмечена</dfn>, то паук будет использовать те же самые настройки JavaScript, как при обычном просмотре в браузере.
+				</p>
+			</dd>
+
+			<dt id="spidering-verifyhead">&dms.preferences.verifyhead;</dt>
+			<dd>
+				<p>
+					Паук предварительно проверяет каждый 
+					<abbr title="Uniform Resource Locator">URL</abbr> карты сайта, чтобы удостовериться, что это - <abbr title="HyperText Markup Language">HTML</abbr>-страница, и она использует запросы HEAD (<code>HEAD</code> requests), чтобы минимизировать ненужный трафик. Однако некоторые серверы не поддерживают  "<code>HEAD</code> requests".
+					В этом случае лог паука был бы заполнен ошибками <code>"405 Method Not Allowed"</code>.
+				</p> 
+				<p>
+					Если у вас возникает такая проблема, вы можете использовать эту опцию, чтобы управлять методом запроса: 
+				</p>
+				<p>
+					Если эта опция будет <dfn class="on">отмечена</dfn>,то паук будет использовать запросы <code>HEAD</code>.
+				</p>
+				<p>
+					Если эта опция <dfn class="off">не будет отмечена</dfn>, то паук будет использовать вместо них запросы <code>GET</code>.
+				</p>
+			</dd>
+		</dl>
+	</div>
+	
+	<div id="automation" dms:openin="&dms.help.openin;">
+		<h2>&dms.preferences.group.automation;</h2>
+		<dl>
+			<dt id="automation-autorun">&dms.preferences.autorun;</dt>
+			<dd>
+				<p>
+					Если эта опция будет <dfn class="on">отмечена</dfn>, то Dust-Me будет автоматически сканировать страницы, которые вы просматриваете. Это - полезное дополнение к сканированию сайта пауком. Вы можете использовать его, чтобы просканировать динамический контент, который паук не может инициировать, то есть зависания курсора над элементами, щелчки по кнопкам и ссылкам и тому подобные пользовательские действия.
+				</p>
+				<p>
+					При автоматизации, которая инициируется событиями <code>DOMContentLoaded</code>,  
+					сканируется страница, инициировавшая событие. Обычно это страница на активной вкладке. Но, если вы откроете страницу на фоновой вкладке, то  будет просканирована фоновая страница.
+				</p>
+				<p>
+					В дополнение к основному событию вы можете также включить события мутации, которые инициируют дополнительные автоматические сканирования всякий раз, когда они происходят. Эти мутационные события буферизируются чтобы многократные изменения в быстрой последовательности инициировали только единственное сканирование.
+				</p>
+				<p>
+					Можно выбрать <dfn>три</dfn> мутационных события:
+				</p>
+				<dl>
+					<dt id="automation-mutation">&dms.preferences.mutation;</dt>
+					<dd>
+						<p>
+							Если эта опция <dfn class="on">отмечена</dfn>, то добавление любых элементов куда угодно в контейнер <code>&lt;body&gt;</code> инициирует сканирование.
+
+						</p>
+						<p>
+							Если эта опция <dfn class="off">не отмечена</dfn>, то эти мутации будут проигнорированы.
+						</p>
+						<p>
+							<i>
+								Сканирование инициируется только <strong>добавлением элементов</strong>. 
+								Удаление элементов, а также удаление или добавление элементов в других типах узлов игнорируются.
+
+							</i>
+						</p>
+					</dd>
+
+					<dt id="automation-mutationhead">&dms.preferences.mutationhead;</dt>
+					<dd>
+						<p>
+							Если эта опция <dfn class="on">отмечена</dfn>, то добавление дочерних элементов в контейнер <code>&lt;head&gt;</code> инициирует сканирование.
+						</p>
+						<p>
+							Если эта опция <dfn class="off">не отмечена</dfn>, то эти мутации будут проигнорированы.
+						</p>
+						<p>
+							<i>
+								Только <strong>дочерние элементы</strong> инициируют это событие - более дальние потомки будут проигнорированы.
+							</i>
+						</p>
+					</dd>
+
+					<dt id="automation-mutationattrs">&dms.preferences.mutationattrs; [...]</dt>
+					<dd>
+						<p>
+							Если эта опция <dfn class="on">отмечена</dfn>, то добавление, удаление или модификация атрибутов где угодно в документе инициируют сканирование. 
+						</p>
+						<p>
+							Вы можете также определить список исключений &#x2014; одно или более названий атрибутов, разделенных запятыми &#x2014; которые должны быть проигнорированы этим событием. 
+						</p>
+						<p>
+							Так как целью автоматизации является определение изменений, которые могут влиять на использование селекторов, то нет никакого смысла реагировать на изменения в атрибутах, которые не используются в селекторах. Таким образом, очевидное исключение &#x2014; <q>style</q>, так как очень маловероятно, что вы будете использовать его для атрибута селектора. Список значений по умолчанию включает несколько других атрибутов, которые обычно не используются для атрибутов селекторов. Вы можете также отредактировать этот список по вашим потребностям.
+						</p>
+						<p>
+							Если эта опция <dfn class="off">не отмечена</dfn>, то эти мутации будут проигнорированы.
+						</p>
+						<p>
+							<i>
+								Это событие также среагирует на свойства  
+								<strong><abbr title="Document Object Model">DOM</abbr>, которые отображаются на атрибуты</strong>, 
+								такие как <code>.className</code>.
+							</i>
+						</p>
+					</dd>
+				</dl>
+				<p>
+					<i>
+						Изменения в настройках событий мутации не будут применяться к открытым вкладкам, пока их страницы не будут обновлены.
+					</i>
+				</p>
+				<p>
+					Вы можете также <dfn>ограничить автоматизацию</dfn>, так, чтобы она сканировала страницы только на определенных сайтах: 
+				</p>
+				<dl>
+					<dt id="automation-autorunrestrict">&dms.preferences.autorunrestrict;</dt>
+					<dd>
+						<p>
+							Если эта опция <dfn class="on">отмечена</dfn>, то автоматизация будет ограничена списком имен хостов.
+						</p>
+						<p>
+							Под этой опцией есть кнопка <dfn>&dms.preferences.autorunhosts;</dfn><br/> 
+							Щелкнув по ней, вы увидите панель, в которой сможете добавить, удалить или отредактировать имена отдельных хостов. Они могут быть публичными доменами (такими как, 
+							<q>mozilla.org</q>)"), именами частных сетей (такими как, <q>mycomputer.local</q>), 
+							 или общедоступными или частными IP-адресами (такими как, <q>192.168.254.1</q>). 
+							 Вы можете также определить поддомены (такие как, <q>addons.mozilla.org</q>),
+							или различные порты (такие как, <q>mysite.com:2083</q>). 
+						</p>
+						<p>
+							Каждый хост может быть включен и отключен щелчком по значку рядом с именем - зеленый для включенного, розоватый для отключенного (отключенные хосты также выделены серым цветом). Если хост будет отключен, то автоматизация проигнорирует его, как если бы он не был упомянут вообще.
+						</p>
+						<p>
+							Если эта опция будет <dfn class="off">не отмечена</dfn>,  то автоматизация не будет ограничена списком хостов.
+						</p>
+						<p>
+							<i>
+								На анализ хоста влияют две другие опции:
+								<a class="preference later" href="#storage-ignoreports"
+									>&dms.preferences.ignoreports;</a> 
+								и <a class="preference later" href="#storage-ignoresubdomains"
+									>&dms.preferences.ignoresubdomains;</a>. 
+								Например, если ваш список включает 
+								<q>addons.mozilla.org</q>, 
+								 тогда, страница на <q>mozilla.org</q> предполагается расположенной на другом хосте. Однако, если будет включена опция
+								<a class="preference later" href="#storage-ignoresubdomains"
+									>&dms.preferences.ignoresubdomains;</a>, то предполагается, что эта страница расположена на том же самом хосте. 
+							</i>
+						</p>
+						<p>
+							<i>
+								Так как ограничением управляет имя хоста, оно не может включать страницы с адресами <code>file://</code>,  
+								потому что у них нет никакого хоста. Если вы хотите, чтобы такие страницы были просканированы автоматически, вы должны будете отключить ограничение.
+							</i>
+						</p>
+					</dd>
+				</dl>
+				<p>
+					Если эта опция <dfn class="off">не отмечена</dfn>, то автоматического сканирование не будет. 
+				</p>
+				<p>
+					<i>
+						Автоматизация сканирует только страницы <strong>верхнего уровня
+						<abbr title="HyperText Markup Language">HTML</abbr></strong>. 
+						Все страницы внутри iframes или фреймы в настоящий момент игнорируются; как и непосредственно framesets, а также все не <abbr title="HyperText Markup Language">HTML</abbr>-страницы 
+						(такие как, текст и 
+						<abbr title="eXtensible Markup Language">XML</abbr> документы), 
+						и страницы с псевдопротоколами (такие как, <q>about:blank</q>).
+					</i>
+				</p>
+				<p>
+					<i>
+						<strong class="winnt-lang" dms:winnt="&dms.preferences.winnt.autonote;"
+							>&dms.preferences.autonote;</strong>
+					</i>
+				</p>
+			</dd>
+		</dl>
+	</div>
+	
+	<div id="reporting" dms:openin="&dms.help.openin;">
+		<h2>&dms.preferences.group.view;</h2>
+		<p>
+			Эта группа опций позволяет определить действия Dust-Me после завершения различных видов сканирования:
+		</p>
+		<ul id="reporting-doafter">
+			<li><dfn>&dms.preferences.doafterfind;</dfn></li>
+			<li><dfn>&dms.preferences.doafterspider;</dfn></li>
+			<li><dfn>&dms.preferences.doafterautorun;</dfn></li>
+		</ul>
+		<p>
+			В каждом случае есть <dfn>три</dfn> опции действий: 
+		</p>
+		<dl>
+			<dt id="reporting-openafter">&dms.preferences.openafter;</dt>
+			<dd>
+				<p>
+					Если эта опция <dfn class="on">отмечена</dfn>, то будет открыто диалоговое окно данных с обновленными результатами сканирования.
+				</p>
+				<p>
+					Если эта опция не <dfn class="off">отмечена</dfn>, то диалоговое окно данных будет только обновлено, если уже было открыто.
+				</p>
+			</dd>
+
+			<dt id="reporting-notifyafter">&dms.preferences.notifyafter;</dt>
+			<dd>
+				<p>
+					Если эта опция будет <dfn class="on">отмечена</dfn>, то появится небольшое всплывающее уведомление со сводкой результатов. Вид и поведение этих уведомлений зависит от операционной системы. Обычно оно бывает в виде небольшого окна, всплывающего в нижнем правом углу экрана, которое исчезает через несколько секунд. 
+				</p>
+				<p>
+					Если эта опция <dfn class="off">не отмечена</dfn>, то эти уведомления не будут появляться. 
+				</p>
+				<p>
+					<i>
+						У различных платформ есть различные способы обработки множественных уведомления. Например, в Windows 7 может быть видимым только по одному уведомлению, таким образом, каждое новое уведомление заменит любое существующее. В Mac OS X можно показать сразу несколько уведомлений, и каждое новое уведомление будет расположено выше существующих
+					</i>
+				</p>
+			</dd>
+
+			<dt id="reporting-notifyboxafter">&dms.preferences.notifyboxafter;</dt>
+			<dd>
+				<p>
+					Если эта опция <dfn class="on">отмечена</dfn>, то появится панель уведомления со сводкой результатов. Панель уведомления - горизонтальная полоса, которая появляется под адресной строкой браузера ( в Firefox она используется, например, чтобы уведомить вас о блокировке всплывающего окна). Сообщения на панели уведомления обычно сохраняются, пока вы не закроете панель.
+				</p>
+				<p>
+					Если эта опция <dfn class="off">не отмечена</dfn>, то панель уведомления не будет появляться.
+				</p>
+			</dd>
+		</dl>
+		<p>
+			Вы можете также управлять <dfn>флагом приоритета</dfn> для сообщений панели уведомления: 
+		</p>
+		<dl>
+			<dt id="reporting-boxpriority">&dms.preferences.boxpriority;</dt>
+			<dd>
+				<p>
+					Флаги приоритета сообщения влияют на стиль сообщений. В сообщениях с более высоким приоритетом обычно используются более яркие цвета. 
+				</p>
+				<p>
+					Флаги приоритета также используются для обработки множественных сообщений, определяя, должно ли новое сообщение появиться выше или ниже существующего. Хотя Dust-Me Selectors сам только иногда показывает одиночные сообщения (удаляя любые более ранние сообщения прежде, чем показать новое), вы можете управлять его сообщениями, чтобы они имели больший приоритет над сообщениями Firefox или других расширений.
+				</p>
+				<p>
+					Есть <dfn>три</dfn> уровня для выбора приоритета:
+				</p>
+				<ol>
+					<li><q>&dms.preferences.boxpriorityflag.info;</q></li>
+					<li><q>&dms.preferences.boxpriorityflag.warning;</q></li>
+					<li><q>&dms.preferences.boxpriorityflag.critical;</q></li>
+				</ol>
+				<p>
+					Так например, если сообщение <q>&dms.preferences.boxpriorityflag.warning;</q> 
+					 будет уже показано, когда сообщение <q>&dms.preferences.boxpriorityflag.info;</q> 
+					будет отправлено, то более позднее сообщение появится ниже более раннего и будет замечено, только когда более раннее сообщение будет закрыто. Наоборот, если сообщение <q>&dms.preferences.boxpriorityflag.critical;</q>  будет отправлено, то оно появится выше более раннего и более раннее будет замечено снова, когда более позднее сообщение будет закрыто.
+				</p>
+			</dd>
+		</dl>
+	</div>
+	
+	<div id="storage" dms:openin="&dms.help.openin;">
+		<h2>&dms.preferences.group.saving;</h2>
+		<dl>
+			<dt id="storage-clearconfirm">&dms.preferences.clearconfirm;</dt>
+			<dd>
+				<p>
+					Если эта опция <dfn class="on">отмечена</dfn>, то вас попросят подтвердить удаление данных для отдельного сайта (или из пункта меню, или после нажатия кнопки удаления в диалоговом окне Данных). 
+				</p>
+				<p>
+					Если эта опция не <dfn class="off">не отмечена</dfn>, то данные для отдельного сайта будут удалены без подтверждения.
+				</p>
+				<p>
+					<i>
+						Диалоговые окна подтверждения имеют флажок 
+						<q>&dms.dialog.clearconfirm.clearconfirm;</q>, 
+						который управляет этой же самой опцией.
+					</i>
+				</p>
+				<p>
+					<i>
+						При удалении <strong>всех</strong> сохраненных данных, вас будут всегда просить подтверждения удаления независимо от этой установки.
+					</i>
+				</p>
+			</dd>
+
+			<dt id="storage-saveperhost">&dms.preferences.saveperhost;</dt>
+			<dd>
+				<p>
+					Если эта опция <dfn class="on">отмечена</dfn>, то данные отдельных сканирований и сканирований пауком будут сохраняться отдельно для каждого сайта. 
+				</p>
+				<p>
+					Вы можете также повлиять на решение, что считать отдельным сайтом,  <dfn>двумя</dfn> дополнительными опциями:
+				</p>
+				<dl>
+					<dt id="storage-ignoreports">&dms.preferences.ignoreports;</dt>
+					<dd>
+						<p>
+							Если эта опция <dfn class="on">отмечена</dfn>,  то все порты будут обработаны как часть того же самого сайта. Например, <q>mysite.com:8080</q> и <q>mysite.com:2083</q> 
+							оба будут сохранены под <q>mysite.com</q>.
+<q>mysite.com</q>.
+						</p>
+						<p>
+							Если эта опция <dfn class="off">не отмечена</dfn>, то все порты будут рассматриваться как другой сайт. 
+						</p>
+						<p>
+							<i>
+								<strong>Порт 80</strong> обрабатывается как исключение из этого правила, таким образом, <q>mysite.com:80</q> всегда будет сохранен под 
+								<q>mysite.com</q>,  независимо от этой установки. 
+							</i>
+						</p>
+					</dd>
+
+					<dt id="storage-ignoresubdomains">&dms.preferences.ignoresubdomains;</dt>
+					<dd>
+						<p>
+							Если эта опция <dfn class="on">отмечена</dfn>, то все поддомены будут обработаны как часть того же самого сайта. Например <q>addons.mozilla.org</q> и <q>developer.mozilla.org</q> 
+							оба будут сохранены под <q>mozilla.org</q>.
+						</p>
+						<p>
+							Если эта опция <dfn class="off">не отмечена</dfn>, то каждый поддомен будет рассматриваться как другой сайт.
+						</p>
+						<p>
+							<i>
+								Поддомен <q>www</q> будет обработан  как не поддомен, таким образом, <q>www.mozilla.org</q>  всегда будет сохранен под 
+								<q>mozilla.org</q>,  независимо от этой установки. 
+							</i>
+						</p>
+					</dd>
+				</dl>
+				<p>
+					<i>
+						Опции учета портов и поддоменов опираются на две другие опции:
+						<a class="preference earlier" href="#spidering-noexternal"
+							>&dms.preferences.noexternal;</a> 
+						(которая влияет на оценку ссылок поддоменов) и 
+						<a class="preference earlier" href="#automation-autorunrestrict"
+							>&dms.preferences.autorunrestrict;</a> 
+						(которая влияет на оценку хостов для ограниченной автоматизации).
+					</i>
+				</p>
+				<p>
+					Если эта опция <dfn class="off">не отмечена</dfn>, то все данные отдельных сканирований и сканирований пауком будут сохранены в глобальном наборе данных.
+					<em class="deprecated">
+						Эта настройка устаревает и будет удалена в следующей версии. 
+					</em>
+				</p>
+			</dd>
+
+			<dt id="storage-usepreffolder">&dms.preferences.usepreffolder;</dt>
+			<dt id="storage-specifyfolder">&dms.preferences.specifyfolder;</dt>
+			<dd>
+				<p>
+					Если выбрана опция <dfn class="on">&dms.preferences.usepreffolder;</dfn>, то данные Dust-Me будут храниться в папке <q>dustmeselectors-data</q> 
+					 в каталоге вашего профиля.
+				</p>
+				<p>
+					Если выбрана опция <dfn class="on">&dms.preferences.specifyfolder;</dfn>, то данные будут храниться в выбранной	 вами папке. Щелкните кнопку <dfn>&dms.preferences.browsebutton;</dfn>, чтобы выбрать нужную вам папку. 
+				</p>
+				<p>
+					Вы можете просмотреть содержание папки данных (какую опцию бы вы не выбрали), щелкнув кнопку <dfn>&dms.preferences.launchbutton;</dfn>  справа от этих опций.
+				</p>
+				<p>	
+					<i>
+						Файлы в папке данных <strong>категорически не должны редактироваться вручную</strong>, так как при работе расширения могут возникнуть непредсказуемые результаты.
+					</i>
+				</p>
+			</dd>
+
+			<dt id="storage-deleteonquit">&dms.preferences.deleteonquit;</dt>
+			<dd>
+				<p>
+					Если эта опция <dfn class="on">отмечена</dfn>, то все данные отдельных сканирований и сканирований пауком будут удалены при выходе из Firefox. Это касается всех данных расширения кроме настроек. 
+				</p>
+				<p>
+					Если эта опция <dfn class="off">не отмечена</dfn>, то данные отдельных сканирований и сканирований пауком сохраняются, пока вы не удалите или перезапишите их.
+				</p>
+				<p>
+					<i>
+						Эта опция удалит все в папке данных, кроме списка хостов, которые вы определили для опции 
+						<a class="preference earlier" href="#automation-autorunrestrict"
+							>&dms.preferences.autorunrestrict;</a>. 
+						Вы должны избегать использования папки данных для хранения любых других файлов, поскольку они будут также удалены.
+					</i>
+				</p>
+				<p>
+					<i>
+						<strong>Удаленные данные не могут быть восстановлены.</strong>
+					</i>
+				</p>
+			</dd>
+		</dl>
+	</div>
+	
+	<div id="interface" dms:openin="&dms.help.openin;">
+		<h2>&dms.preferences.group.main;</h2>
+		<dl>
+			<dt id="interface-showincontext">&dms.preferences.showincontext;</dt>
+			<dd>
+				<p>
+					Если эта опция <dfn class="on">отмечена</dfn>, то Dust Me Selectors добавит пункт <dfn>&dms.contextmenu.spider;</dfn> к основному контекстному меню браузера. Вы можете щелкнуть по этому пункту, чтобы открыть диалоговое окно Паука и заполнить текстовое поле <abbr title="Uniform Resource Locator">URL</abbr> страницы, которую вы просматриваете. 
+
+				</p>
+				<p>
+					Если эта опция <dfn class="off">не отмечена</dfn>, то в контекстном меню не появится пункт Паука.
+				</p>
+			</dd>
+
+			<dt id="interface-showtoolbarlabel">&dms.preferences.showtoolbarlabel;</dt>
+			<dd>
+				<p id="interface-showtoolbarlabel-description">
+					Если эта опция <dfn class="on">отмечена</dfn>, то у кнопки Dust-Me на панели инструментов браузера будет отображаться динамический текст, который появляется сверху кнопки и показывает число таблиц стилей, которые были проверены при текущем сканировании. 
+				</p>
+				<p>
+					Если эта опция <dfn class="off">не отмечена</dfn>, то у кнопки на панели инструментов не будет этой метки. 
+				</p>
+				<p>
+					<i>
+						&dms.preferences.toolbarnote;
+						Вы можете нажать кнопку, чтобы начать или остановить сканирование. У кнопки также есть контекстное меню с пунктами общих операций, таких как <dfn>&dms.menu.spider;</dfn>, <dfn>&dms.menu.view;</dfn>, 
+						<dfn>&dms.menu.clear;</dfn> и 
+						<dfn class="winnt-lang" dms:winnt="&dms.menu.winnt.preferences;"
+							>&dms.menu.preferences;</dfn>.
+					</i>
+				</p>
+			</dd>
+
+			<dt id="interface-showtoolbarstarted">&dms.preferences.showtoolbarstarted;</dt>
+			<dd>
+				<p>
+					Если эта опция <dfn class="on">отмечена</dfn>, то в меню кнопки Dust-Me на панели инструментов браузера будет пункт &#x201c;Начало работы&#x201d; для знакомства со справочным руководством быстрого старта.
+				</p>
+				<p>
+					Если эта опция <dfn class="off">не отмечена</dfn>, то этого пункта в меню кнопки не будет.
+				</p>
+			</dd>
+
+			<dt id="interface-precollapse">&dms.preferences.precollapse;</dt>
+			<dd>
+				<p>
+					Если эта опция <dfn class="on">отмечена</dfn>, то группы селекторов таблиц стилей в диалоговом окне "Данных" будут свернуты по умолчанию (при открытии диалогового окна, при выборе другого хоста или, когда данные будут обновлены автоматическим сканированием, или при сканировании пауком).
+				</p>
+				<p>
+					Если эта опция <dfn class="off">не отмечена</dfn>, то по умолчанию группы селекторов таблиц стилей будут развернуты.
+				</p>
+				<p>
+					<i>
+						В диалоговом окне данных есть возможность для быстрого  развертывания или свертывания всех групп селекторов. Это достигается удержанием клавиши <strong>Shift</strong> при развертывании или свертывании отдельной группы селекторов.
+					</i>
+				</p>
+			</dd>
+
+			<dt id="interface-spiderpersist">&dms.preferences.spiderpersist;</dt>
+			<dd>
+				<p>
+					Если эта опция <dfn class="on">отмечена</dfn>, то при закрытии в диалоговом окне Паука будет сохранено значение текстового поля ввода URL. При следующем открытии это значение будет восстановлено (если оно не переопределено опцией
+					<a class="preference earlier" href="#interface-showincontext"
+						>&dms.contextmenu.spider;</a>). Сохраненное значение будет предустановлено, и вы сможете сразу пересканировать этот сайт.
+				</p>
+				<p>
+					Если эта опция <dfn class="off">не отмечена</dfn>, то значение не будет сохраняться. При открытии диалогового ока Паука текстовое поле будет пустым (если оно не предзаполнено опцией
+					<a class="preference earlier" href="#interface-showincontext"
+						>&dms.contextmenu.spider;</a>).
+				</p>
+				<p>
+					<i>
+						Для персистентности сохраняется любой ввод, то есть, ввод вручную, вставка, предварительное заполнение или выбор из выпадающего списка.
+					</i>
+				</p>
+			</dd>
+
+			<dt id="interface-spidertitles">&dms.preferences.spidertitles;</dt>
+			<dd>
+				<p>
+					Если эта опция <dfn class="on">отмечена</dfn>, то наряду с URL в выпадающем списке поля ввода диалогового окна Паука будут показаны также заголовки страниц.
+				</p>
+				<p>
+					Если эта опция <dfn class="off">не отмечена</dfn>, то будут показаны только 
+					<abbr title="Uniform Resource Locators">URL</abbr> страниц.
+				</p>
+			</dd>
+		</dl>
+	</div>
+	
+</body>
+</html>

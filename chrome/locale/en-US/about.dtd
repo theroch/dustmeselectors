@@ -1,0 +1,15 @@
+
+<!-- about labels -->
+<!ENTITY dms.about.title "About Dust-Me Selectors">
+<!ENTITY dms.about.name "Dust-Me Selectors">
+<!ENTITY dms.about.version "Version">
+<!ENTITY dms.about.by "by">
+<!ENTITY dms.about.changelog "Changelog">
+<!ENTITY dms.about.developers "Developers">
+<!ENTITY dms.about.contributors "Contributors">
+<!ENTITY dms.about.translators "Translators">
+<!ENTITY dms.about.homepage "Visit home page">
+
+<!-- accept button label and accesskey -->
+<!ENTITY dms.about.close "Close">
+<!ENTITY dms.about.accesskey.close "C">

@@ -1,0 +1,13 @@
+content		dustmeselectors		chrome/content/
+
+overlay		chrome://browser/content/browser.xul		chrome://dustmeselectors/content/browser.xul
+
+style		chrome://global/content/customizeToolbar.xul		chrome://dustmeselectors/content/toolbar.css
+
+locale		dustmeselectors		en-US		chrome/locale/en-US/
+locale		dustmeselectors		ru			chrome/locale/ru/
+
+skin		dustmeselectors		classic/1.0		chrome/skin/classic/
+skin		dustmeselectors		classic/1.0		platform/Darwin/chrome/skin/classic/	OS=Darwin
+skin		dustmeselectors		classic/1.0		platform/Linux/chrome/skin/classic/		OS=Linux
+skin		dustmeselectors		classic/1.0		platform/WINNT/chrome/skin/classic/		OS=WINNT

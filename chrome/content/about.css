@@ -1,0 +1,95 @@
+/*******************************************************************************
+ DMS4.1 :: Dust-Me Selectors v4.1
+ -------------------------------------------------------------------------------
+ Copyright (c) 2007-13 James Edwards (brothercake)        <cake@brothercake.com>
+ MIT License                      http://opensource.org/licenses/mit-license.php
+ Info/Docs                            http://www.brothercake.com/dustmeselectors
+ -------------------------------------------------------------------------------
+ Contributors:
+ -------------------------------------------------------------------------------
+ Andrew Krespanis   [Concept]                           http://leftjustified.net
+ Paul Annesley      [Concept]                            http://paul.annesley.cc
+ Lachlan Donald     [Concept]                                  http://lachlan.me
+ Alex Walker        [Icon design]    http://www.sitepoint.com/author/alex-walker
+ -------------------------------------------------------------------------------
+*******************************************************************************/
+
+
+/* define the namespaces we're using (so we can use namespaced attribute selectors) */
+@namespace "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+@namespace xlink "http://www.w3.org/1999/xlink";
+
+
+
+/* general resets */
+dialog
+{
+	color:WindowText;
+}
+label
+{
+	margin:0;
+	font-weight:normal;
+}
+
+
+
+/* xlinked labels */
+label[xlink|href]
+{
+	cursor:pointer;
+}
+label[xlink|href]:hover
+{
+	text-decoration:underline;
+}
+
+
+
+/* about info (icon, name, version, homepage) */
+.about
+{
+	margin-bottom:16px;
+}
+.about > vbox
+{
+	margin:-2px 0 0 16px;
+}
+
+#dms-about-name
+{
+	font-size:1.7em;
+	margin-bottom:2px;
+}
+
+#dms-about-summary
+{
+	color:GrayText;
+	letter-spacing:-0.02em;
+}
+
+#dms-about-homepage[xlink|href]
+{
+	margin-top:10px;
+	text-decoration:underline;
+	color:rgb(51,51,153);
+	letter-spacing:-0.01em;
+}
+
+
+
+/* developers, contributors and translators grids */
+.gridbox
+{
+	margin-bottom:16px;
+}
+.gridbox > label
+{
+	font-size:1.1em;
+	margin-bottom:4px;
+	font-weight:bold;
+}
+
+
+
+

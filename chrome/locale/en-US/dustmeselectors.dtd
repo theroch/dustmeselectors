@@ -1,0 +1,151 @@
+
+<!-- window title and general description (same as em:name and em:description) -->
+<!ENTITY dms.title "Dust-Me Selectors">
+<!ENTITY dms.description "Scans your website to find unused CSS selectors">
+
+<!-- toolbar button label -->
+<!ENTITY dms.toolbarbutton "Dust-Me">
+
+<!-- menu items and tooltips -->
+<!ENTITY dms.menu.find "Scan this page">
+<!ENTITY dms.menu.busy "Scanning...">
+<!ENTITY dms.menu.view "View stored data...">
+<!ENTITY dms.menu.preferences "Preferences...">
+<!ENTITY dms.menu.winnt.preferences "Options...">
+<!ENTITY dms.menu.autorun "Scan automatically">
+<!ENTITY dms.menu.spider "Spider Sitemap...">
+<!ENTITY dms.menu.clear "Trash stored data">
+<!ENTITY dms.menu.thishost "Current site&#x2019;s data">
+<!ENTITY dms.menu.allhosts "All stored data">
+<!ENTITY dms.menu.started "Getting Started">
+
+<!-- contextmenu items -->
+<!ENTITY dms.contextmenu.spider "Spider this page...">
+
+<!-- contextmenu accesskey -->
+<!ENTITY dms.contextmenu.accesskey.spider "T">
+
+<!-- command keys -->
+<!ENTITY dms.commandkey.find "N">
+<!ENTITY dms.commandkey.view "V">
+<!ENTITY dms.commandkey.spider "P">
+<!ENTITY dms.commandkey.preferences ",">
+
+<!-- menu accesskeys -->
+<!ENTITY dms.menu.accesskey.title "U">
+<!ENTITY dms.menu.accesskey.find "N">
+<!ENTITY dms.menu.accesskey.view "V">
+<!ENTITY dms.menu.accesskey.preferences "P">
+<!ENTITY dms.menu.accesskey.winnt.preferences "O">
+<!ENTITY dms.menu.accesskey.autorun "M">
+<!ENTITY dms.menu.accesskey.spider "S">
+<!ENTITY dms.menu.accesskey.clear "T">
+<!ENTITY dms.menu.accesskey.thishost "C">
+<!ENTITY dms.menu.accesskey.allhosts "A">
+<!ENTITY dms.menu.accesskey.started "G">
+
+<!-- view dialog tabs -->
+<!ENTITY dms.view.tab.selectors "Unused Selectors">
+<!ENTITY dms.view.tab.used "Used Selectors">
+<!ENTITY dms.view.tab.log "Spider Log">
+
+<!-- view dialog buttons and labels -->
+<!ENTITY dms.view.title "Dust-Me Data">
+<!ENTITY dms.view.viewmenu "View data for:">
+<!ENTITY dms.view.clear "Trash this site&#x2019;s data">
+<!ENTITY dms.view.save "Export selected data">
+<!ENTITY dms.view.savecsv "Export CSV...">
+<!ENTITY dms.view.savejson "Export JSON...">
+<!ENTITY dms.view.close "Close">
+<!ENTITY dms.view.context.openurl "Open URL in Firefox">
+<!ENTITY dms.view.spider "Spider Sitemap...">
+<!ENTITY dms.view.resume "Resume Spider...">
+<!ENTITY dms.view.info.saved "File saved">
+<!ENTITY dms.view.cleaning.warning "Cleaning was interrupted">
+<!ENTITY dms.view.cleaning.save "Save...">
+<!ENTITY dms.view.cleaning.options "Cleaned selectors and rules should be:">
+<!ENTITY dms.view.cleaning.commented "Commented-out">
+<!ENTITY dms.view.cleaning.removed "Removed">
+<!ENTITY dms.view.cleaning.context.copy "Copy cleaned CSS">
+
+<!-- view dialog cleaning function -->
+<!ENTITY dms.cleaning.minified1 "This stylesheet is too minified to be processed.">
+<!ENTITY dms.cleaning.minified2 "The cleaning function can&#x2019;t work with such heavily compressed CSS. The minimum formatting it can handle, is&#x0020;">
+<!ENTITY dms.cleaning.minified3 "one line per rule.">
+<!ENTITY dms.cleaning.data1 "Sorry, this stylesheet&#x2019;s data is not compatible.">
+<!ENTITY dms.cleaning.data2 "The data format had to be updated to support the cleaning function. So before you can use it, you must trash this site&#x2019;s data and scan the site again.">
+
+<!-- view dialog accesskeys -->
+<!ENTITY dms.view.accesskey.view "V">
+<!ENTITY dms.view.accesskey.save "E">
+<!ENTITY dms.view.accesskey.savecsv "C">
+<!ENTITY dms.view.accesskey.savejson "J">
+<!ENTITY dms.view.accesskey.clear "T">
+<!ENTITY dms.view.accesskey.close "C">
+<!ENTITY dms.view.accesskey.spider "S">
+<!ENTITY dms.view.context.accesskey.markused "M">
+<!ENTITY dms.view.context.accesskey.markunused "M">
+<!ENTITY dms.view.context.accesskey.openurl "F">
+<!ENTITY dms.view.tab.accesskey.selectors "U">
+<!ENTITY dms.view.tab.accesskey.used "D">
+<!ENTITY dms.view.tab.accesskey.log "L">
+<!ENTITY dms.view.cleaning.accesskey.save "A">
+<!ENTITY dms.view.cleaning.accesskey.cancel "N">
+<!ENTITY dms.view.cleaning.accesskey.commented "M">
+<!ENTITY dms.view.cleaning.accesskey.removed "R">
+<!ENTITY dms.view.cleaning.accesskey.copy "O">
+
+<!-- spider dialog buttons and labels -->
+<!ENTITY dms.spider.title "Dust-Me Spider">
+<!ENTITY dms.spider.go "Start">
+<!ENTITY dms.spider.pause "Pause">
+<!ENTITY dms.spider.resume "Resume">
+<!ENTITY dms.spider.repeat "Spider again">
+<!ENTITY dms.spider.view "View data...">
+<!ENTITY dms.spider.close "Close">
+<!ENTITY dms.spider.preferences "Preferences...">
+<!ENTITY dms.spider.winnt.preferences "Options...">
+<!ENTITY dms.spider.enterurl "Enter the sitemap URL (Sitemap XML, RSS, or any HTML page):">
+<!ENTITY dms.resite.description1 "This site has already been scanned.">
+<!ENTITY dms.respider.description1 "This site has been spidered before.">
+<!ENTITY dms.respideragain.description1 "This sitemap has already been spidered.">
+<!ENTITY dms.respider.description2 "Do you want to keep the existing selectors data and add these new results?">
+<!ENTITY dms.respideragain.description2 "Do you want to keep the existing selectors data and just re-scan the pages?">
+<!ENTITY dms.respider.description3 "Or trash the data and start all over again?">
+<!ENTITY dms.respider.confirm.keep "Keep the data">
+<!ENTITY dms.respider.confirm.trash "Trash the data">
+
+<!-- spider dialog accesskeys -->
+<!ENTITY dms.spider.accesskey.go "S">
+<!ENTITY dms.spider.accesskey.pause "S">
+<!ENTITY dms.spider.accesskey.resume "S">
+<!ENTITY dms.spider.accesskey.repeat "S">
+<!ENTITY dms.spider.accesskey.view "V">
+<!ENTITY dms.spider.accesskey.close "C">
+<!ENTITY dms.spider.accesskey.preferences "P">
+<!ENTITY dms.spider.accesskey.winnt.preferences "O">
+<!ENTITY dms.respider.accesskey.keep "K">
+<!ENTITY dms.respider.accesskey.trash "T">
+
+<!-- notification dialog buttons and labels -->
+<!ENTITY dms.dialog.error.title "Dust-Me Error">
+<!ENTITY dms.dialog.warning.title "Dust-Me Warning">
+<!ENTITY dms.dialog.confirm.title "Dust-Me Confirm">
+<!ENTITY dms.dialog.confirm.yes "Yes">
+<!ENTITY dms.dialog.confirm.no "No">
+<!ENTITY dms.dialog.confirm.okay "OK">
+<!ENTITY dms.dialog.confirm.cancel "Cancel">
+<!ENTITY dms.dialog.clearconfirm.label "Are you sure you want to trash this site&#x2019;s data?">
+<!ENTITY dms.dialog.clearconfirm.clearconfirm "Ask me every time">
+<!ENTITY dms.dialog.clearallconfirm.label1 "You&#x2019;re about to trash all the data for every site.">
+<!ENTITY dms.dialog.clearallconfirm.label2 "Are you absolutely sure you want to do this?">
+<!ENTITY dms.dialog.saveconfirm.label2 "Do you want to replace it?">
+
+<!-- notification dialog accesskeys -->
+<!ENTITY dms.dialog.accesskey.yes "Y">
+<!ENTITY dms.dialog.accesskey.no "N">
+<!ENTITY dms.dialog.accesskey.okay "O">
+<!ENTITY dms.dialog.accesskey.cancel "C">
+<!ENTITY dms.dialog.accesskey.clearconfirm "A">
+
+

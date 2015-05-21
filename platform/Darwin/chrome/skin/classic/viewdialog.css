@@ -1,0 +1,133 @@
+/*******************************************************************************
+ DMS4.1 :: Dust-Me Selectors v4.1
+ -------------------------------------------------------------------------------
+ Copyright (c) 2007-13 James Edwards (brothercake)        <cake@brothercake.com>
+ MIT License                      http://opensource.org/licenses/mit-license.php
+ Info/Docs                            http://www.brothercake.com/dustmeselectors
+ -------------------------------------------------------------------------------
+ Contributors:
+ -------------------------------------------------------------------------------
+ Andrew Krespanis   [Concept]                           http://leftjustified.net
+ Paul Annesley      [Concept]                            http://paul.annesley.cc
+ Lachlan Donald     [Concept]                                  http://lachlan.me
+ Alex Walker        [Icon design]    http://www.sitepoint.com/author/alex-walker
+ -------------------------------------------------------------------------------
+*******************************************************************************/
+
+
+/* dialog window */
+window
+{
+	padding:12px 12px 16px 12px;
+}
+
+
+
+/* hostsindex menu */
+window > hbox:first-of-type
+{
+	padding:0 3px 0 0;
+}
+
+
+
+/* progress elements */
+#dms-viewcleaning-abort2.connecting > image
+{
+	background:url("chrome://dustmeselectors/skin/connecting.png") no-repeat 0 0;
+}
+#dms-viewcleaning-abort2.loading > image
+{
+	background:url("chrome://dustmeselectors/skin/loading.png") no-repeat 0 0;
+}
+#dms-viewcleaning-abort2.processing > image
+{
+	background:url("chrome://dustmeselectors/skin/buttons.png") no-repeat 0 0;
+}
+#dms-viewcleaning-abort2.processing > image:hover,
+#dms-viewcleaning-abort2.processing > image:focus
+{
+	background-position:-16px 0;
+}
+#dms-viewcleaning-abort2.processing > image:active
+{
+	background-position:-32px 0;
+}
+
+
+
+/* dialog action buttons container */
+window > hbox:last-of-type
+{
+	margin-top:-1px;
+}
+
+
+
+/* tabs container */
+#dms-viewtabbrowser > hbox
+{
+	margin:0 0 1px -2px;
+}
+
+/* tab panels */
+tabpanels
+{
+	padding:0;
+	border:none;
+}
+
+
+
+/* content browsers */
+browser
+{
+	border-radius:4px;
+	margin:1px;
+}
+
+
+
+/* view footer */
+#dms-viewfooter
+{
+	margin-left:5px;
+	margin-right:5px;
+	margin-bottom:0;
+}
+
+/* view summary */
+#dms-viewsummary
+{
+	margin:6px 0 11px 5px;
+}
+
+/* view footer spider buttons */
+#dms-viewsummary ~ hbox
+{
+	margin-top:-2px;
+	margin-bottom:4px;
+}
+
+/* view footer cleaning options */
+#dms-viewcleaning > vbox:first-of-type
+{
+	margin-top:-2px;
+	margin-bottom:4px;
+}
+#dms-viewcleaning > vbox:first-of-type > label
+{
+	margin-left:5px;
+}
+#dms-viewcleaning > vbox:first-of-type > radiogroup
+{
+	margin:0 0 2px 2px;
+}
+#dms-viewcleaning > vbox:last-of-type > hbox
+{
+	margin-bottom:4px;
+}
+
+
+
+

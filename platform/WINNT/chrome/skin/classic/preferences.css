@@ -1,0 +1,24 @@
+/*******************************************************************************
+ DMS4.1 :: Dust-Me Selectors v4.1
+ -------------------------------------------------------------------------------
+ Copyright (c) 2007-13 James Edwards (brothercake)        <cake@brothercake.com>
+ MIT License                      http://opensource.org/licenses/mit-license.php
+ Info/Docs                            http://www.brothercake.com/dustmeselectors
+ -------------------------------------------------------------------------------
+ Contributors:
+ -------------------------------------------------------------------------------
+ Andrew Krespanis   [Concept]                           http://leftjustified.net
+ Paul Annesley      [Concept]                            http://paul.annesley.cc
+ Lachlan Donald     [Concept]                                  http://lachlan.me
+ Alex Walker        [Icon design]    http://www.sitepoint.com/author/alex-walker
+ -------------------------------------------------------------------------------
+*******************************************************************************/
+
+
+/* autorunhosts tree */
+#dms-preftree-autorunhosts
+{
+	margin:3px 0 0 3px;
+}
+
+

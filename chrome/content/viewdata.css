@@ -1,0 +1,551 @@
+/*******************************************************************************
+ DMS4.1 :: Dust-Me Selectors v4.1
+ -------------------------------------------------------------------------------
+ Copyright (c) 2007-13 James Edwards (brothercake)        <cake@brothercake.com>
+ MIT License                      http://opensource.org/licenses/mit-license.php
+ Info/Docs                            http://www.brothercake.com/dustmeselectors
+ -------------------------------------------------------------------------------
+ Contributors:
+ -------------------------------------------------------------------------------
+ Andrew Krespanis   [Concept]                           http://leftjustified.net
+ Paul Annesley      [Concept]                            http://paul.annesley.cc
+ Lachlan Donald     [Concept]                                  http://lachlan.me
+ Alex Walker        [Icon design]    http://www.sitepoint.com/author/alex-walker
+ -------------------------------------------------------------------------------
+*******************************************************************************/
+
+
+/* core resets and canvas styling */
+*
+{
+	margin:0;
+	padding:0;
+	list-style-type:none;
+	font:normal normal normal 12px/1.3 sans-serif;
+}
+
+html, body
+{
+	background:transparent;
+	color:ButtonText;
+}
+html
+{
+	height:100%;
+}
+body
+{
+	min-height:100%;
+}
+
+
+
+/* group URL header */
+h2
+{
+	font-size:13px;
+	background:#c1c1c1;
+	color:#333;
+	text-shadow:0 1px 0 rgba(255,255,255,0.4);
+	padding:6px 30px 5px 7px;
+	border-bottom:1px solid #b2b2b2;
+	border-width:1px 0;
+	display:block;
+	width:100%;
+	word-wrap:break-word;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	cursor:default;
+	position:relative;
+	box-shadow:inset 0 1em 0.65em rgba(255,255,255,0.175), inset 0 0 1px 0 rgba(255,255,255,0.35);
+	-moz-box-shadow:inset 0 1em 0.65em rgba(255,255,255,0.175), inset 0 0 1px 0 rgba(255,255,255,0.35);
+}
+
+/* focused group URL header (highlight when right-clicking for "mark all" option) */
+h2:focus
+{
+	background:#55b;
+	color:#fff;
+	outline:none;
+	text-shadow:0 1px 0 rgba(0,0,0,0.3);
+}
+
+
+/* group URL header with "cleanable" action button
+   nb. this is only shown in populated groups of "unused" rules 
+   nb. all instances are hidden when the cleaning function is running */
+h2.cleanable
+{
+	padding-right:75px;
+}
+h2.cleanable > button
+{
+	font-size:11px;
+	line-height:14px;
+	position:absolute;
+	right:4px;
+	top:5px;
+}
+body.cleaning h2.cleanable > button
+{
+	display:none;
+}
+
+
+/* group URL header note (for incompletely spidered sitemaps) */
+h2 > small
+{
+	font:inherit;
+	font-style:italic;
+	font-family:georgia,serif;
+	margin-left:7px;
+	color:#555;
+}
+h2:focus > small
+{
+	color:#dde;
+}
+
+/* group URL header message (for sitemap URL "redirected from" info) */
+h2 > q
+{
+	display:block;
+	margin-top:1px;
+	font-size:11px;
+	quotes:none;
+	color:#707070;
+}
+h2:focus > q
+{
+	color:#ccd;
+}
+
+
+
+/* code view for the stylesheet cleaner  */
+body > pre
+{
+	position:relative;
+	z-index:1000;
+	display:table;
+	white-space:pre;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	min-width:100%;
+	font:normal normal normal 10px/14px monaco, monospace;
+	tab-size:4;
+	-moz-tab-size:4;
+	background:#fff;
+	color:#060;
+	cursor:default;
+	padding:1.2em 1.2em 1em 5.2em; /* 5.2em = 1.2em padding + 4em space for gutter */
+}
+
+/* extra codeview padding and border when it's shorter than the gutter
+   which is an extra 1.2em padding to compensate for the extra vertical 
+   padding that the gutter otherwise needs, and 2px border to compensate
+   for its 1px top border and -1px top margin text offset tweak */
+body > pre.short
+{
+	padding-bottom:2.2em;
+	border-bottom:2px solid #fff;
+}
+
+/* comments highlighting */
+body > pre i
+{
+	font:inherit;
+	color:#aaa;
+}
+
+/* unused selectors and rules highlighting */
+body > pre mark, 
+body > pre mark i
+{
+	font:inherit;
+}
+body > pre mark[data-type="selector"], 
+body > pre mark[data-type="selector"] i
+{
+	color:#520;
+	background:#fc9;
+	-moz-box-shadow:0 0 0 1px #fc9;
+	box-shadow:0 0 0 1px #fc9;
+}
+body > pre mark[data-type="rule"], 
+body > pre mark[data-type="rule"] i
+{
+	color:#520;
+	background:#fce;
+	-moz-box-shadow:0 0 0 1px #fce;
+	box-shadow:0 0 0 1px #fce;
+}
+
+/*** DEV (test selected marks) ***//*
+body > pre mark.selected,
+body > pre mark.selected i
+{
+	color:#fff;
+	background:#55b;
+	-moz-box-shadow:0 -1px 0 #55b, 0 1px 0 #55b;
+	box-shadow:0 -1px 0 #55b, 0 1px 0 #55b;
+	text-shadow:0 1px 1px rgba(0,0,0,0.2);
+} 
+*/
+
+/* line numbering gutter */
+body > pre > div
+{
+	width:4em;
+	position:absolute;
+	z-index:2000;
+	left:0;
+	top:0;
+	padding:1.2em 0 1em 0; /* same as pre padding top and bottom */
+	display:block;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	border-right:1px solid #ddd;
+	overflow:hidden;
+	font:inherit;
+	background:#eee;
+	color:#808080;
+	text-align:right;
+	cursor:default;
+}
+body > pre > div > span
+{
+	display:block;
+	border-top:1px solid #eee;
+	margin-top:-1px;
+	padding:0 6px 0 0;
+	font:inherit;
+	cursor:default;
+}
+body > pre > div > span:nth-child(odd)
+{
+	background:#e9e9e9;
+	border-top-color:#e9e9e9;
+}
+body > pre > div > span.mark
+{
+	color:#520;
+}
+body > pre > div > span.mark::before
+{
+	content:"\2219";
+	display:inline-block;
+	margin-right:1px;
+}
+
+
+
+/* group summary / message */
+h3
+{
+	font-weight:bold;
+	padding:6px 5px 4px 7px;
+	color:#555;
+	cursor:default;
+}
+
+h3:focus
+{
+	outline:1px dotted #222;
+	outline-offset:-1px;
+	color:#333;
+}
+
+
+/* output data groups */
+div.group
+{
+	border-bottom:1px solid #b2b2b2;
+}
+div.group:last-of-type
+{
+	border-bottom:none;
+}
+
+/* different colors for => no redundent selectors (okay), 
+   redundent selectors (warning), and an error (error) */
+h3.okay
+{
+	background:#beb;
+	border-bottom:1px solid #ada;
+}
+/**
+h3.okay:focus
+{
+	background-color:#c1f4c1;
+}
+**/
+
+div.okay
+{
+	background:#eaf5ea;
+}
+
+div.okay li
+{
+	border-bottom:1px dotted #caeaca;
+}
+div.okay li:last-child
+{
+	border-bottom:none;
+}
+
+div.okay li cite
+{
+	color:#575;
+}
+
+
+h3.warning
+{
+	background:#fc9;
+	border-bottom:1px solid #eba;
+}
+/**
+h3.warning:focus
+{
+	background-color:#ffd29f;
+}
+**/
+
+div.warning
+{
+	background:#fed;
+}
+
+div.warning li
+{
+	border-bottom:1px dotted #edc;
+}
+div.warning li:last-child
+{
+	border-bottom:none;
+}
+
+div.warning li cite
+{
+	color:#964;
+}
+
+h3.error
+{
+	background:#fbb;
+	border-bottom:1px solid #dbb;
+}
+
+div.error
+{
+	background:#fee;
+	border-bottom:1px solid #b2b2b2;
+}
+
+
+/* selectors list */
+div.group ul
+{
+	padding:4px;
+}
+
+div.group li
+{
+	overflow:hidden;
+	white-space:nowrap;
+	padding:2px 3px 0 3px;
+}
+
+div.group li:focus
+{
+	outline:none;
+}
+
+div.group li:last-child
+{
+	padding-bottom:1px;
+}
+
+div.group li q
+{
+	font-family:monaco, monospace;
+	font-size:11px;
+	color:#444;
+	float:left;
+	cursor:default;
+	quotes:none;
+}
+
+/* line numbers */
+div.group li cite
+{
+	font-size:11px;
+	float:right;
+	text-align:right;
+	padding-top:2px;
+	cursor:default;
+}
+
+/* syntax filter highlighting */
+div.group li q > em
+{
+	font:inherit;
+}
+div.group li q > em.accountforhacks
+{
+	color:#068;
+}
+div.group li q > em.ignorepseudoelements
+{
+	color:#080;
+}
+div.group li q > em.ignorepseudostates
+{
+	color:#806;
+}
+
+
+/* unrecognised selector or malformed rule */
+div.group li q.unrecognised
+{
+	font-style:italic;
+	letter-spacing:-1px;
+	color:#555;
+}
+div.group li q.malformed
+{
+	font-weight:bold;
+	letter-spacing:-1px;
+	color:#d22;
+}
+
+
+/* selected items */
+div.group li.selected
+{
+	background:#55b;
+	border-bottom-style:solid;
+	border-bottom-color:#55b;
+	text-shadow:0 1px 1px rgba(0,0,0,0.2);
+}
+
+div.group li.selected *
+{
+	color:#fff !important;
+}
+
+div.group li.half-selected
+{
+	background:#bbc;
+	border-bottom-style:solid;
+	border-bottom-color:#bbc;
+}
+
+div.group li.half-selected *
+{
+	color:#000 !important;
+}
+
+div.group li.selected:last-child,
+div.group li.half-selected:last-child
+{
+	border-bottom:none;
+}
+
+
+
+/* spider log */
+div.spiderlog
+{
+	color:#333;
+	border-bottom:1px solid #b2b2b2;
+}
+
+div.spiderlog ol
+{
+	list-style-position:inside;
+	list-style-type:decimal;
+}
+
+div.spiderlog li
+{
+	background:#eee;
+	border-bottom:1px dotted #ddd;
+	white-space:normal;
+	/*
+	padding:3px 5px 0 5px;
+	*/
+	line-height:1.2;
+	display:table;
+	width:100%;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	cursor:default;
+}
+
+div.spiderlog li.checked
+{
+	background:#cec;
+	border-bottom:1px dotted #bdb;
+}
+
+/* UNUSED *//*
+div.spiderlog li.skipped
+{
+	background:#ade;
+	border-bottom:1px dotted #9cd;
+} 
+*/
+
+div.spiderlog li.notchecked
+{
+	background:#fcc;
+	border-bottom:1px dotted #ebb;
+}
+
+div.spiderlog li:last-child
+{
+	border-bottom:none;
+	padding-bottom:1px;
+}
+
+div.spiderlog li > span
+{
+	display:block;
+	padding:3px 5px 1px 5px;
+}
+div.spiderlog li > span:focus
+{
+	outline:1px dotted #222;
+	outline-offset:-1px;
+}
+
+div.spiderlog li > span > q
+{
+	display:block;
+	margin:-2px 0 0 0;
+	font-size:11px;
+	quotes:none;
+}
+
+div.spiderlog li.checked > span > q
+{
+	color:#686;
+}
+
+/* UNUSED *//*
+div.spiderlog li.skipped > span > q
+{
+	color:#467;
+} 
+*/
+
+div.spiderlog li.notchecked > span > q
+{
+	color:#955;
+}
+
+
+

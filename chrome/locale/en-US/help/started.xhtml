@@ -1,0 +1,167 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://dustmeselectors/content/help/help.css" type="text/css"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd" 
+[
+	<!ENTITY % helplang SYSTEM "chrome://dustmeselectors/locale/help/help.dtd">
+	%helplang;
+	<!ENTITY % preflang SYSTEM "chrome://dustmeselectors/locale/preferences.dtd">
+	%preflang;
+	<!ENTITY % corelang SYSTEM "chrome://dustmeselectors/locale/dustmeselectors.dtd">
+	%corelang;
+]>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+	xmlns:dms="http://www.brothercake.com/dustmeselectors">
+<head>
+	<meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8"/>
+	<title>&dms.help.started.title;</title>
+	<link rel="icon" href="chrome://dustmeselectors/content/help/helpdialog.ico" type="image/x-icon" />
+	<script type="application/javascript" src="chrome://dustmeselectors/content/help/help.js"/>
+</head>
+<body>
+	
+	<h1>&dms.help.started.title;</h1>
+	
+	<div id="functions" dms:openin="&dms.help.openin;">
+		
+		<h2>Getting Started with Dust-Me Selectors</h2>
+		
+		<p>
+			Dust-Me Selectors has <dfn>three basic functions</dfn>:
+		</p>
+		<ol>
+			<li><a class="function" href="#functions-scanning">Scanning a single page</a></li>
+			<li><a class="function" href="#functions-spidering">Spidering a sitemap</a></li>
+			<li><a class="function" href="#functions-automation">Scanning pages automatically</a></li>
+		</ol>
+		
+		<h3 id="functions-scanning">Scanning a single page</h3>
+		
+		<p id="scanning-button-description">
+			You can scan any <abbr title="HyperText Markup Language">HTML</abbr> page 
+			by clicking the toolbar button: 
+		</p>
+		<p class="figure">
+			<img src="chrome://dustmeselectors/locale/help/scanning-button.winnt.png" 
+				class="linux-lang darwin-lang" 
+				dms:darwin-src="chrome://dustmeselectors/locale/help/scanning-button.darwin.png"
+				dms:linux-src="chrome://dustmeselectors/locale/help/scanning-button.linux.png"
+				alt="" aria-describedby="scanning-button-description"/>
+		</p>
+		<p>
+			You can also do this from the main extension menu 
+			(<q>Tools&#x2192;Web Developer&#x2192;Dust-Me Selectors</q>), 
+			and there's a keyboard shortcut: 
+			<dfn class="darwin-lang" dms:darwin="&#x2325;&#x2318;N">Ctrl+Alt+N</dfn>.
+		</p>
+		<p id="scanning-data-description">
+			Once you've scanned a page, the Data dialog will open automatically, 
+			and show you details of all the stylesheets and selectors that were found, 
+			organised into <q>Unused selectors</q> and <q>Used selectors</q>:
+		</p>
+		<p class="figure">
+			<img src="chrome://dustmeselectors/locale/help/scanning-data.winnt.png" 
+				class="linux-lang darwin-lang" 
+				dms:darwin-src="chrome://dustmeselectors/locale/help/scanning-data.darwin.png"
+				dms:linux-src="chrome://dustmeselectors/locale/help/scanning-data.linux.png"
+				alt="" aria-describedby="scanning-data-description"/>
+		</p>
+		<p>
+			But scanning a single page doesn't tell you very much &#x2014; before you can 
+			be sure of which selectors are actually unused, you'll need to 
+			scan <strong>every page</strong> on which those stylesheets are used.
+		</p>
+		<p>
+			 This is where the spider comes in ...
+		</p>
+		
+		
+		<h3 id="functions-spidering">Spidering a sitemap</h3>
+		
+		<p id="spider-menu-description">
+			You can open the Spider dialog from the toolbar button's menu:
+		</p>
+		<p class="figure">
+			<img src="chrome://dustmeselectors/locale/help/spider-menu.winnt.png" 
+				class="linux-lang darwin-lang" 
+				dms:darwin-src="chrome://dustmeselectors/locale/help/spider-menu.darwin.png"
+				dms:linux-src="chrome://dustmeselectors/locale/help/spider-menu.linux.png"
+				alt="" aria-describedby="spider-menu-description"/>
+		</p>
+		<p>
+			You can also do this from the main extension menu, 
+			and there's a keyboard shortcut: 
+			<dfn class="darwin-lang" dms:darwin="&#x2325;&#x2318;P">Ctrl+Alt+P</dfn>.
+		</p>
+		<p id="spider-sitemap-description">
+			Then enter a sitemap <abbr title="Uniform Resource Locator">URL</abbr>, 
+			and click the <dfn>Start</dfn> button:
+		</p>
+		<p class="figure">
+			<img src="chrome://dustmeselectors/locale/help/spider-sitemap.winnt.png" 
+				class="linux-lang darwin-lang" 
+				dms:darwin-src="chrome://dustmeselectors/locale/help/spider-sitemap.darwin.png"
+				dms:linux-src="chrome://dustmeselectors/locale/help/spider-sitemap.linux.png"
+				alt="" aria-describedby="spider-sitemap-description"/>
+		</p>
+		<p>
+			The spider will load and scan <strong>every page that's linked 
+			from the sitemap</strong>, checking every stylesheet it finds against the 
+			<abbr title="Document Object Model">DOM</abbr> of each page that includes it. 
+		</p>
+		<p>
+			<em>Once that's done, you'll have built up a useful picture of site-wide selector use.</em>
+		</p>
+		<p>
+			But there are still things the spider can't detect &#x2014; because 
+			it can't click buttons, or hover over links, or do any of the other 
+			user-interactions that might trigger <strong>dynamic content</strong>.
+		</p>
+		<p>
+			That's where automation can be useful ...
+		</p>
+			
+		
+		<h3 id="functions-automation">Scanning pages automatically</h3>
+		
+		<p id="preferences-menu-description">
+			Open the <span class="winnt-lang" dms:winnt="Options">Preferences</span> 
+			dialog from the toolbar button's menu:
+		</p>
+		<p class="figure">
+			<img src="chrome://dustmeselectors/locale/help/preferences-menu.winnt.png" 
+				class="linux-lang darwin-lang" 
+				dms:darwin-src="chrome://dustmeselectors/locale/help/preferences-menu.darwin.png"
+				dms:linux-src="chrome://dustmeselectors/locale/help/preferences-menu.linux.png"
+				alt="" aria-describedby="preferences-menu-description"/>
+		</p>
+		<p>
+			You can also do this from the main extension menu, 
+			and there's a keyboard shortcut: 
+			<dfn class="darwin-lang" dms:darwin="&#x2325;&#x2318;,">Ctrl+Alt+,</dfn> (comma).
+		</p>
+		<p id="preferences-automation-description">
+			Then you can enable automation from the <q>Automation</q> tab, as well 
+			as controlling a number of mutation events: 
+		</p>
+		<p class="figure">
+			<img src="chrome://dustmeselectors/locale/help/preferences-automation.winnt.png" 
+				class="linux-lang darwin-lang" 
+				dms:darwin-src="chrome://dustmeselectors/locale/help/preferences-automation.darwin.png"
+				dms:linux-src="chrome://dustmeselectors/locale/help/preferences-automation.linux.png"
+				alt="" aria-describedby="preferences-automation-description"/>
+		</p>
+		<p>
+			Once automation is enabled, Dust-Me Selectors will <strong>automatically scan 
+			every page</strong> you visit in Firefox, and the added mutation events will 
+			trigger <strong>additional scans whenever the page dynamically changes</strong>.
+		</p>
+		<p>
+			<em>So as you browse around the site, and interact with dynamic pages, 
+			you'll eventually get a truly accurate list of unused selectors!</em>
+		</p>
+		
+	</div>
+	
+</body>
+</html>

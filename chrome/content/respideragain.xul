@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE dialog SYSTEM "chrome://dustmeselectors/locale/dustmeselectors.dtd">
+
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" 
+	id="dms-respider"
+	buttons="extra1,extra2,cancel" 
+	defaultButton="extra2" 
+	buttonlabelextra2="&dms.respider.confirm.keep;"
+	buttonlabelextra1="&dms.respider.confirm.trash;" 
+	buttonlabelcancel="&dms.dialog.confirm.cancel;" 
+	buttonaccesskeyextra2="&dms.respider.accesskey.keep;" 
+	buttonaccesskeyextra1="&dms.respider.accesskey.trash;" 
+	buttonaccesskeycancel="&dms.dialog.accesskey.cancel;" 
+	title="&dms.dialog.confirm.title;"
+	ondialogextra2="opener.DustMeSelectors_spider.justSpiderAgain(window);"
+	ondialogextra1="opener.DustMeSelectors_spider.trashSpiderAgain(window, true);">
+	
+	<hbox style="padding-bottom:14px;">
+		<hbox style="padding-top:2px;padding-right:12px;" align="start">
+			<image width="32" height="32" flex="0" src="chrome://dustmeselectors/content/dialog-question.png"/>
+		</hbox>
+		<vbox>
+			<description style="max-width:270px;padding-right:7px;font-weight:bold;">&dms.respideragain.description1;</description>
+			<description style="max-width:270px;padding-top:7px;">&dms.respideragain.description2;</description>
+			<description style="max-width:270px;padding-top:7px;">&dms.respider.description3;</description>
+		</vbox>
+	</hbox>
+	
+</dialog>

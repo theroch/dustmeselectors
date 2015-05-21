@@ -1,0 +1,189 @@
+<?xml version="1.0"?> 
+<?xml-stylesheet href="chrome://dustmeselectors/content/toolbar.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://dustmeselectors/locale/dustmeselectors.dtd">
+
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" 
+	xmlns:dms="http://www.brothercake.com/dustmeselectors"
+	xmlns:html="http://www.w3.org/1999/xhtml" 
+	id="dms-overlay"> 
+	
+	<script type="application/javascript" src="chrome://dustmeselectors/content/tools.js"/>
+	<script type="application/javascript" src="chrome://dustmeselectors/content/filesystem.js"/>
+	<script type="application/javascript" src="chrome://dustmeselectors/content/preferences.js"/>
+	<script type="application/javascript" src="chrome://dustmeselectors/content/dustmeselectors.js"/>
+	
+	<script type="application/javascript" src="chrome://dustmeselectors/content/browser.js"/>
+
+	<stringbundleset>
+		<stringbundle id="dms-bundle" src="chrome://dustmeselectors/locale/dustmeselectors.properties"/>		
+	</stringbundleset>
+
+	<menupopup id="menu_ToolsPopup"> 
+		<keyset>
+			<key id="dms-findkey" key="&dms.commandkey.find;" modifiers="alt accel" 
+				oncommand="if(!DustMeSelectors.running) { DustMeSelectors_browser.findRedundentSelectors(); } 
+							else { DustMeSelectors_browser.stop(); }"/>
+			<key id="dms-viewkey" key="&dms.commandkey.view;" modifiers="alt accel"
+				oncommand="DustMeSelectors_browser.viewSavedSelectors(null, true, true);"/>
+			<key id="dms-spiderkey" key="&dms.commandkey.spider;" modifiers="alt accel"
+				oncommand="DustMeSelectors_browser.openSpiderDialog();"/>
+			<key id="dms-spiderthiskey" key="&dms.commandkey.spider;" modifiers="alt shift accel"
+				oncommand="DustMeSelectors_browser.spiderThisPage(window.content.document.location.href);"/>
+			<key id="dms-preferenceskey" key="&dms.commandkey.preferences;" modifiers="alt accel"
+				oncommand="DustMeSelectors_browser.openPreferencesDialog();"/>
+		</keyset>
+		
+		<menu id="dms-mainmenu" insertbefore="sanitizeSeparator" 
+			label="&dms.title;" accesskey="&dms.menu.accesskey.title;" 
+			class="menu-iconic" image="chrome://dustmeselectors/content/statusicon_default.png">
+			<menupopup id="dms-mainmenupopup" style="list-style-image:none;">
+				<menuitem id="dms-mainmenu-sitemap" label="&dms.menu.spider;" 
+					key="dms-spiderkey" accesskey="&dms.menu.accesskey.spider;" 
+					oncommand="DustMeSelectors_browser.openSpiderDialog();"/>
+				<menuseparator/>
+				<menuitem id="dms-mainmenu-find" label="&dms.menu.find;" 
+					key="dms-findkey" accesskey="&dms.menu.accesskey.find;" 
+					oncommand="DustMeSelectors_browser.findRedundentSelectors();"/>
+				<menuitem id="dms-mainmenu-autorun" label="&dms.menu.autorun;" 
+					type="checkbox" autocheck="false" 
+					accesskey="&dms.menu.accesskey.autorun;" 
+					oncommand="DustMeSelectors_browser.setAutorunPreference(this);"/>
+				<menuseparator/>
+				<menuitem label="&dms.menu.view;" id="dms-mainmenu-view" 
+					key="dms-viewkey" accesskey="&dms.menu.accesskey.view;" 
+					oncommand="DustMeSelectors_browser.viewSavedSelectors(null, true, true);"/>
+				<menu id="dms-mainmenu-clearmenu" label="&dms.menu.clear;" 
+					accesskey="&dms.menu.accesskey.clear;" disabled="true">
+					<menupopup onpopupshowing="
+						document.getElementById('dms-mainmenu-clear').setAttribute('disabled', 
+							(!DustMeSelectors_tools.haveDataForHost(window.content.document.location.href)));">
+						<menuitem label="&dms.menu.thishost;" id="dms-mainmenu-clear" 
+							accesskey="&dms.menu.accesskey.thishost;" 
+							oncommand="DustMeSelectors_browser.clearSavedSelectors();"/>
+						<menuitem label="&dms.menu.allhosts;" id="dms-mainmenu-clearall" 
+							accesskey="&dms.menu.accesskey.allhosts;" 
+							oncommand="DustMeSelectors_browser.clearAllSavedSelectors();"/>
+					</menupopup>
+				</menu>
+				<menuseparator/>
+				<menuitem id="dms-mainmenu-preferences" label="&dms.menu.preferences;" 
+					class="winnt-lang" dms:winnt-label="&dms.menu.winnt.preferences;" 
+					key="dms-preferenceskey" accesskey="&dms.menu.accesskey.preferences;" 
+					dms:winnt-accesskey="&dms.menu.accesskey.winnt.preferences;"
+					oncommand="DustMeSelectors_browser.openPreferencesDialog();"/>
+				<menuseparator id="dms-mainmenu-started-separator"/>
+				<menuitem id="dms-mainmenu-started" label="&dms.menu.started;" 
+					accesskey="&dms.menu.accesskey.started;"
+					class="menuitem-iconic" image="chrome://dustmeselectors/content/question.png"
+					oncommand="DustMeSelectors_browser.openStartedHelp();"/>
+			</menupopup>
+		</menu>
+	</menupopup> 
+	
+	<toolbarpalette id="BrowserToolbarPalette">
+		<toolbaritem id="dms-toolbaritem" label="&dms.toolbarbutton;">
+			<stack>
+				<toolbarbutton id="dms-toolbarbutton" type="menu-button" class="toolbarbutton-1" 
+					label="&dms.toolbarbutton;" tooltiptext="&dms.menu.find;"
+					oncommand="if(!DustMeSelectors.running) { DustMeSelectors_browser.findRedundentSelectors(); } 
+								else { DustMeSelectors_browser.stop(); }">
+					<menupopup id="dms-toolbarpopup">
+						<menuitem id="dms-toolbarpopup-sitemap" label="&dms.menu.spider;" 
+							key="dms-spiderkey" accesskey="&dms.menu.accesskey.spider;" 
+							oncommand="DustMeSelectors_browser.openSpiderDialog();event.stopPropagation();"/>
+						<menuseparator/>
+						<menuitem label="&dms.menu.view;" id="dms-toolbarpopup-view" 
+							key="dms-viewkey" accesskey="&dms.menu.accesskey.view;" 
+							oncommand="DustMeSelectors_browser.viewSavedSelectors(null, true, true);event.stopPropagation();"/>
+						<menu id="dms-toolbarpopup-clearmenu" label="&dms.menu.clear;" 
+							accesskey="&dms.menu.accesskey.clear;" disabled="true">
+							<menupopup onpopupshowing="
+								document.getElementById('dms-toolbarpopup-clear').setAttribute('disabled', 
+									(!DustMeSelectors_tools.haveDataForHost(window.content.document.location.href)));">
+								<menuitem label="&dms.menu.thishost;" id="dms-toolbarpopup-clear" 
+									accesskey="&dms.menu.accesskey.thishost;" 
+									oncommand="DustMeSelectors_browser.clearSavedSelectors();event.stopPropagation();"/>
+								<menuitem label="&dms.menu.allhosts;" id="dms-toolbarpopup-clearall" 
+									accesskey="&dms.menu.accesskey.allhosts;" 
+									oncommand="DustMeSelectors_browser.clearAllSavedSelectors();event.stopPropagation();"/>
+							</menupopup>
+						</menu>
+						<menuseparator/>
+						<menuitem id="dms-toolbarpopup-preferences" label="&dms.menu.preferences;" 
+							class="winnt-lang" dms:winnt-label="&dms.menu.winnt.preferences;" 
+							key="dms-preferenceskey" accesskey="&dms.menu.accesskey.preferences;" 
+							dms:winnt-accesskey="&dms.menu.accesskey.winnt.preferences;"
+							oncommand="DustMeSelectors_browser.openPreferencesDialog();event.stopPropagation();"/>
+						<menuseparator id="dms-toolbarpopup-started-separator"/>
+						<menuitem id="dms-toolbarpopup-started" label="&dms.menu.started;" 
+							accesskey="&dms.menu.accesskey.started;"
+							class="menuitem-iconic" image="chrome://dustmeselectors/content/question.png"
+							oncommand="DustMeSelectors_browser.openStartedHelp();event.stopPropagation();"/>
+					</menupopup>
+				</toolbarbutton>
+				<label id="dms-toolbarlabel" hidden="true" tooltiptext="&dms.menu.busy;"
+					onclick="DustMeSelectors_browser.stop();">
+					<label style="font-weight:bold;color:#fff;text-shadow:1px 1px 0 #000, 0 0 5px #000;"/>
+				</label>
+			</stack>
+		</toolbaritem>
+	</toolbarpalette>
+	
+	<menupopup id="contentAreaContextMenu">
+		<menuseparator id="dms-contextmenu-separator" hidden="true"/>
+		<menuitem id="dms-contextmenu-spider" label="&dms.contextmenu.spider;" 
+			hidden="true" class="menuitem-iconic" 
+			image="chrome://dustmeselectors/content/statusicon_default.png" 
+			accesskey="&dms.contextmenu.accesskey.spider;"
+			oncommand="DustMeSelectors_browser.spiderThisPage(window.content.document.location.href);"/>
+	</menupopup>
+
+    <statusbar id="status-bar">
+		
+        <statusbarpanel insertafter="statusbar-progresspanel" id="dms-statusoverlay" hidden="true" style="min-height:18px">
+        	<label id="dms-statuslabel" context="dms-statuspopup" hidden="true"
+            	onclick="if(!event.button) 
+            	{ 
+            		if(!DustMeSelectors.running) { DustMeSelectors_browser.findRedundentSelectors(); } 
+					else { DustMeSelectors_browser.stop(); } 
+				}"/>
+            <image id="dms-statusicon" width="16" height="16" 
+            	src="chrome://dustmeselectors/content/statusicon_default.png"
+            	tooltiptext="&dms.menu.find;" context="dms-statuspopup" 
+            	onclick="if(!event.button) 
+            	{ 
+            		if(!DustMeSelectors.running) { DustMeSelectors_browser.findRedundentSelectors(); } 
+					else { DustMeSelectors_browser.stop(); }
+            	}"/>
+            <menupopup id="dms-statuspopup">
+				<menuitem id="dms-statuspopup-sitemap" label="&dms.menu.spider;" 
+					key="dms-spiderkey" accesskey="&dms.menu.accesskey.spider;" 
+					oncommand="DustMeSelectors_browser.openSpiderDialog();"/>
+				<menuseparator/>
+				<menuitem label="&dms.menu.view;" id="dms-statuspopup-view" 
+					key="dms-viewkey" accesskey="&dms.menu.accesskey.view;" 
+					oncommand="DustMeSelectors_browser.viewSavedSelectors(null, true, true);"/>
+				<menu id="dms-statuspopup-clearmenu" label="&dms.menu.clear;" 
+					accesskey="&dms.menu.accesskey.clear;" disabled="true">
+					<menupopup onpopupshowing="
+						document.getElementById('dms-statuspopup-clear').setAttribute('disabled', 
+							(!DustMeSelectors_tools.haveDataForHost(window.content.document.location.href)));">
+						<menuitem label="&dms.menu.thishost;" id="dms-statuspopup-clear" 
+							accesskey="&dms.menu.accesskey.thishost;" 
+							oncommand="DustMeSelectors_browser.clearSavedSelectors();"/>
+						<menuitem label="&dms.menu.allhosts;" id="dms-statuspopup-clearall" 
+							accesskey="&dms.menu.accesskey.allhosts;" 
+							oncommand="DustMeSelectors_browser.clearAllSavedSelectors();"/>
+					</menupopup>
+				</menu>
+				<menuseparator/>
+				<menuitem id="dms-statuspopup-preferences" label="&dms.menu.preferences;" 
+					class="winnt-lang" dms:winnt-label="&dms.menu.winnt.preferences;" 
+					key="dms-preferenceskey" accesskey="&dms.menu.accesskey.preferences;" 
+					dms:winnt-accesskey="&dms.menu.accesskey.winnt.preferences;"
+					oncommand="DustMeSelectors_browser.openPreferencesDialog();"/>
+        	</menupopup>
+		</statusbarpanel>
+	</statusbar>
+	
+</overlay>

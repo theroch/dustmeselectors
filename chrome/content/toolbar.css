@@ -1,0 +1,31 @@
+/*******************************************************************************
+ DMS4.1 :: Dust-Me Selectors v4.1
+ -------------------------------------------------------------------------------
+ Copyright (c) 2007-13 James Edwards (brothercake)        <cake@brothercake.com>
+ MIT License                      http://opensource.org/licenses/mit-license.php
+ Info/Docs                            http://www.brothercake.com/dustmeselectors
+ -------------------------------------------------------------------------------
+ Contributors:
+ -------------------------------------------------------------------------------
+ Andrew Krespanis   [Concept]                           http://leftjustified.net
+ Paul Annesley      [Concept]                            http://paul.annesley.cc
+ Lachlan Donald     [Concept]                                  http://lachlan.me
+ Alex Walker        [Icon design]    http://www.sitepoint.com/author/alex-walker
+ -------------------------------------------------------------------------------
+*******************************************************************************/
+
+
+/* nb. the 2nd and 3rd selectors are apparently needed to prevent conflicts with installed themes 
+   [so says https://developer.mozilla.org/en-US/docs/XUL/School_tutorial/Adding_Toolbars_and_Toolbar_Buttons] 
+   though I'm not sure they're all still necessary since window [active] selectors don't work anymore
+   nb. the documentation also recommends having 24px and 16px versions of the image, differentiated 
+   with the [iconsize] attribute, however Firefox's toolbar buttons are smaller than they used to be, 
+   and a 24px icon now spills over the edges, so I've just used the smaller icon for all of them */
+#dms-toolbarbutton, 
+window:not([active="true"]) #dms-toolbarbutton, 
+toolbar[iconsize="small"] #dms-toolbarbutton
+{
+	list-style-image:url("chrome://dustmeselectors/content/statusicon_default.png");
+}
+
+

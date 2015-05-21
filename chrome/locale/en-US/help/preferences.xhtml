@@ -1,0 +1,904 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://dustmeselectors/content/help/help.css" type="text/css"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd" 
+[
+	<!ENTITY % helplang SYSTEM "chrome://dustmeselectors/locale/help/help.dtd">
+	%helplang;
+	<!ENTITY % preflang SYSTEM "chrome://dustmeselectors/locale/preferences.dtd">
+	%preflang;
+	<!ENTITY % corelang SYSTEM "chrome://dustmeselectors/locale/dustmeselectors.dtd">
+	%corelang;
+]>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+	xmlns:dms="http://www.brothercake.com/dustmeselectors">
+<head>
+	<meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8"/>
+	<title class="winnt-lang" dms:winnt="&dms.help.preferences.winnt.title;">&dms.help.preferences.title;</title>
+	<link rel="icon" href="chrome://dustmeselectors/content/help/helpdialog.ico" type="image/x-icon" />
+	<script type="application/javascript" src="chrome://dustmeselectors/content/help/help.js"/>
+</head>
+<body>
+	
+	<h1>&dms.help.preferences.title;</h1>
+	
+	<div id="scanning" dms:openin="&dms.help.openin;">
+		<h2>&dms.preferences.group.stylesheets;</h2>
+		<dl>
+			<dt id="scanning-styleblocks">&dms.preferences.styleblocks;</dt>
+			<dd>
+				<p>
+					If this option is <dfn class="on">checked</dfn>, then scanning and spidering 
+					operations will include selectors from rules in <code>&lt;style&gt;</code> 
+					elements, indexing them by the <abbr title="Uniform Resource Locator">URL</abbr> 
+					of the page they're found on. 
+				</p>
+				<p>
+					If this preference is <dfn class="off">not checked</dfn>, then all such rules 
+					will be ignored.
+				</p>
+				<p>
+					<i>
+						This option only applies to ordinary style rules, 
+						not to imports &#x2014; <code>@import</code> stylesheets inside 
+						<code>&lt;style&gt;</code> elements are always loaded, 
+						irrespective of this setting.
+					</i>
+				</p>
+				<p>
+					<i>
+						Enabling this option may create a lot of repetitive data. For example, 
+						if every page of your site has identical 
+						<abbr title="Cascading Style Sheets">CSS</abbr>, 
+						which is generated inside a <code>&lt;style&gt;</code> element to reduce 
+						<abbr title="HyperText Transfer Protocol">HTTP</abbr> requests, 
+						then all those selectors will be listed 
+						<strong>separately for every page</strong> they occur on.
+					</i>
+				</p>
+			</dd>
+
+			<dt id="scanning-ignoreelements">&dms.preferences.ignoreelements;</dt>
+			<dd>
+				<p>
+					If this option is <dfn class="on">checked</dfn>, then all simple element selectors 
+					(such as <code>"div"</code> or <code>"h2"</code>) will be assumed to be used, 
+					without being tested.
+				</p>
+				<p>
+					If this option is <dfn class="off">not checked</dfn>, then simple element 
+					selectors will be tested like any other.
+				</p>
+				<p>
+					<i>
+						This option only applies to <strong>single</strong> element selectors, not to 
+						descendents &#x2014; descendent selectors (such as <code>"div h2"</code>) 
+						are always tested, irrespective of this setting.
+					</i>
+				</p>
+			</dd>
+
+			<dt id="scanning-ignorepseudostates">&dms.preferences.ignorepseudostates;</dt>
+			<dd>
+				<p>
+					If this option is <dfn class="on">checked</dfn>, then dynamic pseudo-classes 
+					(such as <code>":hover"</code>) and interface pseudo-classes (such as 
+					<code>":disabled"</code>) will be parsed from selectors before they're tested. 
+					This makes it possible to test for such selectors on the basis of their default 
+					state, i.e. if the default state matches, then so do all the dynamic states.
+				</p>
+				<p>
+					So a selector like <code>"input:focus"</code> would be tested as simply 
+					<code>"input"</code>, and if that matches an element, then the original selector 
+					will be marked as used. Negations are treated the same way, so a selector like 
+					<code>"input:not(:disabled)"</code> would also be tested as simply 
+					<code>"input"</code>.
+				</p>
+				<p>
+					If this option is <dfn class="off">not checked</dfn>, then no such parsing 
+					will occur, and therefore most dynamic and interface pseudo-classes will 
+					never be matched.
+				</p>
+				<p>
+					<i>
+						Pseudo-classes which have been parsed by this option 
+						will be shown with syntax-highlighting. The following 
+						pseudo-classes are supported: 
+						<code class="filter">link</code>, 
+						<code class="filter">visited</code>, 
+						<code class="filter">hover</code>, 
+						<code class="filter">focus</code>, 
+						<code class="filter">active</code>, 
+						<code class="filter">target</code>, 
+						<code class="filter">enabled</code>, 
+						<code class="filter">disabled</code>, 
+						<code class="filter">checked</code>, 
+						<code class="filter">indeterminate</code>, 
+						<code class="filter">-moz-placeholder</code>.
+					</i>
+				</p>
+			</dd>
+
+			<dt id="scanning-ignorepseudoelements">&dms.preferences.ignorepseudoelements;</dt>
+			<dd>
+				<p>
+					If this option is <dfn class="on">checked</dfn>, then all pseudo-elements 
+					(such as <code>"::before"</code>) will be parsed from selectors before they're tested. 
+					This makes it possible to test for such selectors on the basis of their parent
+					element, i.e. if the parent exists, then so do all its pseudo-elements.
+				</p>
+				<p>
+					So a selector like <code>"input::before"</code> would be tested as simply 
+					<code>"input"</code>, and if that matches an element, then the original selector 
+					will be marked as used.
+				</p>
+				<p>
+					If this option is <dfn class="off">not checked</dfn>, then no such parsing 
+					will occur, and therefore pseudo-elements will never be matched.
+				</p>
+				<p>
+					<i>
+						Pseudo-elements which have been parsed by this option 
+						will be shown with syntax-highlighting. All pseudo-elements 
+						that use double-colon syntax are supported, plus the four from 
+						<abbr title="Cascading Style Sheets Level 2">CSS2</abbr> 
+						that are allowed to use single-colon syntax: 
+						<code class="filter">before</code>, 
+						<code class="filter">after</code>, 
+						<code class="filter">first-line</code>, 
+						<code class="filter">first-letter</code>.
+					</i>
+				</p>
+			</dd>
+
+			<dt id="scanning-accountforhacks">&dms.preferences.accountforhacks;</dt>
+			<dd>
+				<p>
+					If this option is <dfn class="on">checked</dfn>, then some 
+					<abbr title="Cascading Style Sheets">CSS</abbr> hacks for 
+					Internet Explorer will be converted to valid selectors before they're tested. 
+					This makes it possible to test for such selectors on the basis of how they're 
+					interpreted by <abbr title="Internet Explorer">IE</abbr>. 
+				</p>
+				<p>
+					So a selector like <code>"* html input"</code> would be tested as simply 
+					<code>"html input"</code>, and if that matches an element, then the original 
+					selector will be marked as used.
+				</p>
+				<p>
+					If this option is <dfn class="off">not checked</dfn>, then no such parsing 
+					will occur, and therefore these selectors will never be matched.
+				</p>
+				<p>
+					<i>
+						Selectors which have been parsed by this option 
+						will be shown with syntax-highlighting. The following 
+						selector hacks are supported: 
+						<code class="filter">* html</code>, 
+						<code class="filter">* + html</code>, 
+						<code class="filter">*:first-child + html</code>.
+					</i>
+				</p>
+			</dd>
+		</dl>
+	</div>
+	
+	<div id="spidering" dms:openin="&dms.help.openin;">
+		<h2>&dms.preferences.group.spidering;</h2>
+		<dl>
+			<dt id="spidering-noexternal">&dms.preferences.noexternal;</dt>
+			<dd>
+				<p>
+					If this option is <dfn class="on">checked</dfn>, then the spider will 
+					ignore any links in <abbr title="HyperText Markup Language">HTML</abbr> 
+					sitemaps that point to an external domain.
+				</p>
+				<p>
+					If this option is <dfn class="off">not checked</dfn>, then off-site 
+					links in <abbr title="HyperText Markup Language">HTML</abbr> sitemaps 
+					will not be treated differently.
+				</p>
+				<p>
+					<i>
+						The evaluation of link domains is affected by two other options: 
+						<a class="preference later" href="#storage-ignoreports"
+							>&dms.preferences.ignoreports;</a> 
+						and <a class="preference later" href="#storage-ignoresubdomains"
+							>&dms.preferences.ignoresubdomains;</a>. 
+						For example, a link to <q>addons.mozilla.org</q>
+						from a sitemap on <q>mozilla.org</q> would normally 
+						be considered to be on an external domain, however if 
+						<a class="preference later" href="#storage-ignoresubdomains"
+							>&dms.preferences.ignoresubdomains;</a> 
+						is enabled, then it will be considered to be on the same domain.
+					</i>
+				</p>
+				<p>
+					<i>
+						This option only applies to 
+						<strong><abbr title="HyperText Markup Language">HTML</abbr> 
+						sitemaps</strong>, not to <abbr title="eXtensible Markup Language">XML</abbr> 
+						or <abbr title="Reall Simple Syndication">RSS</abbr>.
+					</i>
+				</p>
+			</dd>
+
+			<dt id="spidering-nofollow">&dms.preferences.nofollow; [...]</dt>
+			<dd>
+				<p>
+					If this option is <dfn class="on">checked</dfn>, then the spider will 
+					use an attribute filter to decide which links to follow in 
+					<abbr title="HyperText Markup Language">HTML</abbr> sitemaps.
+				</p>
+				<p>
+					The attribute filter has <dfn>three</dfn> settings you can control:
+				</p>
+				<dl id="spidering-nofollow-description">
+					<dt>Filter name</dt>
+					<dd>
+						<p>
+							Specify the name of an attribute for the filter to use, e.g. <q>rel</q>.
+						</p>
+					</dd>
+					<dt>Filter type</dt>
+					<dd>
+						<p>
+							Specify whether the filter should apply when the attribute 
+							<q>&dms.preferences.contains;</q> or 
+							<q>&dms.preferences.notcontains;</q> a filter value.
+						</p>
+					</dd>
+					<dt>Filter value(s)</dt>
+					<dd>
+						<p>
+							Specify one or more attribute values for the filter to use, 
+							separated by commas.
+						</p>
+						<p>
+							<i>
+								This is designed to be used with <strong>space-delimited attributes</strong>, 
+								and will only match <strong>whole single values, not substrings</strong>. 
+								For example, if the filter value is <q>follow</q> then the filter will apply 
+								when the attribute value is <code>"follow"</code> or when it's 
+								<code>"index follow"</code>, but not when it's <code>"nofollow"</code>.
+							</i>
+						</p>
+					</dd>
+				</dl>
+				<p>
+					If this option is <dfn class="off">not checked</dfn>, then attribute 
+					filtering will not occur.
+				</p>
+				<p>
+					<i>
+						This option only applies to 
+						<strong><abbr title="HyperText Markup Language">HTML</abbr> 
+						sitemaps</strong>, not to <abbr title="eXtensible Markup Language">XML</abbr> 
+						or <abbr title="Reall Simple Syndication">RSS</abbr>.
+					</i>
+				</p>
+			</dd>
+
+			<dt id="spidering-nospiderjs">&dms.preferences.nospiderjs;</dt>
+			<dd>
+				<p>
+					If this option is <dfn class="on">checked</dfn>, then the spider will 
+					scan pages with JavaScript disabled. 
+				</p>
+				<p>
+					If this option is <dfn class="off">not checked</dfn>, then the spider 
+					will use the same JavaScript settings as ordinary browsing.
+				</p>
+			</dd>
+
+			<dt id="spidering-verifyhead">&dms.preferences.verifyhead;</dt>
+			<dd>
+				<p>
+					The spider pre-checks each sitemap 
+					<abbr title="Uniform Resource Locator">URL</abbr> to make sure it's 
+					an <abbr title="HyperText Markup Language">HTML</abbr> page, and this 
+					is done using <code>HEAD</code> requests, to minimize unnecessary traffic. 
+					However some servers don't support <code>HEAD</code> requests, and 
+					in that case the spider log would be filled with 
+					<code>"405 Method Not Allowed"</code> errors.
+				</p> 
+				<p>
+					So if you have that problem, 
+					you can use this option to control the request method:
+				</p>
+				<p>
+					If this option is <dfn class="on">checked</dfn>, then the spider 
+					will use <code>HEAD</code> requests.
+				</p>
+				<p>
+					If this option is <dfn class="off">not checked</dfn>, then the spider 
+					will use <code>GET</code> requests instead.
+				</p>
+			</dd>
+		</dl>
+	</div>
+	
+	<div id="automation" dms:openin="&dms.help.openin;">
+		<h2>&dms.preferences.group.automation;</h2>
+		<dl>
+			<dt id="automation-autorun">&dms.preferences.autorun;</dt>
+			<dd>
+				<p>
+					If this option is <dfn class="on">checked</dfn>, then the extension 
+					will automatically scan pages as you browse. This is a useful 
+					supplement to spidering a site, since you can use it to scan dynamic 
+					content that the spider wouldn't trigger, i.e. by hovering over elements, 
+					clicking buttons, and so forth.
+				</p>
+				<p>
+					Automation is primarily triggered by <code>DOMContentLoaded</code> events,  
+					and will scan the page that triggered the event &#x2014; normally this 
+					would be the front tab, but if you open a page in a background tab 
+					then the background page will be scanned.
+				</p>
+				<p>
+					In addition to the primary load event, you can also enable 
+					mutation events, that will trigger additional automatic 
+					scans whenever they occur (and which are buffered, so that multiple 
+					changes in quick succession only trigger a single scan). 
+				</p>
+				<p>
+					There are <dfn>three</dfn> mutation events you can choose from:
+				</p>
+				<dl>
+					<dt id="automation-mutation">&dms.preferences.mutation;</dt>
+					<dd>
+						<p>
+							If this option is <dfn class="on">checked</dfn>, then the addition 
+							of elements anywhere inside the <code>&lt;body&gt;</code> will 
+							trigger a scan.
+						</p>
+						<p>
+							If this option is <dfn class="off">not checked</dfn>, then these 
+							mutations will be ignored.
+						</p>
+						<p>
+							<i>
+								Only the <strong>addition of elements</strong> 
+								will trigger this event &#x2014; removing elements, or adding 
+								or removing other types of node, will be ignored.
+							</i>
+						</p>
+					</dd>
+
+					<dt id="automation-mutationhead">&dms.preferences.mutationhead;</dt>
+					<dd>
+						<p>
+							If this option is <dfn class="on">checked</dfn>, then the addition 
+							of elements as children of the <code>&lt;head&gt;</code> will 
+							trigger a scan.
+						</p>
+						<p>
+							If this option is <dfn class="off">not checked</dfn>, then these 
+							mutations will be ignored.
+						</p>
+						<p>
+							<i>
+								Only <strong>child elements</strong> will trigger 
+								this event &#x2014; deeper descendents will be ignored.
+							</i>
+						</p>
+					</dd>
+
+					<dt id="automation-mutationattrs">&dms.preferences.mutationattrs; [...]</dt>
+					<dd>
+						<p>
+							If this option is <dfn class="on">checked</dfn>, then the addition, 
+							removal or modification of attributes anywhere in the document will 
+							trigger a scan. 
+						</p>
+						<p>
+							You can also define a list of exclusions &#x2014; one or more 
+							attribute names, separated by commas &#x2014; which should be 
+							ignored by this event.
+						</p>
+						<p>
+							Since the purpose of automation is to 
+							pick-up on changes that could affect the use of selectors, 
+							there's no point responding to changes in attributes that 
+							aren't being used in selectors. So the obvious exclusion 
+							is <q>style</q>, since it's highly unlikely you'll be 
+							using that for an attribute selector. The default list 
+							includes several other attributes that aren't commonly used 
+							for attribute selectors, and you can edit that list to suit 
+							your needs.
+						</p>
+						<p>
+							If this option is <dfn class="off">not checked</dfn>, then these 
+							mutations will be ignored.
+						</p>
+						<p>
+							<i>
+								This event will also respond to  
+								<strong><abbr title="Document Object Model">DOM</abbr> 
+								properties which map to attributes</strong>, 
+								such as <code>.className</code>.
+							</i>
+						</p>
+					</dd>
+				</dl>
+				<p>
+					<i>
+						Changes to mutation event settings won't apply to 
+						open tabs, until their pages are refreshed.
+					</i>
+				</p>
+				<p>
+					You can also <dfn>restrict automation</dfn>, so that it only 
+					scan pages on specific sites:
+				</p>
+				<dl>
+					<dt id="automation-autorunrestrict">&dms.preferences.autorunrestrict;</dt>
+					<dd>
+						<p>
+							If this option is <dfn class="on">checked</dfn>, then automation 
+							will be restricted by an inclusion-list of host names.
+						</p>
+						<p>
+							Underneath this option is a <dfn>&dms.preferences.autorunhosts;</dfn> button, 
+							and clicking that will display a panel in which you can add, remove and edit 
+							the names of individual hosts. These can be public domains (such as 
+							<q>mozilla.org</q>), private network names (such as <q>mycomputer.local</q>), 
+							or public or private IP addresses (such as <q>192.168.254.1</q>). 
+							You can also specify sub-domains (such as <q>addons.mozill.org</q>),  
+							or different ports (such as <q>mysite.com:2083</q>). 
+						</p>
+						<p>
+							Each host can also be enabled and disabled, by clicking the 
+							icon next to the name &#x2014; green for enabled, or pink for disabled 
+							(and disabled hosts are also greyed-out). If a host is disabled,  
+							then automation will ignore it, as though it weren't listed at all.
+						</p>
+						<p>
+							If this option is <dfn class="off">not checked</dfn>, then 
+							automation will not be restricted by host.
+						</p>
+						<p>
+							<i>
+								Host evaluations are affected by two other options: 
+								<a class="preference later" href="#storage-ignoreports"
+									>&dms.preferences.ignoreports;</a> 
+								and <a class="preference later" href="#storage-ignoresubdomains"
+									>&dms.preferences.ignoresubdomains;</a>. 
+								For example, if your list includes 
+								<q>addons.mozilla.org</q> 
+								then a page on <q>mozilla.org</q> would normally 
+								be considered to be on a different host, however if 
+								<a class="preference later" href="#storage-ignoresubdomains"
+									>&dms.preferences.ignoresubdomains;</a> 
+								is enabled, then it will be considered to be on the same host.
+							</i>
+						</p>
+						<p>
+							<i>
+								Since restriction is controlled by host name, 
+								it can't include pages with <code>file://</code> 
+								addresses, because they have no host. 
+								If you want such pages to be scanned automatically, 
+								you'll have to disable restriction. 
+							</i>
+						</p>
+					</dd>
+				</dl>
+				<p>
+					If this option is <dfn class="off">not checked</dfn>, then automatic 
+					scanning will not occur.
+				</p>
+				<p>
+					<i>
+						Automation only scans <strong>top-level 
+						<abbr title="HyperText Markup Language">HTML</abbr> pages</strong> 
+						&#x2014; pages inside iframes or frames are currently ignored;  
+						as are framesets themselves, all 
+						non-<abbr title="HyperText Markup Language">HTML</abbr> 
+						pages (such as text and 
+						<abbr title="eXtensible Markup Language">XML</abbr> documents), 
+						and pages with pseudo-protocols 
+						(such as <q>about:blank</q>).
+					</i>
+				</p>
+				<p>
+					<i>
+						<strong class="winnt-lang" dms:winnt="&dms.preferences.winnt.autonote;"
+							>&dms.preferences.autonote;</strong>
+					</i>
+				</p>
+			</dd>
+		</dl>
+	</div>
+	
+	<div id="reporting" dms:openin="&dms.help.openin;">
+		<h2>&dms.preferences.group.view;</h2>
+		<p>
+			This group of options allows you to specify how you want to be notified,  
+			when various spidering and scanning operations are complete:
+		</p>
+		<ul id="reporting-doafter">
+			<li><dfn>&dms.preferences.doafterfind;</dfn></li>
+			<li><dfn>&dms.preferences.doafterspider;</dfn></li>
+			<li><dfn>&dms.preferences.doafterautorun;</dfn></li>
+		</ul>
+		<p>
+			There are <dfn>three</dfn> notification options in each case:
+		</p>
+		<dl>
+			<dt id="reporting-openafter">&dms.preferences.openafter;</dt>
+			<dd>
+				<p>
+					If this option is <dfn class="on">checked</dfn>, then the 
+					Data dialog will be opened and updated with the results.
+				</p>
+				<p>
+					If this option is <dfn class="off">not checked</dfn>, then the 
+					Data dialog will only be updated if it's already open.
+				</p>
+			</dd>
+
+			<dt id="reporting-notifyafter">&dms.preferences.notifyafter;</dt>
+			<dd>
+				<p>
+					If this option is <dfn class="on">checked</dfn>, then a small 
+					pop-up notification will appear with a summary of the results. 
+					The specific appearance and behavior of these notifications 
+					various from platform to platform, but usually takes the form 
+					of a small pop-up layer, that appears at the bottom-right 
+					corner of the screen, then disappears after a few seconds.
+				</p>
+				<p>
+					If this option is <dfn class="off">not checked</dfn>, then these  
+					notifications will not appear.
+				</p>
+				<p>
+					<i>
+						Different platforms have different ways of handling multiple notifications. 
+						In Windows 7 for example, only one at a time can be visible, so each 
+						new notification will replace any existing one. In Mac OS X on the other hand, 
+						several can be shown at once, and each new notification will be stacked 
+						above the existing ones.
+					</i>
+				</p>
+			</dd>
+
+			<dt id="reporting-notifyboxafter">&dms.preferences.notifyboxafter;</dt>
+			<dd>
+				<p>
+					If this option is <dfn class="on">checked</dfn>, then the 
+					notification bar will appear with a summary of the results. 
+					The notification bar is a horizontal strip that runs across 
+					the top of the browser (Firefox uses this, for example, 
+					to tell you when it's blocked a popup). Notification 
+					bar messages usually persist until you close them.
+				</p>
+				<p>
+					If this option is <dfn class="off">not checked</dfn>, then these  
+					notifications will not appear.
+				</p>
+			</dd>
+		</dl>
+		<p>
+			You can also control the <dfn>priority flag</dfn> for notification 
+			bar messages:
+		</p>
+		<dl>
+			<dt id="reporting-boxpriority">&dms.preferences.boxpriority;</dt>
+			<dd>
+				<p>
+					Message priority flags affect the styling of the messages, 
+					with higher levels typically using brighter colors. 
+				</p>
+				<p>
+					The priority flags are also used to handle multiple messages, 
+					determining whether a new message should appear above 
+					or behind an existing one. Although Dust-Me Selectors 
+					itself will only ever show a single message 
+					(removing any earlier message before displaying a new one), 
+					you may wish to control how its messages take priority 
+					over those sent by Firefox or other extensions.
+				</p>
+				<p>
+					There are <dfn>three</dfn> levels to choose from, with increasingly high priority:
+				</p>
+				<ol>
+					<li><q>&dms.preferences.boxpriorityflag.info;</q></li>
+					<li><q>&dms.preferences.boxpriorityflag.warning;</q></li>
+					<li><q>&dms.preferences.boxpriorityflag.critical;</q></li>
+				</ol>
+				<p>
+					So for example, if a <q>&dms.preferences.boxpriorityflag.warning;</q> 
+					message is already displayed when an <q>&dms.preferences.boxpriorityflag.info;</q> 
+					message is sent, then the later message 
+					will appear <strong>behind</strong> the earlier one, and only 
+					be seen when the earlier one is closed. Conversely, 
+					if a <q>&dms.preferences.boxpriorityflag.critical;</q> message is sent, 
+					then it will appear <strong>above</strong> the earlier one, and the 
+					earlier one will only be seen again when the later one is closed.
+				</p>
+			</dd>
+		</dl>
+	</div>
+	
+	<div id="storage" dms:openin="&dms.help.openin;">
+		<h2>&dms.preferences.group.saving;</h2>
+		<dl>
+			<dt id="storage-clearconfirm">&dms.preferences.clearconfirm;</dt>
+			<dd>
+				<p>
+					If this option is <dfn class="on">checked</dfn>, then you'll be 
+					asked for confirmation before trashing the data for a single site 
+					(either from a menu-item, or from the trash button in the Data dialog).
+				</p>
+				<p>
+					If this option is <dfn class="off">not checked</dfn>, then data 
+					for a single site will be trashed without confirmation.
+				</p>
+				<p>
+					<i>
+						The confirmation dialogs also have an 
+						<q>&dms.dialog.clearconfirm.clearconfirm;</q> checkbox, 
+						which controls this same option.
+					</i>
+				</p>
+				<p>
+					<i>
+						When trashing the data for <strong>every</strong> site, you'll always 
+						be asked for confirmation, irrespective of this setting.
+					</i>
+				</p>
+			</dd>
+
+			<dt id="storage-saveperhost">&dms.preferences.saveperhost;</dt>
+			<dd>
+				<p>
+					If this option is <dfn class="on">checked</dfn>, then scanning 
+					and spidering data will be stored separately for each site.
+				</p>
+				<p>
+					You can also influence how the extension decides what is 
+					a single site, with <dfn>two</dfn> additional options:
+				</p>
+				<dl>
+					<dt id="storage-ignoreports">&dms.preferences.ignoreports;</dt>
+					<dd>
+						<p>
+							If this option is <dfn class="on">checked</dfn>, then all 
+							port-numbers will be treated as part of the same site.  
+							For example <q>mysite.com:8080</q> and <q>mysite.com:2083</q> 
+							would both be stored under <q>mysite.com</q>.
+						</p>
+						<p>
+							If this option is <dfn class="off">not checked</dfn>, then each 
+							port-number (including none) will be treated as a different site.
+						</p>
+						<p>
+							<i>
+								Port 80 is treated the same as no port-number, 
+								so <q>mysite.com:80</q> will always be stored under  
+								<q>mysite.com</q>, irrespective of this setting.
+							</i>
+						</p>
+					</dd>
+
+					<dt id="storage-ignoresubdomains">&dms.preferences.ignoresubdomains;</dt>
+					<dd>
+						<p>
+							If this option is <dfn class="on">checked</dfn>, then all 
+							sub-domains will be treated as part of the same site. 
+							For example <q>addons.mozilla.org</q> and <q>developer.mozilla.org</q> 
+							would both be stored under <q>mozilla.org</q>.
+						</p>
+						<p>
+							If this option is <dfn class="off">not checked</dfn>, then each 
+							sub-domain (including none) will be treated as a different site.
+						</p>
+						<p>
+							<i>
+								The <q>www</q> sub-domain is treated the same as no sub-domain, 
+								so <q>www.mozilla.org</q> will always be stored under 
+								<q>mozilla.org</q>, irrespective of this setting.
+							</i>
+						</p>
+					</dd>
+				</dl>
+				<p>
+					<i>
+						As well as controlling how data is stored, the port-numbers 
+						and sub-domains settings have a bearing on two other options: 
+						<a class="preference earlier" href="#spidering-noexternal"
+							>&dms.preferences.noexternal;</a> 
+						(where they affect how link domains are evaluated), and 
+						<a class="preference earlier" href="#automation-autorunrestrict"
+							>&dms.preferences.autorunrestrict;</a> 
+						(where they affect how hosts are evaluated for restricted automation).
+					</i>
+				</p>
+				<p>
+					If this option is <dfn class="off">not checked</dfn>, then all 
+					scanning and spidering data will be stored in a global dataset. 
+					<em class="deprecated">
+						This setting is deprecated and will be removed in the next version.
+					</em>
+				</p>
+			</dd>
+
+			<dt id="storage-usepreffolder">&dms.preferences.usepreffolder;</dt>
+			<dt id="storage-specifyfolder">&dms.preferences.specifyfolder;</dt>
+			<dd>
+				<p>
+					If <dfn class="on">&dms.preferences.usepreffolder;</dfn> is selected, 
+					then the extension's data will be stored in a <q>dustmeselectors-data</q> 
+					folder, inside your profile directory.
+				</p>
+				<p>
+					Or if <dfn class="on">&dms.preferences.specifyfolder;</dfn> is selected, 
+					then the data will be stored in a folder of your choice, and you can  
+					click the <dfn>&dms.preferences.browsebutton;</dfn> button to select the folder.
+				</p>
+				<p>
+					You can view the contents of the data folder (whichever one you've chosen) 
+					by clicking the <dfn>&dms.preferences.launchbutton;</dfn> button 
+					to the right of these options.
+				</p>
+				<p>	
+					<i>
+						Files in the data folder should not be edited manually, 
+						and doing so will have unpredictable results.
+					</i>
+				</p>
+			</dd>
+
+			<dt id="storage-deleteonquit">&dms.preferences.deleteonquit;</dt>
+			<dd>
+				<p>
+					If this option is <dfn class="on">checked</dfn>, then all 
+					scanning and spidering data will be deleted when Firefox quits.  
+					This amounts to all the extension's data apart from preferences.
+				</p>
+				<p>
+					If this option is <dfn class="off">not checked</dfn>, then 
+					scanning and spidering data will persist until you trash 
+					or over-write it.
+				</p>
+				<p>
+					<i>
+						This option will delete everything inside the data folder, 
+						apart from the list of hosts you've defined for 
+						<a class="preference earlier" href="#automation-autorunrestrict"
+							>&dms.preferences.autorunrestrict;</a>. 
+						So you should avoid using the data folder to store any 
+						other files, as these will also be deleted.  
+					</i>
+				</p>
+				<p>
+					<i>
+						<strong>Deleted data cannot be recovered.</strong>
+					</i>
+				</p>
+			</dd>
+		</dl>
+	</div>
+	
+	<div id="interface" dms:openin="&dms.help.openin;">
+		<h2>&dms.preferences.group.main;</h2>
+		<dl>
+			<dt id="interface-showincontext">&dms.preferences.showincontext;</dt>
+			<dd>
+				<p>
+					If this option is <dfn class="on">checked</dfn>, then Dust Me Selectors 
+					will add a <dfn>&dms.contextmenu.spider;</dfn> item to the main context-menu. 
+					You can click this item to open the Spider dialog and pre-fill 
+					its textbox with the <abbr title="Uniform Resource Locator">URL</abbr> 
+					of the page you're viewing.
+				</p>
+				<p>
+					If this option is <dfn class="off">not checked</dfn>, then the 
+					context-menu item will not appear.
+				</p>
+			</dd>
+
+			<dt id="interface-showtoolbarlabel">&dms.preferences.showtoolbarlabel;</dt>
+			<dd>
+				<p id="interface-showtoolbarlabel-description">
+					If this option is <dfn class="on">checked</dfn>, then the toolbar 
+					button will have dynamic text, which appears on top of the button, 
+					and shows the number of stylesheets that have been checked in the 
+					current scanning operation.
+				</p>
+				<p>
+					If this option is <dfn class="off">not checked</dfn>, then the 
+					toolbar button will not have this label.
+				</p>
+				<p>
+					<i>
+						&dms.preferences.toolbarnote;
+						You can click the button to start and stop a scanning operation, 
+						and it also has a drop-down menu with shortcuts to common operations, 
+						such as <dfn>&dms.menu.spider;</dfn>, <dfn>&dms.menu.view;</dfn>, 
+						<dfn>&dms.menu.clear;</dfn> and 
+						<dfn class="winnt-lang" dms:winnt="&dms.menu.winnt.preferences;"
+							>&dms.menu.preferences;</dfn>.
+					</i>
+				</p>
+			</dd>
+
+			<dt id="interface-showtoolbarstarted">&dms.preferences.showtoolbarstarted;</dt>
+			<dd>
+				<p>
+					If this option is <dfn class="on">checked</dfn>, then the toolbar 
+					menu will have a shortcut to open the &#x201c;Getting Started&#x201d; guide.
+				</p>
+				<p>
+					If this option is <dfn class="off">not checked</dfn>, then the 
+					toolbar menu will not have this item.
+				</p>
+			</dd>
+
+			<dt id="interface-precollapse">&dms.preferences.precollapse;</dt>
+			<dd>
+				<p>
+					If this option is <dfn class="on">checked</dfn>, then stylesheet 
+					groups in the Data dialog will be collapsed by default (when 
+					opening the dialog, selecting a different host, or when it's 
+					automatically updated by a scanning or spidering operation).
+				</p>
+				<p>
+					If this option is <dfn class="off">not checked</dfn>, then 
+					stylesheet groups will be expanded by default.
+				</p>
+				<p>
+					<i>
+						There's a shortcut in the Data dialog that you can use to expand 
+						or collapse all groups, by holding down the Shift 
+						key while expanding or collapsing a single group.
+					</i>
+				</p>
+			</dd>
+
+			<dt id="interface-spiderpersist">&dms.preferences.spiderpersist;</dt>
+			<dd>
+				<p>
+					If this option is <dfn class="on">checked</dfn>, then the Spider 
+					dialog will save its textbox value when it's closed, 
+					and then persist that value when it's opened again 
+					(unless over-ridden by 
+					<a class="preference earlier" href="#interface-showincontext"
+						>&dms.contextmenu.spider;</a>). The persisted value 
+					will be pre-selected, so you can over-type it straight away.
+				</p>
+				<p>
+					If this option is <dfn class="off">not checked</dfn>, then 
+					the value will not persist, and the textbox will be empty 
+					when the dialog is opened (unless pre-filled by 
+					<a class="preference earlier" href="#interface-showincontext"
+						>&dms.contextmenu.spider;</a>).
+				</p>
+				<p>
+					<i>
+						All input is saved for persistence, whether it was typed, 
+						pasted, pre-filled or selected from the autocomplete menu. 
+					</i>
+				</p>
+			</dd>
+
+			<dt id="interface-spidertitles">&dms.preferences.spidertitles;</dt>
+			<dd>
+				<p>
+					If this option is <dfn class="on">checked</dfn>, then the Spider 
+					dialog's autocomplete menu will show page titles as well 
+					as <abbr title="Uniform Resource Locators">URLs</abbr>.
+				</p>
+				<p>
+					If this option is <dfn class="off">not checked</dfn>, then the 
+					autocomplete menu will only show page 
+					<abbr title="Uniform Resource Locators">URLs</abbr>.
+				</p>
+			</dd>
+		</dl>
+	</div>
+	
+</body>
+</html>

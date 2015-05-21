@@ -1,0 +1,15 @@
+
+<!-- about labels -->
+<!ENTITY dms.about.title "О расширении Dust-Me Selectors">
+<!ENTITY dms.about.name "Dust-Me Selectors">
+<!ENTITY dms.about.version "Версия">
+<!ENTITY dms.about.by "от">
+<!ENTITY dms.about.changelog "Список изменений">
+<!ENTITY dms.about.developers "Разработчики">
+<!ENTITY dms.about.contributors "Участники">
+<!ENTITY dms.about.translators "Переводчики">
+<!ENTITY dms.about.homepage "Домашняя страница">
+
+<!-- accept button label and accesskey -->
+<!ENTITY dms.about.close "Закрыть">
+<!ENTITY dms.about.accesskey.close "З">

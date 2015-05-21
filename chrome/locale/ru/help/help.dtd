@@ -1,0 +1,10 @@
+
+<!-- help pages -->
+<!ENTITY dms.help.title "Справка Dust-Me">
+<!ENTITY dms.help.preferences.title "Справка Dust-Me | Настройки">
+<!ENTITY dms.help.preferences.winnt.title "Справка Dust-Me | Настройки">
+<!ENTITY dms.help.started.title "Справка Dust-Me | Начало работы">
+
+<!-- "open in firefox" buttons -->
+<!ENTITY dms.help.openin "Открыть в Firefox">
+

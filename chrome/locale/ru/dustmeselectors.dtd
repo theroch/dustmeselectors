@@ -1,0 +1,151 @@
+
+<!-- window title and general description (same as em:name and em:description) -->
+<!ENTITY dms.title "Dust-Me Selectors">
+<!ENTITY dms.description "Сканирует веб-сайт, чтобы найти неиспользованные селекторы CSS">
+
+<!-- toolbar button label -->
+<!ENTITY dms.toolbarbutton "Dust-Me">
+
+<!-- menu items and tooltips -->
+<!ENTITY dms.menu.find "Сканировать эту страницу">
+<!ENTITY dms.menu.busy "Сканирование...">
+<!ENTITY dms.menu.view "Просмотр сохраненных данных">
+<!ENTITY dms.menu.preferences "Настройки">
+<!ENTITY dms.menu.winnt.preferences "Настройки">
+<!ENTITY dms.menu.autorun "Сканировать автоматически">
+<!ENTITY dms.menu.spider "Сканировать сайт пауком">
+<!ENTITY dms.menu.clear "Удаление сохраненных данных">
+<!ENTITY dms.menu.thishost "Данных текущего сайта">
+<!ENTITY dms.menu.allhosts "Всех сохраненных данных">
+<!ENTITY dms.menu.started "Начало работы">
+
+<!-- contextmenu items -->
+<!ENTITY dms.contextmenu.spider "Сканировать эту страницу...">
+
+<!-- contextmenu accesskey -->
+<!ENTITY dms.contextmenu.accesskey.spider "Э">
+
+<!-- command keys -->
+<!ENTITY dms.commandkey.find "N">
+<!ENTITY dms.commandkey.view "V">
+<!ENTITY dms.commandkey.spider "P">
+<!ENTITY dms.commandkey.preferences ",">
+
+<!-- menu accesskeys -->
+<!ENTITY dms.menu.accesskey.title "U">
+<!ENTITY dms.menu.accesskey.find "Э">
+<!ENTITY dms.menu.accesskey.view "П">
+<!ENTITY dms.menu.accesskey.preferences "Н">
+<!ENTITY dms.menu.accesskey.winnt.preferences "Н">
+<!ENTITY dms.menu.accesskey.autorun "А">
+<!ENTITY dms.menu.accesskey.spider "К">
+<!ENTITY dms.menu.accesskey.clear "У">
+<!ENTITY dms.menu.accesskey.thishost "С">
+<!ENTITY dms.menu.accesskey.allhosts "В">
+<!ENTITY dms.menu.accesskey.started "Р">
+
+<!-- view dialog tabs -->
+<!ENTITY dms.view.tab.selectors "Неиспользуемые селекторы">
+<!ENTITY dms.view.tab.used "Используемые селекторы">
+<!ENTITY dms.view.tab.log "Лог паука">
+
+<!-- view dialog buttons and labels -->
+<!ENTITY dms.view.title "Данные Dust-Me">
+<!ENTITY dms.view.viewmenu "Просмотр для:">
+<!ENTITY dms.view.clear "Удалить данные этого сайта">
+<!ENTITY dms.view.save "Экспортировать данные вкладки">
+<!ENTITY dms.view.savecsv "Экспорт в CSV...">
+<!ENTITY dms.view.savejson "Экспорт в JSON...">
+<!ENTITY dms.view.close "Закрыть">
+<!ENTITY dms.view.context.openurl "Открыть URL в Firefox">
+<!ENTITY dms.view.spider "Сканирование пауком...">
+<!ENTITY dms.view.resume "Продолжить...">
+<!ENTITY dms.view.info.saved "Файл сохранен">
+<!ENTITY dms.view.cleaning.warning "Очистка прервана">
+<!ENTITY dms.view.cleaning.save "Сохранить...">
+<!ENTITY dms.view.cleaning.options "Очищенные селекторы и правила должны быть:">
+<!ENTITY dms.view.cleaning.commented "Закомментированы">
+<!ENTITY dms.view.cleaning.removed "Удалены">
+<!ENTITY dms.view.cleaning.context.copy "Copy cleaned CSS">
+
+<!-- view dialog cleaning function -->
+<!ENTITY dms.cleaning.minified1 "Эта таблица стилей слишком минифицирована, чтобы быть обработанной.">
+<!ENTITY dms.cleaning.minified2 "Функция очистки не может работать с такой большой степенью сжатия CSS. Минимум форматирования, который допускает обработку,&#x0020;">
+<!ENTITY dms.cleaning.minified3 "одна строка на правило.">
+<!ENTITY dms.cleaning.data1 "К сожалению данные этой таблицы стилей являются несовместимыми.">
+<!ENTITY dms.cleaning.data2 "Формат данных должен был быть обновлен, чтобы поддержать функцию очистки. Так, прежде, чем вы сможете использовать очистку, вы должны удалить данные этого сайта и просканировать сайт снова.">
+
+<!-- view dialog accesskeys -->
+<!ENTITY dms.view.accesskey.view "П">
+<!ENTITY dms.view.accesskey.save "Э">
+<!ENTITY dms.view.accesskey.savecsv "C">
+<!ENTITY dms.view.accesskey.savejson "J">
+<!ENTITY dms.view.accesskey.clear "У">
+<!ENTITY dms.view.accesskey.close "З">
+<!ENTITY dms.view.accesskey.spider "П">
+<!ENTITY dms.view.context.accesskey.markused "О">
+<!ENTITY dms.view.context.accesskey.markunused "О">
+<!ENTITY dms.view.context.accesskey.openurl "F">
+<!ENTITY dms.view.tab.accesskey.selectors "Н">
+<!ENTITY dms.view.tab.accesskey.used "И">
+<!ENTITY dms.view.tab.accesskey.log "Л">
+<!ENTITY dms.view.cleaning.accesskey.save "Х">
+<!ENTITY dms.view.cleaning.accesskey.cancel "О">
+<!ENTITY dms.view.cleaning.accesskey.commented "К">
+<!ENTITY dms.view.cleaning.accesskey.removed "У">
+<!ENTITY dms.view.cleaning.accesskey.copy "O">
+
+<!-- spider dialog buttons and labels -->
+<!ENTITY dms.spider.title " Паук Dust-Me">
+<!ENTITY dms.spider.go "Старт">
+<!ENTITY dms.spider.pause "Пауза">
+<!ENTITY dms.spider.resume "Продолжить">
+<!ENTITY dms.spider.repeat "Повторить сканирование">
+<!ENTITY dms.spider.view "Просмотр данных">
+<!ENTITY dms.spider.close "Закрыть">
+<!ENTITY dms.spider.preferences "Настройки">
+<!ENTITY dms.spider.winnt.preferences "Настройки">
+<!ENTITY dms.spider.enterurl "Введите URL карты сайта (XML, RSS или HTML):">
+<!ENTITY dms.resite.description1 "Этот сайт уже был просканирован.">
+<!ENTITY dms.respider.description1 "Этот сайт уже был прежде просканирован пауком.">
+<!ENTITY dms.respideragain.description1 "Этот сайт уже был просканирован по карте сайта.">
+<!ENTITY dms.respider.description2 "Вы хотите сохранить существующие данные селекторов и добавить эти новые результаты?">
+<!ENTITY dms.respideragain.description2 "Вы хотите сохранить существующие данные селекторов и только повторно просканировать страницы?">
+<!ENTITY dms.respider.description3 "Или удалить данные и начать все сначала?">
+<!ENTITY dms.respider.confirm.keep "Сохранить данные">
+<!ENTITY dms.respider.confirm.trash "Удалить данные">
+
+<!-- spider dialog accesskeys -->
+<!ENTITY dms.spider.accesskey.go "С">
+<!ENTITY dms.spider.accesskey.pause "А">
+<!ENTITY dms.spider.accesskey.resume "Ж">
+<!ENTITY dms.spider.accesskey.repeat "С">
+<!ENTITY dms.spider.accesskey.view "П">
+<!ENTITY dms.spider.accesskey.close "З">
+<!ENTITY dms.spider.accesskey.preferences "Н">
+<!ENTITY dms.spider.accesskey.winnt.preferences "Н">
+<!ENTITY dms.respider.accesskey.keep "Х">
+<!ENTITY dms.respider.accesskey.trash "У">
+
+<!-- notification dialog buttons and labels -->
+<!ENTITY dms.dialog.error.title "Ошибка Dust-Me">
+<!ENTITY dms.dialog.warning.title "Предупреждение Dust-Me">
+<!ENTITY dms.dialog.confirm.title "Подтверждение Dust-Me">
+<!ENTITY dms.dialog.confirm.yes "Да">
+<!ENTITY dms.dialog.confirm.no "Нет">
+<!ENTITY dms.dialog.confirm.okay "ОК">
+<!ENTITY dms.dialog.confirm.cancel "Отмена">
+<!ENTITY dms.dialog.clearconfirm.label "Вы уверены, что хотите удалить данные этого сайта?">
+<!ENTITY dms.dialog.clearconfirm.clearconfirm "Спрашивать каждый раз">
+<!ENTITY dms.dialog.clearallconfirm.label1 "Вы хотите удалить все данные для каждого сайта.">
+<!ENTITY dms.dialog.clearallconfirm.label2 "Вы абсолютно уверены, что хотите сделать это?">
+<!ENTITY dms.dialog.saveconfirm.label2 "Вы хотите заменить это?">
+
+<!-- notification dialog accesskeys -->
+<!ENTITY dms.dialog.accesskey.yes "Д">
+<!ENTITY dms.dialog.accesskey.no "Н">
+<!ENTITY dms.dialog.accesskey.okay "О">
+<!ENTITY dms.dialog.accesskey.cancel "М">
+<!ENTITY dms.dialog.accesskey.clearconfirm "С">
+
+

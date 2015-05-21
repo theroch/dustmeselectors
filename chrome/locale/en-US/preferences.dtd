@@ -1,0 +1,100 @@
+
+<!-- preferences dialog title -->
+<!ENTITY dms.preferences.title "Dust-Me Preferences">
+<!ENTITY dms.preferences.winnt.title "Dust-Me Options">
+
+<!-- stylesheets group buttons and labels -->
+<!ENTITY dms.preferences.group.stylesheets "Scanning"> 
+<!ENTITY dms.preferences.accesskey.stylesheets "N"> 
+<!ENTITY dms.preferences.styleblocks "Include internal stylesheets (i.e. rules defined in &lt;style&gt; elements)"> 
+<!ENTITY dms.preferences.ignoreelements "Don&#x2019;t test simple element selectors, just assume they&#x2019;re used"> 
+<!ENTITY dms.preferences.ignorepseudostates "Treat all dynamic and interface pseudo-classes as default"> 
+<!ENTITY dms.preferences.ignorepseudoelements "Treat all pseudo-elements as default"> 
+<!ENTITY dms.preferences.accountforhacks "Account for common CSS hacks"> 
+
+<!-- spidering group buttons and labels -->
+<!ENTITY dms.preferences.group.spidering "Spidering"> 
+<!ENTITY dms.preferences.accesskey.spidering "D"> 
+<!ENTITY dms.preferences.noexternal "Exclude off-site links in HTML sitemaps"> 
+<!ENTITY dms.preferences.nofollow "Exclude links in HTML sitemaps if:"> 
+<!ENTITY dms.preferences.configurenofollow "Configure rules..."> 
+<!ENTITY dms.preferences.contains "contains"> 
+<!ENTITY dms.preferences.notcontains "does not contain"> 
+<!ENTITY dms.preferences.relname "Specify an attribute name"> 
+<!ENTITY dms.preferences.relvalues "Specify one or more attribute values, separated by commas"> 
+<!ENTITY dms.preferences.nospiderjs "Disable JavaScript for the spider"> 
+<!ENTITY dms.preferences.verifyhead "Verify spider pages using HEAD requests"> 
+<!ENTITY dms.preferences.accesskey.spiderbutton "S"> 
+
+<!-- automation group buttons and labels -->
+<!ENTITY dms.preferences.group.automation "Automation"> 
+<!ENTITY dms.preferences.accesskey.automation "U"> 
+<!ENTITY dms.preferences.autorun "Scan pages automatically while browsing"> 
+<!ENTITY dms.preferences.mutation "Scan again if content is added to the &lt;body&gt;"> 
+<!ENTITY dms.preferences.mutationhead "Scan again if children are added to the &lt;head&gt;"> 
+<!ENTITY dms.preferences.mutationattrs "Scan again if any attributes change, apart from"> 
+<!ENTITY dms.preferences.mutationignoreattrs "Specify one or more attribute names, separated by commas"> 
+<!ENTITY dms.preferences.autorunrestrict "Only scan specific sites"> 
+<!ENTITY dms.preferences.autorunhosts "Manage sites..."> 
+<!ENTITY dms.preferences.accesskey.autorunhosts "M"> 
+<!ENTITY dms.preferences.addbutton "Add"> 
+<!ENTITY dms.preferences.accesskey.addbutton "A"> 
+<!ENTITY dms.preferences.deletebutton "Remove"> 
+<!ENTITY dms.preferences.accesskey.deletebutton "V"> 
+<!ENTITY dms.preferences.autonote "Automation is disabled whenever the Spider or Preferences dialog is open."> 
+<!ENTITY dms.preferences.winnt.autonote "Automation is disabled whenever the Spider or Options dialog is open."> 
+
+<!-- reporting group buttons and labels -->
+<!ENTITY dms.preferences.group.view "Reporting"> 
+<!ENTITY dms.preferences.accesskey.view "R"> 
+<!ENTITY dms.preferences.doafterfind "After scanning a page manually"> 
+<!ENTITY dms.preferences.doafterautorun "After automation scans a page"> 
+<!ENTITY dms.preferences.doafterspider "After spidering a sitemap"> 
+<!ENTITY dms.preferences.openafter "Open the data dialog"> 
+<!ENTITY dms.preferences.notifyafter "Show a popup notification">
+<!ENTITY dms.preferences.notifyboxafter "Show the notification bar">
+<!ENTITY dms.preferences.boxpriority "Notification bar message priority">
+<!ENTITY dms.preferences.boxpriorityflag.info "Information">
+<!ENTITY dms.preferences.boxpriorityflag.warning "Warning">
+<!ENTITY dms.preferences.boxpriorityflag.critical "Critical">
+
+<!-- storage group buttons and labels -->
+<!ENTITY dms.preferences.group.saving "Storage"> 
+<!ENTITY dms.preferences.accesskey.saving "T"> 
+<!ENTITY dms.preferences.clearconfirm "Confirm before trashing data for a site"> 
+<!ENTITY dms.preferences.saveperhost "Store data for each site separately"> 
+<!ENTITY dms.preferences.ignoreports "Treat all port-numbers as the same site"> 
+<!ENTITY dms.preferences.ignoresubdomains "Treat sub-domains as the same site"> 
+<!ENTITY dms.preferences.usepreffolder "Store data in my profile"> 
+<!ENTITY dms.preferences.specifyfolder "Use this folder"> 
+<!ENTITY dms.preferences.browsebutton "Choose..."> 
+<!ENTITY dms.preferences.accesskey.browsebutton "E"> 
+<!ENTITY dms.preferences.launchbutton "Show files"> 
+<!ENTITY dms.preferences.accesskey.launchbutton "W"> 
+<!ENTITY dms.preferences.deleteonquit "Delete all stored data when Firefox quits"> 
+<!ENTITY dms.preferences.deletewarning "Deleted data cannot be recovered"> 
+
+<!-- interface group buttons and labels -->
+<!ENTITY dms.preferences.group.main "Interface"> 
+<!ENTITY dms.preferences.accesskey.main "F"> 
+<!ENTITY dms.preferences.showincontext "Show Dust-Me in the context-menu"> 
+<!ENTITY dms.preferences.showinstatus "Show Dust-Me in the add-on bar"> 
+<!ENTITY dms.preferences.showtoolbarlabel "Show scanning data in the toolbar button"> 
+<!ENTITY dms.preferences.showtoolbarstarted "Show the &#x201c;Getting Started&#x201d; guide in the toolbar menu"> 
+<!ENTITY dms.preferences.precollapse "Pre-collapse selector groups in the Data dialog"> 
+<!ENTITY dms.preferences.spiderpersist "Persist the most recent value in the Sitemap URL textbox"> 
+<!ENTITY dms.preferences.spidertitles "Show page titles in the Sitemap URL autocomplete menu"> 
+<!ENTITY dms.preferences.shortcuts "Enable keyboard shortucts"> 
+<!ENTITY dms.preferences.configureshortcuts "Configure shortcuts..."> 
+<!ENTITY dms.preferences.toolbarnote "You can add or remove the toolbar button from the toolbar &#x201c;Customize...&#x201d; menu."> 
+
+<!-- preferences dialog buttons -->
+<!ENTITY dms.preferences.okay "OK"> 
+<!ENTITY dms.preferences.cancel "Cancel"> 
+<!ENTITY dms.preferences.help "Help"> 
+
+<!-- preferences dialog accesskeys -->
+<!ENTITY dms.preferences.accesskey.okay "O">
+<!ENTITY dms.preferences.accesskey.cancel "C">
+<!ENTITY dms.preferences.accesskey.help "H">
+

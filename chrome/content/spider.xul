@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://dustmeselectors/skin/spider.css" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://dustmeselectors/locale/dustmeselectors.dtd">
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" 
+	xmlns:dms="http://www.brothercake.com/dustmeselectors"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	id="dms-spiderdialog" 
+	minwidth="400"
+	title="&dms.spider.title;" 
+	onkeydown="if(event.keyCode == KeyEvent.DOM_VK_W &amp;&amp; (event.ctrlKey || event.metaKey)) 
+				{ window.close(); event.preventDefault(); }"
+	onclose="DustMeSelectors_spider.stop();"
+	onbeforeunload="DustMeSelectors_spider.stop();"
+	onunload="
+		opener.DustMeSelectors_tools.saveDialogProps(this, 'spiderdialog');
+		opener.DustMeSelectors_browser.spiderDialogClosed();
+		">
+
+	<script type="application/javascript" src="chrome://dustmeselectors/content/tools.js"/>
+	<script type="application/javascript" src="chrome://dustmeselectors/content/filesystem.js"/>
+	<script type="application/javascript" src="chrome://dustmeselectors/content/preferences.js"/>
+	<script type="application/javascript" src="chrome://dustmeselectors/content/dustmeselectors.js"/>
+	
+	<script type="application/javascript" src="chrome://dustmeselectors/content/spider.js"/>
+
+	<stringbundleset>
+		<stringbundle id="dms-bundle" src="chrome://dustmeselectors/locale/dustmeselectors.properties"/>		
+	</stringbundleset>
+	
+	<hbox flex="1">
+		<keyset>
+			<key id="dms-viewkey" key="&dms.commandkey.view;" modifiers="alt accel"
+				oncommand="DustMeSelectors_spider.viewSavedSelectors(true);"/>
+			<key id="dms-preferenceskey" key="&dms.commandkey.preferences;" modifiers="alt accel"
+				oncommand="DustMeSelectors_spider.openPreferencesDialog();"/>
+		</keyset>
+		
+		<vbox id="dms-spider-dialog" flex="1">
+			<groupbox>
+						
+				<vbox>
+					<label control="dms-spider-mapurl" value="&dms.spider.enterurl;"/>
+					<textbox id="dms-spider-mapurl" flex="1" 
+						style="list-style-image:url(chrome://dustmeselectors/content/defaultFavicon.png)" 
+						newlines="stripsurroundingwhitespace"
+						type="autocomplete" autocompletesearch="history" 
+						autocompletepopup="dms-spider-history" maxrows="8"
+						enablehistory="true" completeselectedindex="true" tabscrolling="false" 
+						onchange="DustMeSelectors_preferences.setPreference('string','mapurl',this.value);"
+						ontextentered="
+							DustMeSelectors_preferences.setPreference('string','mapurl',this.value);
+							DustMeSelectors_tools.getFavicon(this.value, false, function(favicon)
+							{
+								if(favicon) { document.getElementById('dms-spider-mapurl').style.listStyleImage = 'url(' + favicon + ')'; }
+							});
+							"
+						onkeypress="
+							if(event.keyCode == KeyEvent.DOM_VK_RETURN) 
+							{ 
+								if(!document.getElementById('dms-spider-gobutton').disabled)
+									{ DustMeSelectors_spider.spiderSitemap();  }
+								else if(!document.getElementById('dms-spider-resumebutton').disabled)
+									{ DustMeSelectors_spider.resumeSpider();  }
+								else if(!document.getElementById('dms-spider-repeatbutton').disabled)
+									{ DustMeSelectors_spider.spiderAgain();  }
+							}"/>
+					<panel id="dms-spider-history" type="autocomplete" noautofocus="true"/>
+				</vbox>
+				
+				<hbox>
+					<button id="dms-spider-gobutton" label=" &dms.spider.go; " 
+						style="font:small-caption;font-weight:normal;"  
+						accesskey="&dms.spider.accesskey.go;" 
+						disabled="false" hidden="false"
+						oncommand="DustMeSelectors_spider.spiderSitemap();"/>
+					<button id="dms-spider-pausebutton" label=" &dms.spider.pause; " 
+						style="font:small-caption;font-weight:normal;"  
+						accesskey="&dms.spider.accesskey.pause;" 
+						disabled="true" hidden="true"
+						oncommand="DustMeSelectors_spider.pause();"/>
+					<button id="dms-spider-resumebutton" label=" &dms.spider.resume; " 
+						style="font:small-caption;font-weight:normal;"  
+						accesskey="&dms.spider.accesskey.resume;" 
+						disabled="true" hidden="true" 
+						oncommand="DustMeSelectors_spider.resumeSpider();"/>
+					<button id="dms-spider-repeatbutton" label=" &dms.spider.repeat; " 
+						style="font:small-caption;font-weight:normal;"  
+						accesskey="&dms.spider.accesskey.repeat;" 
+						disabled="true" hidden="true" 
+						oncommand="DustMeSelectors_spider.spiderAgain();"/>
+				</hbox>
+				
+				<vbox id="dms-spider-statusbar" hidden="true">
+					<groupbox>
+						<hbox>
+							<hbox flex="1" align="start" pack="start">
+								<progressmeter id="dms-spider-progress" flex="1" mode="undetermined"/>
+							</hbox>
+							<hbox id="dms-spider-statusicons" hidden="true" align="center" style="min-width:100px;">
+								<spacer flex="1"/>
+								<label id="dms-spider-statuslabel"/>
+								<tooltip id="dms-spider-statuslabel-tooltip">
+									<label id="dms-spider-statuslabel-tooltip-selectors" style="display:block;margin:1px;"/> 
+									<label id="dms-spider-statuslabel-tooltip-stylesheets" style="display:block;margin:1px;"/> 
+									<label id="dms-spider-statuslabel-tooltip-pages" style="display:block;margin:1px;"/> 
+								</tooltip>
+								<hbox align="center" pack="end">
+									<image id="dms-spider-statusicon" width="16" height="16" 
+										src="chrome://dustmeselectors/content/statusicon_busy.gif"/>
+								</hbox>
+							</hbox>
+						</hbox>
+					</groupbox>
+				
+					<label id="dms-spider-currenturl" crop="start" 
+						tooltip="dms-spider-currenturl-tooltip"/>
+					<tooltip id="dms-spider-currenturl-tooltip">
+						<label id="dms-spider-currenturl-tooltip-url" style="display:block;margin:1px;"/>
+						<label id="dms-spider-currenturl-tooltip-status" style="display:block;margin:1px;font-weight:bold;"/>
+					</tooltip>
+					
+					<!-- (NOTE FOR REVIEWERS: this browser loads web content) -->
+					<browser id="dms-spider-browser" type="content" disablehistory="true" collapsed="true"/>
+					
+				</vbox>
+				
+			</groupbox>	
+			
+			<hbox>
+				
+				<button id="dms-spider-view" label=" &dms.spider.view; " 
+					style="font:caption;" key="dms-viewkey" accesskey="&dms.spider.accesskey.view;" 
+					oncommand="DustMeSelectors_spider.viewSavedSelectors(true);"/>
+				
+				<button id="dms-spider-preferences" label=" &dms.spider.preferences; " 
+					class="winnt-lang" dms:winnt-label=" &dms.menu.winnt.preferences; " 
+					style="font:caption;" key="dms-preferenceskey" accesskey="&dms.spider.accesskey.preferences;" 
+					dms:winnt-accesskey="&dms.spider.accesskey.winnt.preferences;"
+					oncommand="DustMeSelectors_spider.openPreferencesDialog();"/>
+				
+				<spacer flex="1"/>
+				
+				<button id="dms-spider-close" label=" &dms.spider.close; " 
+					style="font:caption;" accesskey="&dms.spider.accesskey.close;" 
+					oncommand="window.close();"/>
+			
+			</hbox>
+		</vbox>
+		<html:div id="dms-spider-dialogmeasure" style="height:100%;width:0px;"/>
+	</hbox>	
+		
+</window>

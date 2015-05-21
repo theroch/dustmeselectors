@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE dialog SYSTEM "chrome://dustmeselectors/locale/dustmeselectors.dtd">
+
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" 
+	id="dms-clearconfirm"
+	buttons="accept,cancel" 
+	defaultButton="cancel" 
+	buttonlabelaccept=" &dms.dialog.confirm.yes; "
+	buttonlabelcancel=" &dms.dialog.confirm.no; " 
+	buttonaccesskeyaccept="&dms.dialog.accesskey.yes;" 
+	buttonaccesskeycancel="&dms.dialog.accesskey.no;" 
+	title="&dms.dialog.confirm.title;"
+	ondialogaccept="try { opener.opener.DustMeSelectors_browser.doClearSavedSelectors(true, window); } catch(err) {}">
+	
+	<hbox style="padding-bottom:14px;">
+		<hbox style="padding-top:2px;padding-right:12px;" align="start">
+			<image width="32" height="32" flex="0" src="chrome://dustmeselectors/content/dialog-question.png"/>
+		</hbox>
+		<vbox>
+			<description style="max-width:300px;padding-right:7px;">&dms.dialog.clearconfirm.label;</description>
+			<checkbox id="dms-clearconfirm-clearconfirm" checked="true" 
+				style="margin-top:5px;" label="&dms.dialog.clearconfirm.clearconfirm;" 
+				accesskey="&dms.dialog.accesskey.clearconfirm;"/>
+		</vbox>
+	</hbox>
+	
+</dialog>

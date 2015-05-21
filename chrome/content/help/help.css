@@ -1,0 +1,338 @@
+/*******************************************************************************
+ DMS4.1 :: Dust-Me Selectors v4.1
+ -------------------------------------------------------------------------------
+ Copyright (c) 2007-13 James Edwards (brothercake)        <cake@brothercake.com>
+ MIT License                      http://opensource.org/licenses/mit-license.php
+ Info/Docs                            http://www.brothercake.com/dustmeselectors
+ -------------------------------------------------------------------------------
+ Contributors:
+ -------------------------------------------------------------------------------
+ Andrew Krespanis   [Concept]                           http://leftjustified.net
+ Paul Annesley      [Concept]                            http://paul.annesley.cc
+ Lachlan Donald     [Concept]                                  http://lachlan.me
+ Alex Walker        [Icon design]    http://www.sitepoint.com/author/alex-walker
+ -------------------------------------------------------------------------------
+*******************************************************************************/
+
+
+/* core resets and canvas styling */
+*
+{
+	margin:0;
+	padding:0;
+	list-style-type:none;
+	font:normal normal normal 13px/1.3 sans-serif;
+}
+html, body
+{
+	background:#e5e5e5;
+	color:#333;
+}
+body
+{
+	border:1px solid #b8b8b8;
+	border-top:none;
+}
+
+
+
+/* page header */
+h1
+{
+	display:none;
+}
+
+
+
+/* page section */
+div
+{
+}
+div:not(:last-of-type)
+{
+}
+
+
+
+/* section headings and sub-headings */
+div > h2, div > h3
+{
+	background:#c1c1c1;
+	color:#333;
+	font-size:14px;
+	line-height:1.1;
+	text-shadow:0 1px 0 rgba(255,255,255,0.4);
+	padding:8px 30px 6px 10px;
+	border-top:1px solid #b8b8b8;
+	border-bottom:1px solid #b2b2b2;
+	display:block;
+	position:relative;
+	width:100%;
+	min-width:15em;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	cursor:default;
+	position:relative;
+	box-shadow:inset 0 1em 0.65em rgba(255,255,255,0.175), inset 0 0 1px 0 rgba(255,255,255,0.35);
+	-moz-box-shadow:inset 0 1em 0.65em rgba(255,255,255,0.175), inset 0 0 1px 0 rgba(255,255,255,0.35);
+}
+div > h3
+{
+	margin-top:20px;
+}
+div > h3 ~ *:last-child
+{
+	margin-bottom:20px;
+}
+
+
+
+/* section header "open in firefox" buttons */
+div > h2 > button
+{
+	font-size:11px;
+	line-height:14px;
+	position:absolute;
+	right:5px;
+	top:5px;
+}
+
+
+
+/* section definitions */
+h2 ~ dl
+{
+	padding:10px 10px 0 10px;
+}
+h2 ~ dl > dt
+{
+	color:#114;
+	font-weight:bold;
+	padding:0 0 10px 0;
+}
+h2 ~ dl > dd
+{
+	padding:0 0 20px 10px;
+}
+
+
+
+/* section intros and lists */
+h2 ~ p
+{
+	padding:10px 10px 0 10px;
+}
+h2 ~ p + ul, h2 ~ p + ol
+{
+	padding:8px 10px 0 10px;
+}
+h2 + p + ul > li, h2 + p + ol > li
+{
+	list-style-type:disc;
+	list-style-position:outside;
+	margin:0 0 0 1.4em;
+}
+h2 + p + ol > li
+{
+	list-style-type:decimal;
+	margin-left:1.8em;
+}
+h2 ~ p + ul + p, h2 ~ p + ol + p
+{
+	padding-top:8px;
+}
+h2 ~ p + ul + p + dl
+{
+	padding-top:18px;
+}
+h2 ~ p + ul + p + dl + p
+{
+	margin-top:-10px;
+}
+
+
+
+/* sub-section definitions */
+dd dl:not(:last-child)
+{
+	padding:4px 0 8px 0;
+}
+dd dl > dt
+{
+	color:#114;
+	font-weight:bold;
+	padding:0 0 8px 0;
+}
+dd dl > dd
+{
+	padding:0 0 0 10px;
+}
+dd dl > dd:not(:last-child)
+{
+	padding-bottom:12px;
+}
+dd dl > dd:last-child
+{
+	padding-bottom:8px;
+}
+
+
+
+/* definition container and figure image */
+dd > div
+{
+	display:table-cell;
+	vertical-align:top;
+}
+dd > div + div.figure
+{
+	padding:0 10px 0 20px
+}
+dd > div + div.figure > img
+{
+	border-radius:5px;
+	box-shadow:0 2px 3px -2px #000;
+}
+dd > div + div.figure + p
+{
+	padding-top:8px;
+}
+
+/* paragraph figure images */
+p.figure
+{
+	padding:10px 10px 0 10px;
+}
+p.figure > img
+{
+	border-radius:5px;
+	box-shadow:0 2px 3px -2px #000;
+	max-width:100%;
+}
+
+
+
+/* definition paragraphs */
+dd p
+{
+}
+dd p:not(:last-child)
+{
+	padding:0 0 8px 0;
+}
+
+/* definition lists */
+dd ol:not(:last-child)
+{
+	padding:0 0 8px 0;
+}
+dd ol > li
+{
+	list-style-type:decimal;
+	list-style-position:outside;
+	margin:0 0 0 1.8em;
+}
+
+/* definition paragraph nb */
+p i
+{
+	font:inherit;
+	font-style:italic;
+	color:#777;
+	display:block;
+	padding:0 10px 0 0;
+}
+p i *
+{
+	font:inherit;
+	color:inherit;
+}
+p i dfn
+{
+	color:#778;
+}
+p i a.preference
+{
+	color:#778;
+	font:inherit;
+	font-weight:bold;
+}
+p i strong
+{
+	font-weight:bold;
+}
+
+/* defining terms */
+p dfn, li dfn
+{
+	font-weight:bold;
+	color:#114;
+}
+p dfn.on
+{
+	color:#070;
+}
+p dfn.off
+{
+	color:#830;
+}
+
+/* definition cross-references and function links */
+p a.preference, li a.function
+{
+	color:#114;
+	font-weight:bold;
+	text-decoration:underline;
+}
+
+/* code fragments */
+p code
+{
+	font:inherit;
+	font-family:monospace;
+	letter-spacing:-1px;
+	white-space:nowrap;
+}
+
+/* filter highlighting code examples */
+#scanning-ignorepseudostates + dd code.filter
+{
+	color:#847;
+}
+#scanning-ignorepseudoelements + dd code.filter
+{
+	color:#484;
+}
+#scanning-accountforhacks + dd code.filter
+{
+	color:#478;
+}
+
+/* abbreviations */
+p abbr
+{
+	border:none;
+	font:inherit;
+	cursor:inherit;
+}
+
+/* deprecation notices */
+p em.deprecated
+{
+	color:#b22;
+	background:#d2d2d2;
+	letter-spacing:-0.5px;
+	font-style:normal;
+}
+
+/* general emphasis */
+p strong
+{
+	font-weight:bold;
+}
+p em
+{
+	font-style:italic;
+}
+
+

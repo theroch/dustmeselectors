@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://dustmeselectors/skin/viewdialog.css" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://dustmeselectors/locale/dustmeselectors.dtd">
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" 
+	xmlns:dms="http://www.brothercake.com/dustmeselectors"
+	id="dms-viewselectors"
+	minwidth="680"
+	minheight="600"
+	title="&dms.view.title;" 
+	onkeydown="
+		if(event.keyCode == KeyEvent.DOM_VK_W 
+			&amp;&amp; (event.ctrlKey || event.metaKey)) 
+		{ 
+			window.close(); 
+			event.preventDefault(); 
+		}
+		else if(event.keyCode == KeyEvent.DOM_VK_ESCAPE 
+			&amp;&amp; opener.DustMeSelectors.processors 
+			&amp;&amp; opener.DustMeSelectors.processors.master)
+		{
+			opener.DustMeSelectors.processors.master.abort();
+			event.preventDefault(); 
+		}"
+	onunload="opener.DustMeSelectors_tools.saveDialogProps(this, 'viewselectors');">
+	
+	<hbox align="center">
+		<label id="dms-hostsindexlabel" control="dms-hostsindexmenu" style="font:caption;"
+			accesskey="&dms.view.accesskey.view;" value="&dms.view.viewmenu;"/>
+		<menulist id="dms-hostsindexmenu" flex="1" style="font:caption;" 
+			onfocus="document.getElementById('dms-viewpopup-save').hidePopup();"
+			oncommand="opener.DustMeSelectors_browser.viewSavedDataForHost
+				(this.selectedItem.getAttribute('value'), true);">
+			<menupopup/>
+		</menulist>
+	</hbox>
+	
+	<separator class="groove" orient="horizontal" style="margin:10px -12px 12px -12px;"/>
+
+	<tabbox id="dms-viewtabbrowser" flex="1">
+		<hbox>
+			<tabs id="dms-viewtabs" onselect="
+						document.getElementById('dms-viewpopup-save').hidePopup();
+						try { opener.DustMeSelectors_browser.tabSelect
+							(document.getElementById('dms-hostsindexmenu')
+								.selectedItem.getAttribute('value')); } catch(ex){}
+							">
+				<tab id="dms-viewtab-selectors" label="&dms.view.tab.selectors;" 
+					onfocus="document.getElementById('dms-viewpopup-save').hidePopup();"
+					accesskey="&dms.view.tab.accesskey.selectors;"/>
+				<tab id="dms-viewtab-used" label="&dms.view.tab.used;" 
+					onfocus="document.getElementById('dms-viewpopup-save').hidePopup();"
+					accesskey="&dms.view.tab.accesskey.used;"/>
+				<tab id="dms-viewtab-spider" label="&dms.view.tab.log;" 
+					onfocus="document.getElementById('dms-viewpopup-save').hidePopup();"
+					accesskey="&dms.view.tab.accesskey.log;"/>
+			</tabs>
+			<spacer flex="1"/>
+			<vbox>
+				<hbox>
+					<progressmeter id="dms-viewprogress" mode="undetermined" hidden="true"/>
+					
+					<vbox id="dms-viewcleaning-abort2" hidden="true">
+						<image width="16" height="16" 
+							tooltiptext="&dms.dialog.confirm.cancel;"
+							src="chrome://dustmeselectors/content/shim.png"/>
+					</vbox>
+					
+					<vbox id="dms-viewcleaning-warning" hidden="true">
+						<image width="16" height="16" 
+							src="chrome://dustmeselectors/content/warning.png"
+							tooltip="dms-viewcleaning-warningtootip"/>
+						<tooltip id="dms-viewcleaning-warningtootip" label="&dms.view.cleaning.warning;"
+							onpopuphidden="document.getElementById('dms-viewcleaning-warning').setAttribute('hidden','true');"/>
+					</vbox>
+					
+					<vbox id="dms-viewinfo-saved" hidden="true">
+						<image width="16" height="16" 
+							src="chrome://dustmeselectors/content/info.png"
+							tooltip="dms-viewinfo-savedtooltip"/>
+						<tooltip id="dms-viewinfo-savedtooltip" label="&dms.view.info.saved;"
+							onpopuphidden="document.getElementById('dms-viewinfo-saved').setAttribute('hidden','true');"/>
+					</vbox>
+				</hbox>
+			</vbox>
+		</hbox>
+		<tabpanels flex="1">
+			
+			<tabpanel flex="1">
+				<!-- (NOTE FOR REVIEWERS: this browser only loads chrome content) -->
+				<browser id="dms-viewselectorsbrowser" flex="1" 
+					type="chrome" disablehistory="true" 
+					src="chrome://dustmeselectors/content/viewdata.xhtml" 
+					contextmenu="dms-viewselectorscontext"/>
+				<menupopup id="dms-viewselectorscontext">
+					<menuitem id="dms-viewselectorscontext-mark" disabled="true" 
+						accesskey="&dms.view.context.accesskey.markused;" 
+						oncommand="opener.DustMeSelectors_browser.markSelector('selectors');"/>
+					<menuitem id="dms-viewselectorscontext-copy" label="&dms.view.cleaning.context.copy;" hidden="true"
+						accesskey="&dms.view.cleaning.accesskey.copy;" 
+						oncommand="opener.DustMeSelectors_browser.copyCleaned();"/>
+				</menupopup>
+			</tabpanel>
+			
+			<tabpanel flex="1">
+				<!-- (NOTE FOR REVIEWERS: this browser only loads chrome content) -->
+				<browser id="dms-viewusedbrowser" flex="1" 
+					type="chrome" disablehistory="true" 
+					src="chrome://dustmeselectors/content/viewdata.xhtml"  
+					contextmenu="dms-viewusedcontext"/>
+				<menupopup id="dms-viewusedcontext">
+					<menuitem id="dms-viewusedcontext-mark" disabled="true" 
+						accesskey="&dms.view.context.accesskey.markunused;" 
+						oncommand="opener.DustMeSelectors_browser.markSelector('used');"/>
+				</menupopup>
+			</tabpanel>
+				
+			<tabpanel flex="1">
+				<!-- (NOTE FOR REVIEWERS: this browser only loads chrome content) -->
+				<browser id="dms-viewlogbrowser" flex="1" 
+					type="chrome" disablehistory="true" 
+					src="chrome://dustmeselectors/content/viewdata.xhtml"  
+					contextmenu="dms-viewlogcontext"/>
+				<menupopup id="dms-viewlogcontext">
+					<menuitem id="dms-viewlogcontext-url" label="&dms.view.context.openurl;"
+						accesskey="&dms.view.context.accesskey.openurl;" 
+						oncommand="opener.DustMeSelectors_browser.openURL(this)"/>
+				</menupopup>
+			</tabpanel>
+			
+		</tabpanels>
+	</tabbox>
+	
+	<groupbox id="dms-viewfooter" hidden="false">
+		<hbox>
+			
+			<description id="dms-viewsummary"/>
+			
+			<spacer flex="1"/>
+			
+			<hbox>
+				<button id="dms-viewspiderbutton" label=" &dms.view.spider; " 
+					style="font:small-caption;font-weight:normal;" 
+					hidden="true" 
+					accesskey="&dms.view.accesskey.spider;" 
+					oncommand="opener.DustMeSelectors_browser.openSpiderDialog('host');"/>
+				<button id="dms-viewresumebutton" label=" &dms.view.resume; " 
+					style="font:small-caption;font-weight:normal;" 
+					hidden="true" disabled="true" 
+					accesskey="&dms.view.accesskey.spider;" 
+					oncommand="opener.DustMeSelectors_browser.openSpiderDialog('sitemap');"/>
+			</hbox>
+			
+		</hbox>
+	
+		<hbox id="dms-viewcleaning" hidden="true">
+					
+			<vbox>
+				<label style="font-weight:bold;">&dms.view.cleaning.options;</label>
+				<radiogroup id="dms-viewcleaning-optiongroup" orient="horizontal">
+					<radio id="dms-viewcleaning-option-commented" persist="selected" selected="true" 
+						accesskey="&dms.view.cleaning.accesskey.commented;"
+						value="commented" label="&dms.view.cleaning.commented;"/>
+					<radio id="dms-viewcleaning-option-removed" persist="selected" 
+						accesskey="&dms.view.cleaning.accesskey.removed;"
+						value="removed" label="&dms.view.cleaning.removed;"/>
+				</radiogroup>
+			</vbox>
+
+			<spacer flex="1"/>
+
+			<vbox>
+				<spacer flex="1"/>
+				<hbox>
+					<button id="dms-viewcleaning-save" label=" &dms.view.cleaning.save; " 
+						style="font:small-caption;font-weight:normal;" 
+						accesskey="&dms.view.cleaning.accesskey.save;"
+						oncommand="opener.DustMeSelectors_browser.generateCleanedStylesheet();"/>
+					<button id="dms-viewcleaning-cancel" label=" &dms.dialog.confirm.cancel; " 
+						style="font:small-caption;font-weight:normal;" 
+						accesskey="&dms.view.cleaning.accesskey.cancel;"
+						oncommand="opener.DustMeSelectors_browser.viewSavedDataForHost
+							(document.getElementById('dms-hostsindexmenu').selectedItem.getAttribute('value'), true);"/>
+				</hbox>	
+			</vbox>
+
+		</hbox>
+	</groupbox>
+	
+	<hbox>
+	
+		<button id="dms-viewactions-clear" label=" &dms.view.clear; " 
+			style="font:caption;" accesskey="&dms.view.accesskey.clear;"
+			oncommand="
+				document.getElementById('dms-viewpopup-save').hidePopup();
+				opener.DustMeSelectors_browser.clearSavedSelectorsForSelectedHost(window);
+				"/>
+		
+		<button id="dms-viewactions-save" label=" &dms.view.save; "
+			style="font:caption;" accesskey="&dms.view.accesskey.save;"
+			oncommand="document.getElementById('dms-viewpopup-save').openPopup(this, 'after_start');"/>
+		<menupopup id="dms-viewpopup-save">
+			<menuitem label="&dms.view.savecsv;" accesskey="&dms.view.accesskey.savecsv;" 
+				oncommand="opener.DustMeSelectors_filesystem.exportToFile(document, 'csv');"/>
+			<menuitem label="&dms.view.savejson;" accesskey="&dms.view.accesskey.savejson;" 
+				oncommand="opener.DustMeSelectors_filesystem.exportToFile(document, 'json');"/>
+		</menupopup>
+		
+		<spacer flex="1"/>
+
+		<button id="dms-viewactions-close" label=" &dms.view.close; " 
+			style="font:caption;" accesskey="&dms.view.accesskey.close;" 
+			oncommand="window.close();"/>
+			
+	</hbox>
+	
+</window>

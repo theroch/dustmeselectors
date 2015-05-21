@@ -1,0 +1,100 @@
+
+<!-- preferences dialog title -->
+<!ENTITY dms.preferences.title "Настройки Dust-Me">
+<!ENTITY dms.preferences.winnt.title "Настройки Dust-Me">
+
+<!-- stylesheets group buttons and labels -->
+<!ENTITY dms.preferences.group.stylesheets "Сканирование"> 
+<!ENTITY dms.preferences.accesskey.stylesheets "К"> 
+<!ENTITY dms.preferences.styleblocks "Включать вложенные таблицы стилей (то есть, правила, определяемые в элементах  &lt;style&gt;)"> 
+<!ENTITY dms.preferences.ignoreelements "Не тестировать селекторы простых элементов, предполагать, что они используются"> 
+<!ENTITY dms.preferences.ignorepseudostates "Обрабатывать по умолчанию все динамические псевдоклассы и псевдоклассы интерфейса"> 
+<!ENTITY dms.preferences.ignorepseudoelements "Обрабатывать по умолчанию все псевдоэлементы"> 
+<!ENTITY dms.preferences.accountforhacks "Учитывать общепринятые хаки CSS"> 
+
+<!-- spidering group buttons and labels -->
+<!ENTITY dms.preferences.group.spidering "Паук"> 
+<!ENTITY dms.preferences.accesskey.spidering "П"> 
+<!ENTITY dms.preferences.noexternal "Исключать ссылки вне сайта в HTML-картах сайта"> 
+<!ENTITY dms.preferences.nofollow "Исключать ссылки в HTML-картах сайта если:"> 
+<!ENTITY dms.preferences.configurenofollow "Сконфигурируйте правила..."> 
+<!ENTITY dms.preferences.contains "содержит"> 
+<!ENTITY dms.preferences.notcontains "не содержит"> 
+<!ENTITY dms.preferences.relname "Определите имя атрибута"> 
+<!ENTITY dms.preferences.relvalues "Определите одно или более значений атрибутов, разделенных запятыми"> 
+<!ENTITY dms.preferences.nospiderjs "Отключить JavaScript для паука"> 
+<!ENTITY dms.preferences.verifyhead "Проверять страницы пауком, используя запросы HEAD"> 
+<!ENTITY dms.preferences.accesskey.spiderbutton "S"> 
+
+<!-- automation group buttons and labels -->
+<!ENTITY dms.preferences.group.automation "Автоматизация"> 
+<!ENTITY dms.preferences.accesskey.automation "А"> 
+<!ENTITY dms.preferences.autorun "Автоматически сканировать страницы при просмотре"> 
+<!ENTITY dms.preferences.mutation "Просканировать снова, если добавился контент к &lt;body&gt;"> 
+<!ENTITY dms.preferences.mutationhead "Просканировать снова, если добавились дочерние элементы к &lt;head&gt;"> 
+<!ENTITY dms.preferences.mutationattrs "Просканировать снова, если изменяются какие-либо атрибуты, кроме"> 
+<!ENTITY dms.preferences.mutationignoreattrs "Определите одно или более имен атрибутов, разделенных запятыми"> 
+<!ENTITY dms.preferences.autorunrestrict "Сканировать только определенные сайты"> 
+<!ENTITY dms.preferences.autorunhosts "Управление сайтами..."> 
+<!ENTITY dms.preferences.accesskey.autorunhosts "У"> 
+<!ENTITY dms.preferences.addbutton "Добавить"> 
+<!ENTITY dms.preferences.accesskey.addbutton "Б"> 
+<!ENTITY dms.preferences.deletebutton "Удалить"> 
+<!ENTITY dms.preferences.accesskey.deletebutton "У"> 
+<!ENTITY dms.preferences.autonote "Автоматизация всегда отключается при открытии диалоговых окон Паука или Настроек."> 
+<!ENTITY dms.preferences.winnt.autonote "Автоматизация всегда отключается при открытии диалоговых окон Паука или Настроек."> 
+
+<!-- reporting group buttons and labels -->
+<!ENTITY dms.preferences.group.view "Действия"> 
+<!ENTITY dms.preferences.accesskey.view "Д"> 
+<!ENTITY dms.preferences.doafterfind "После сканирования страницы вручную"> 
+<!ENTITY dms.preferences.doafterautorun "После автоматического сканирования страницы вручную"> 
+<!ENTITY dms.preferences.doafterspider "После сканирования по карте сайта пауком"> 
+<!ENTITY dms.preferences.openafter "Открыть диалог данных"> 
+<!ENTITY dms.preferences.notifyafter "Показать всплывающее уведомление">
+<!ENTITY dms.preferences.notifyboxafter "Показать панель уведомлений">
+<!ENTITY dms.preferences.boxpriority "Приоритет уведомлений">
+<!ENTITY dms.preferences.boxpriorityflag.info "Информация">
+<!ENTITY dms.preferences.boxpriorityflag.warning "Предупреждение">
+<!ENTITY dms.preferences.boxpriorityflag.critical "Ошибка">
+
+<!-- storage group buttons and labels -->
+<!ENTITY dms.preferences.group.saving "Данные"> 
+<!ENTITY dms.preferences.accesskey.saving "Н"> 
+<!ENTITY dms.preferences.clearconfirm "Подтверждать удаление данных сайта"> 
+<!ENTITY dms.preferences.saveperhost "Сохранять данные для каждого сайта отдельно"> 
+<!ENTITY dms.preferences.ignoreports "Обрабатывать все порты как тот же самый сайт"> 
+<!ENTITY dms.preferences.ignoresubdomains "Обрабатывать поддомены как тот же самый сайт"> 
+<!ENTITY dms.preferences.usepreffolder "Сохранять данные в моем профиле"> 
+<!ENTITY dms.preferences.specifyfolder "Использовать эту папку"> 
+<!ENTITY dms.preferences.browsebutton "Обзор..."> 
+<!ENTITY dms.preferences.accesskey.browsebutton "Б"> 
+<!ENTITY dms.preferences.launchbutton "Показать файлы"> 
+<!ENTITY dms.preferences.accesskey.launchbutton "П"> 
+<!ENTITY dms.preferences.deleteonquit "Удалять все сохраненные данные при выходе из Firefox"> 
+<!ENTITY dms.preferences.deletewarning "Удаленные данные не могут быть восстановлены"> 
+
+<!-- interface group buttons and labels -->
+<!ENTITY dms.preferences.group.main "Интерфейс"> 
+<!ENTITY dms.preferences.accesskey.main "И"> 
+<!ENTITY dms.preferences.showincontext "Показывать Dust-Me в контекстном меню"> 
+<!ENTITY dms.preferences.showinstatus "Показывать Dust-Me в панели расширений (устаревшая, неиспользуемая опция)"> 
+<!ENTITY dms.preferences.showtoolbarlabel "Показывать данные сканирования в кнопке на панели инструментов"> 
+<!ENTITY dms.preferences.showtoolbarstarted "Показывать пункт «Начало работы» в меню панели инструментов"> 
+<!ENTITY dms.preferences.precollapse "Предварительно сворачивать группы селекторов в диалоговом окне данных"> 
+<!ENTITY dms.preferences.spiderpersist "Сохранять адрес последнего сайта в текстовом поле ввода URL в диалоге Паука"> 
+<!ENTITY dms.preferences.spidertitles "Показывать заголовки страниц в выпадающем списке поля ввода URL"> 
+<!ENTITY dms.preferences.shortcuts "Включить горячие клавиши"> 
+<!ENTITY dms.preferences.configureshortcuts "Сконфигурируйте горячие клавиши..."> 
+<!ENTITY dms.preferences.toolbarnote "Вы можете добавить кнопку Dust-Me на панель инструментов или удалить ее из панели в меню &#x201c;Изменить&#x201d;."> 
+
+<!-- preferences dialog buttons -->
+<!ENTITY dms.preferences.okay "ОК"> 
+<!ENTITY dms.preferences.cancel "Отмена"> 
+<!ENTITY dms.preferences.help "Справка"> 
+
+<!-- preferences dialog accesskeys -->
+<!ENTITY dms.preferences.accesskey.okay "О">
+<!ENTITY dms.preferences.accesskey.cancel "М">
+<!ENTITY dms.preferences.accesskey.help "С">
+

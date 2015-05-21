@@ -1,0 +1,43 @@
+/*******************************************************************************
+ DMS4.1 :: Dust-Me Selectors v4.1
+ -------------------------------------------------------------------------------
+ Copyright (c) 2007-13 James Edwards (brothercake)        <cake@brothercake.com>
+ MIT License                      http://opensource.org/licenses/mit-license.php
+ Info/Docs                            http://www.brothercake.com/dustmeselectors
+ -------------------------------------------------------------------------------
+ Contributors:
+ -------------------------------------------------------------------------------
+ Andrew Krespanis   [Concept]                           http://leftjustified.net
+ Paul Annesley      [Concept]                            http://paul.annesley.cc
+ Lachlan Donald     [Concept]                                  http://lachlan.me
+ Alex Walker        [Icon design]    http://www.sitepoint.com/author/alex-walker
+ -------------------------------------------------------------------------------
+*******************************************************************************/
+
+
+/* toggle styling */
+h3.toggle::before
+{
+	content:"";
+	display:inline-block;
+	width:10px;
+	height:10px;
+	background:url("chrome://dustmeselectors/skin/twisties.png");
+	margin:1px 7px -1px 0;
+	opacity:0.8;
+}
+h3.toggle:focus::before
+{
+	opacity:1;
+}
+h3.toggle::before
+{
+	background-position:10px 0;
+}
+h3.toggle.closed::before
+{
+	background-position:0 0;
+}
+
+
+

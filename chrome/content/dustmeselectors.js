@@ -772,7 +772,9 @@ DustMeSelectors.parseSelectorText = function(rule, selectors, n)
 		//so we can parse it out later with no chance of accidentally editing the selector
 		//also add the index of this selector relative to the rule, so that we can refer 
 		//to and sort the data by those indices, which we'll need for the cleaning function
-		selector[i] += '{' + DustMeSelectors.domutils.getRuleLine(rule) + '.' + (i + 1) + '}';
+		var lineNumber = DustMeSelectors.domutils.getRuleLine(rule);
+		var columnNumber = DustMeSelectors.domutils.getRuleColumn(rule);
+		selector[i] += '{' + lineNumber + ':' + columnNumber + '.' + (i + 1) + '}';
 
 		//***DEV (semi-random parsing failures)
 		//}

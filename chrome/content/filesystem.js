@@ -930,7 +930,9 @@ DustMeSelectors_filesystem.getJSON = function(data, datatype, hostlabel)
 							var selector = { selector : tmp[0] };
 							if(tmp.length > 1)
 							{
-								selector.line = parseInt(tmp[1], 10);
+								var lineCol = tmp[1].split(':');
+								selector.line = parseInt(lineCol[0], 10);
+								selector.column = lineCol.length > 1 ? parseInt(lineCol[1], 10) : null
 							}
 							selectors.push(selector);
 						}

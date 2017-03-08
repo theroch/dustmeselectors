@@ -3034,7 +3034,7 @@ DustMeSelectors_browser.showStylesheetCleaner = function(groupheading)
 					//author is not sending the correct mime-type, but we can't really allow for that
 					//without doing more complex parsing on the content to see if it has the syntax of CSS
 					//(and iirc stylesheets like that won't appear in firefox's CSS DOM in the first place)
-					else if(!/^\s*text\/css/i.test(http.getResponseHeader('Content-Type')))
+					else if(!/^\s*text\/css/i.test(http.getResponseHeader('Content-Type')) && url.indexOf('file:') !== 0)
 					{
 						//if the status heading is still there and the viewdialog hasn't closed
 						//and the viewselectors browser doesn't have the clearmark attribute
